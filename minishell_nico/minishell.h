@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:40:58 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/04 18:23:20 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/06 18:02:06 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,12 @@ typedef struct l_list
 	int operator;
 	struct l_list *next;
 } t_lex_list;
+
+typedef struct export_list
+{
+	char *name;
+	char *value;
+} t_export_list;
 
 typedef struct env_list
 {
@@ -224,6 +230,8 @@ void	expander_expanding(t_init *init);
 int builtin_manage(t_init *init, char *str, char **all_args);
 int is_command_builtin(char *str);
 void    text_to_print(char    **line);
+void the_real_export(char **arguments, t_init *init);
+void free_env_list(t_env_list* list);
 
 void	ft_echo(char *cmd);
 int		the_real_pwd(t_init *init);

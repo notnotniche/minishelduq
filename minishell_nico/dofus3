@@ -39,7 +39,6 @@ SRCS =		${LAUNCHER_DIR}launcher.c\
 			${ENVP_DIR}env_list.c\
 			${ENVP_DIR}env_list_utils.c\
 			${BUILTINS_DIR}echo.c\
-			${BUILTINS_DIR}export.c\
 			${BUILTINS_DIR}pwd.c\
 			${UTILS_DIR}ft_strjoin.c\
 			${LEXER_DIR}token.c\
