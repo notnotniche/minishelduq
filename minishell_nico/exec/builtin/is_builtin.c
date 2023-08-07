@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:25:56 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/06 17:05:28 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/07 17:53:36 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ int builtin_manage(t_init *init, char *str, char **all_args)
 		the_real_pwd(init);
 	if (ft_strsame(str, "export"))
 		the_real_export(all_args, init);
+	print_lst_env(init->lst_env);
 	return (0);
 }

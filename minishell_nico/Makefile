@@ -71,7 +71,7 @@ CC =		cc
 
 RM =		rm -f
 
-CFLAGS =	-Wall -Werror -Wextra -g
+CFLAGS =	-Wall -Werror -Wextra -g3
 
 LFALGS = -lreadline
 
