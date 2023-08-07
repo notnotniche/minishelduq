@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:52:24 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/07 17:00:28 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/07 18:36:25 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int valid_export(char **arguments)
 
 void export_to_linked_list(t_init *init, char **str)
 {
-	lstadd_back_env(&init->lst_env, lstnew_env(str[0], str[1]));
+	change_env_value(str[0], str[1], init);
 }
 
 char  **exportator(char *str)

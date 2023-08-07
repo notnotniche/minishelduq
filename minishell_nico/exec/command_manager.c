@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 19:21:37 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/07 17:59:57 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/07 18:21:04 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,9 @@ void printalltab(char **tarb, char *arg)
 	}
 }
 
-void exit_close(t_exec_init *exec_init , int move2ouf)
+void exit_close(t_init *init, t_exec_init *exec_init , int move2ouf)
 {
+	(void)init;
 	close(exec_init->mypipe[1]);
 	close(exec_init->mypipe[0]);
 	close(exec_init->pipetmp);
@@ -94,7 +95,10 @@ void	command_manager(t_init *init, t_exec_init *exec_init, int i)
 		path = path_maker(init, init->lst_token->arguments, get_env_value("PATH", init));
 	else if (is_command_builtin(all_args[0]))
 	{
-		exit_close(exec_init, builtin_manage(init, all_args[0], all_args));
+		// close(exec_init->mypipe[1]);
+		// close(exec_init->mypipe[0]);
+		// close(exec_init->pipetmp);
+		return(builtin_manage(init, all_args[0], all_args), free(NULL));
 	}
 	close(exec_init->mypipe[1]);
 	close(exec_init->mypipe[0]);

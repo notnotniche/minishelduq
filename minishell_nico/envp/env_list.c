@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:44:04 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/07/28 13:51:39 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/07 18:39:12 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ void	change_env_value(char *name, char *new_value, t_init *init)
 	t_env_list *tmp;
 
 	tmp = init->lst_env;
+	if (!new_value)
+		return ;
 	while (tmp)
 	{
 		if (ft_strsame(tmp->name, name))
