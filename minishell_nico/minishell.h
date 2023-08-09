@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:40:58 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/06 18:02:06 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/09 15:26:52 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,6 +223,8 @@ void		exec(t_init *init);
 
 //expand
 int		is_env(char *str);
+int		size_double_tab(char **arguments);
+int valid_first_letter(char *str, int i);
 char	*env_name_expander(char *str);
 void	expander_expanding(t_init *init);
 
@@ -230,6 +232,8 @@ void	expander_expanding(t_init *init);
 int builtin_manage(t_init *init, char *str, char **all_args);
 int is_command_builtin(char *str);
 void    text_to_print(char    **line);
+void printLinkedList(t_env_list *head);
+void the_real_env(char **arguments, t_init *init);
 void the_real_export(char **arguments, t_init *init);
 void free_env_list(t_env_list* list);
 

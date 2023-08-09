@@ -5,14 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/07 13:47:40 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/07 13:50:49 by nklingsh         ###   ########.fr       */
+/*   Created: 2023/08/09 14:58:09 by nklingsh          #+#    #+#             */
+/*   Updated: 2023/08/09 16:05:10 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-// void	the_real_export2(t_init *init, char **arguments)
-// {
-// 	if ()	
-// }
+void print_export_env(t_init *init, t_env_list *env_list);

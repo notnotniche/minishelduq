@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:52:24 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/07 18:36:25 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/09 15:15:21 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,28 @@ int valid_first_letter(char *str, int i)
 		return (1);
 }
 
-int valid_until_equal(char *str)
+int valid_only_str(char *str)
 {
 	int i;
 
 	i = 0;
+	while (str[i])
+	{
+		i++;
+	}
+	return (1);
+}
+
+int valid_until_equal(char *str)
+{
+	int i;
+	int y;
+
+	y = 0;
+	i = 0;
 	while (str[i] && str[i] != '=')
 	{
-		printf("%c  ",str[i]);
+		printf("---------> %c ", i);
 		if (ft_isalnum(str[i]) == 0)
 			return (printf("\n cest ciao : %c : --> \n", str[i]), 0);
 		i++;
@@ -50,32 +64,33 @@ int valid_after_equal(char *str)
 	int i;
 
 	i = 0;
-	while (str[i] != '=')
+	while (str[i] && str[i + 1] != '=')
 		i++;
-	i++;
 	while (str[i])
-	{
-		if (ft_isalnum(str[i]) == 0)
-			return (printf("\n cest ciao : %c : --> \n", str[i]), 0);
 		i++;
-	}
 	return (1);
 }
 
 int valid_export(char **arguments)
 {
+	printf("arguemtns :%s \n", arguments[1]);
 	if (valid_first_letter(arguments[1], 0) == 0)
 		return (printf("cest pas bon1"),0);
 	if (valid_until_equal(arguments[1]) == 0)
 		return (printf("cest pas bon2"),0);
-	if (valid_after_equal(arguments[1]) == 0)
+	else if (valid_after_equal(arguments[1]) == 0)
 		return (printf("cest pas bon3"),0);
 	return (1);
 }
 
+
+
 void export_to_linked_list(t_init *init, char **str)
 {
-	change_env_value(str[0], str[1], init);
+	if (str[1] == NULL)
+		change_env_value(str[0], str[1], init);
+	else
+		change_env_value(str[0],str[1], init);
 }
 
 char  **exportator(char *str)
@@ -89,7 +104,7 @@ char  **exportator(char *str)
 void the_real_export(char **arguments, t_init *init)
 {
 	char **str;
-
+	
 	str = NULL;
 	if (size_double_tab(arguments) == 1)
 	{
@@ -97,10 +112,10 @@ void the_real_export(char **arguments, t_init *init)
 	}
 	else if (size_double_tab(arguments) == 2)
 	{
-		valid_export(arguments);
+		if (valid_export(arguments) == 1)
+		{
 		str = exportator(arguments[1]);
 		export_to_linked_list(init, str);
+		}
 	}
-	// print_lst_env(init->lst_env);
-	
 }
