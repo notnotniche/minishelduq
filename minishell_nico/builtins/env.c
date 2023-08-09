@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 16:32:41 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/09 16:06:36 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/09 17:25:00 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,44 +51,23 @@ int check_if_all_args_are_good(char **arguments)
 	return (1);
 }
 
-// void print_env_value(char *name, char *value, t_init *init)
-// {
-// 	t_env_list *tmp;
-
-// 	tmp = init->lst_env;
-// 	while (tmp)
-// 	{
-// 		if (ft_strsame(tmp->name, name))
-// 			printf("%s=%s\n",name, value);
-// 		else
-				
-// 	}
+void    print_for_env(t_init *init)
+{
 	
-// }
+	t_env_list    *suivant;
 
-// void ft_print_env(char **arguments, t_init *init)
-// {
-// 	int i;
-// 	char **str;
-
-// 	i = 1;
-// 	str=ft_split(arguments[0], '=');
-// 	{
-		
-// 	}	
-// }
+	suivant =init->lst_env;
+    while(suivant)
+    {
+        if (suivant->name && suivant->value)
+            printf("%s=%s\n", suivant->name, suivant->value);
+		suivant = suivant->next;
+    }
+}
 
 
 void the_real_env(char **arguments, t_init *init)
 {
 	if (size_double_tab(arguments) == 1)
-		print_lst_env(init->lst_env);
-	else if (size_double_tab(arguments) > 1)
-	{
-		if (check_if_all_args_are_good(arguments))
-		{
-			print_lst_env(init->lst_env);
-			
-		}
-	}	
+		print_for_env(init);
 }
