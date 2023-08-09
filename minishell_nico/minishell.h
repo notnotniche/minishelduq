@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:40:58 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/09 15:26:52 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/09 16:27:19 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,6 +248,7 @@ int check_outfile_fd(t_token_list *tok_list);
 int check_infile_fd(t_token_list *tok_list);
 int check_if_directory(char *path);
 int file_exec(char *path);
+char **env_to_str(t_init *init, t_env_list *env_list, int size_env);
 int check_file_exist(char *path);
 void exec_all_pid(t_init *init, int i, t_exec_init exec_init);
 char *path_maker(t_init *init, t_str_list *cmd, char *path);
