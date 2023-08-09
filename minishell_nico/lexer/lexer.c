@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:51:54 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/02 13:26:30 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/06 16:02:55 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ t_lex_list *lexer_lexing(char *read_line, t_init *init)
 			operator_manager(&read_line, &lex_list, init);
 		else if (!ft_is_operator(read_line) && !ft_isspace(*read_line))
 		{
+			//duplicate 
 			word_manager(read_line, &lex_list, init);
 			end_of_word(&read_line);
 		}

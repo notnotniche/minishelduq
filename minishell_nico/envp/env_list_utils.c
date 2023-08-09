@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:33:54 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/07/28 18:32:17 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/08 18:41:54 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ t_env_list *lstlast_env(t_env_list *list)
 void	lstadd_back_env(t_env_list **list, t_env_list *new)
 {
 	t_env_list *last;
-
+	
 	if (*list)
 	{
-		last = lstlast_env(lstlast_env(*list));
+		last = lstlast_env(*list);
 		last->next = new;
 	}
 	else
@@ -52,7 +52,7 @@ void print_lst_env(t_env_list *list)
 {
 	while (list)
 	{
-		printf("--> %s  ---> %s   \n", list->name, list->value);
+		printf("%s=%s\n", list->name, list->value);
 		list = list->next;
 	}
 }	

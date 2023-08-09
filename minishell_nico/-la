@@ -3,12 +3,14 @@ a
 b
 builtins
 c
+dofus
 dofus1
 dofus2
 dofus3
 envp
 error_manager
 exec
+-la
 launcher
 le test
 lexer

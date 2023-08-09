@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:52:38 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/04 18:20:32 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/09 16:48:32 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ void real_exec(t_init *init)
 {
 	char **all_args;
 
+		
 	all_args = args_to_str(init->lst_token->arguments, ft_size_str(init->lst_token->arguments), init);
-	// if (ft_size_token(init->lst_token) == 1 && is_command_builtin(init->lst_token->arguments->str_list))
-	// {
-	// 		printf("je joue a dofus\n");
-	// 		builtin_manage(init, all_args[0], all_args);
-	// }
-	// else 
-	exec(init);
+	if (ft_size_token(init->lst_token) == 1 && is_command_builtin(init->lst_token->arguments->str_list))
+	{
+			builtin_manage(init, all_args[0], all_args);
+	}
+	else 
+		exec(init);
 }
 
 

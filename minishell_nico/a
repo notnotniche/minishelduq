@@ -1,0 +1,27 @@
+total 172
+drwxr-xr-x 10 nklingsh 2022_paris  4096 Aug  6 17:47 .
+drwxr-xr-x  5 nklingsh 2022_paris  4096 Aug  6 13:38 ..
+-rw-r--r--  1 nklingsh 2022_paris     0 Aug  6 15:48 >
+-rw-r--r--  1 nklingsh 2022_paris     0 Aug  6 16:06 a
+-rw-r--r--  1 nklingsh 2022_paris     0 Aug  6 16:06 b
+drwxr-xr-x  2 nklingsh 2022_paris  4096 Aug  6 17:47 builtins
+-rw-r--r--  1 nklingsh 2022_paris   156 Aug  6 16:10 c
+-rw-r--r--  1 nklingsh 2022_paris     0 Aug  6 13:39 dofus1
+-rw-r--r--  1 nklingsh 2022_paris     0 Aug  6 14:43 dofus2
+-rw-r--r--  1 nklingsh 2022_paris  1709 Aug  6 14:43 dofus3
+drwxr-xr-x  2 nklingsh 2022_paris  4096 Aug  6 13:38 envp
+drwxr-xr-x  2 nklingsh 2022_paris  4096 Aug  6 13:38 error_manager
+drwxr-xr-x  3 nklingsh 2022_paris  4096 Aug  6 13:38 exec
+drwxr-xr-x  2 nklingsh 2022_paris  4096 Aug  6 13:38 launcher
+-rw-r--r--  1 nklingsh 2022_paris   136 Aug  6 13:38 .leaks
+-rw-r--r--  1 nklingsh 2022_paris   156 Aug  6 16:07 le test
+drwxr-xr-x  2 nklingsh 2022_paris  4096 Aug  6 16:16 lexer
+-rw-r--r--  1 nklingsh 2022_paris  2143 Aug  6 13:38 main.c
+-rw-r--r--  1 nklingsh 2022_paris  6472 Aug  6 13:38 main.o
+-rw-r--r--  1 nklingsh 2022_paris  1737 Aug  6 16:30 Makefile
+-rw-r--r--  1 nklingsh 2022_paris   918 Aug  6 13:38 makefilegrepe
+-rwxr-xr-x  1 nklingsh 2022_paris 85800 Aug  6 17:47 minishell
+-rw-r--r--  1 nklingsh 2022_paris  6965 Aug  6 17:04 minishell.h
+-rw-r--r--  1 nklingsh 2022_paris     6 Aug  6 13:39 text1
+drwxr-xr-x  2 nklingsh 2022_paris  4096 Aug  6 13:38 utils
+drwxr-xr-x  2 nklingsh 2022_paris  4096 Aug  6 13:38 .vscode

@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   isnumber.c                                         :+:      :+:    :+:   */
+/*   export2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/30 15:55:55 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/07 14:00:34 by nklingsh         ###   ########.fr       */
+/*   Created: 2023/08/09 14:58:09 by nklingsh          #+#    #+#             */
+/*   Updated: 2023/08/09 16:27:52 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	numerical(char c)
+void print_export(t_init *init, t_env_list *env_list)
 {
-	if ((c >= 7 && c <= 13) || c == '\0' || c == 32)
-		return (0);
-	return (1);
-}
-
-int is_quote(char c)
-{
-	if ((c == '\'') || (c == '\"'))
-		return (1);
-	return (0);
+	env_to_str(init,env_list, ft_size_env(init->lst_env));
 }
