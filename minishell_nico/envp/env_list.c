@@ -6,56 +6,39 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:44:04 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/07 18:48:46 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/10 16:38:08 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	env_name_size(char *env)
-{
-	int i;
+int env_name_size(char *env) {
+    int i = 0;
 
-	i = 0;
-	if (ft_strlen(env) == 0)
-		return (0);
-	while (env[i])
-	{
-		if (env[i] == '=')
-			break ;
-		i++;
-	}
-	if (env[i - 1] == '+')
-		i--;
-	return (i);
+    while (env[i] && env[i] != '=')
+        i++;
+
+    if (i > 0 && env[i - 1] == '+')
+        i--;
+
+    return i;
 }
 
-char	*env_name(char *env)
-{
-	int		i;
-	char	*name;
+char *env_name(char *env) {
+    if (env[0] == '=')
+        return NULL;
 
-	if (env[0] == '=')
-		return (NULL);
-	i = env_name_size(env);
-	name = malloc((i + 1) * sizeof(char));
-	if (!name)
-		return (NULL);
-	i = 0;
-	while (env[i])
-	{
-		if (env[i] == '=' || (env[i] == '+' && env[i + 1] == '='))
-			break ;
-		name[i] = env[i];
-		i++;
-	}
-	name[i] = 0;
-	if (ft_strlen(name) == 0)
-	{
-		free(name);
-		return (NULL);
-	}
-	return (name);
+    int nameLength = env_name_size(env);
+    if (nameLength <= 0)
+        return NULL;
+
+    char *name = malloc((nameLength + 1) * sizeof(char));
+    if (name == NULL)
+        return NULL;
+
+    ft_strncpy(name, env, nameLength);
+    name[nameLength] = '\0';
+    return name;
 }
 
 t_env_list	*init_env_list(char **env)

@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 18:14:13 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/02 19:33:32 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/10 19:11:21 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ char *path_maker(t_init *init, t_str_list *cmd, char *path)
 	
 	i = 0;
 	res = path_res(init, cmd);
-	// printf("\n%s", path);
-	// printf("path maker ---> %s", res);
 	if (res)
 		return (printf("--> path_res %s res \n",res), res);
 	if (!path)

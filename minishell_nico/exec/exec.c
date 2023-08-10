@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:52:38 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/09 16:48:32 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/10 17:50:20 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,28 @@ void my_wait_pid(t_exec_init exec_init)
 	}
 }
 
+int here_doc_exit(t_init *init)
+{
+	t_str_list *tmp;
+	int i;
+
+	i =0;
+	tmp = init->lst_token->delimeter;
+	while (tmp)
+	{
+		i++;
+		tmp = tmp->next;
+	}
+	printf("nb delimeter :%d", i);
+	return (i);
+}
+
 
 void real_exec(t_init *init)
 {
 	char **all_args;
-
-		
+	if (here_doc_exit(init) >= 1)
+		ft_heredoc(init->lst_token->delimeter->str_list, init);
 	all_args = args_to_str(init->lst_token->arguments, ft_size_str(init->lst_token->arguments), init);
 	if (ft_size_token(init->lst_token) == 1 && is_command_builtin(init->lst_token->arguments->str_list))
 	{

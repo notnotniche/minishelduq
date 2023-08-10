@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:40:58 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/09 19:18:13 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/10 19:30:00 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ int		ft_strlen(char *str);
 char	*ft_strtrim(char *str, int i , int y);
 int		ft_strsame(char *str1, char *str2);
 char    **ft_split(const char *s, char c);
+char *ft_strncpy(char *dest, const char *src, size_t n);
 char	*ft_strjoin(char *str1, char *str2);
 int		ft_isalpha(char c);
 void	check_pipe(int fd);
@@ -132,6 +133,7 @@ int		ft_isalnum(char c);
 int		is_quote(char c);
 void	close_fds(int fd_nbr, ...);
 int		ft_isitenv(char c);
+int    ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strdup(char *str);
 char			*ft_itoa(int n);
 char	*ft_join_str_in_init(t_init *init, char c, 	char *src);
@@ -231,6 +233,7 @@ void	expander_expanding(t_init *init);
 //builtins
 int builtin_manage(t_init *init, char *str, char **all_args);
 int is_command_builtin(char *str);
+void 	the_real_cd(char **path, char **envp, t_init *init);
 void the_real_env(char **arguments, t_init *init);
 void the_real_unset(char **arguments, t_init *init);
 void    text_to_print(char    **line);
@@ -243,6 +246,7 @@ int		the_real_pwd(t_init *init);
 
 
 //exec
+void    ft_heredoc(char *delimiteur, t_init *init);
 void real_exec(t_init *init);
 char *is_pathabs(t_init *init, char *str);
 int check_outfile_fd(t_token_list *tok_list);

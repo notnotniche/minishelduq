@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:25:56 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/09 18:27:33 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/10 20:08:11 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int is_command_builtin(char *str)
 
 int builtin_manage(t_init *init, char *str, char **all_args)
 {
-	// ft_print_fd(str, 1);
 	if (ft_strsame(str, "echo"))
 		text_to_print(all_args);
 	if (ft_strsame(str, "pwd"))
@@ -44,5 +43,7 @@ int builtin_manage(t_init *init, char *str, char **all_args)
 		the_real_env(all_args, init);
 	if (ft_strsame(str, "unset"))
 		the_real_unset(all_args, init);
+	if (ft_strsame(str, "cd"))
+		the_real_cd(all_args, env_to_str(init, init->lst_env, ft_size_env(init->lst_env)), init);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 16:00:25 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/07 17:00:23 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/10 17:53:03 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	parsing(t_init *init, char *read_line)
 	// print_lst_env(init->lst_env);
 	init->lst_token = get_all_token(init);
 	head = init->lst_token;
-	// printf("---> token size %d \n", ft_size_token(init->lst_token));
+	print_all_token(init->lst_token);
 	
 	return (0);
 }

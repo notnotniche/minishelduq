@@ -6,52 +6,82 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 15:31:30 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/07/21 17:15:55 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/10 17:26:49 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int ft_length(int x)
+static int    ft_nbrlen(long int nb)
 {
-	int n;
+    int    len;
 
-	n = 0;
-	if (x < 0)
-	{
-		x = -x;
-		n++;
-	}
-	while (x > 9)
-	{
-		x = x / 10;
-		n++;
-	}
-	return (n);
+    len = 1;
+    if (nb < 0)
+    {
+        nb *= -1;
+        len++;
+    }
+    while (nb >= 10)
+    {
+        nb /= 10;
+        len++;
+    }
+    return (len);
 }
 
-char			*ft_itoa(int n)
+void    *ft_memset(void *s, int c, size_t n)
 {
-	char		*str_num;
-	size_t		digits;
-	long int	num;
+    long unsigned int    i;
+    char                *buffer;
 
-	num = n;
-	digits = ft_length(n);
-	if (n < 0)
-	{
-		num *= -1;
-		digits++;
-	}
-	if (!(str_num = (char *)malloc(sizeof(char) * (digits + 1))))
-		return (NULL);
-	*(str_num + digits) = 0;
-	while (digits--)
-	{
-		*(str_num + digits) = num % 10 + '0';
-		num = num / 10;
-	}
-	if (n < 0)
-		*(str_num + 0) = '-';
-	return (str_num);
+    i = 0;
+    buffer = (char *)s;
+    while (i != n)
+    {
+        buffer[i] = c;
+        i++;
+    }
+    return (s);
+}
+
+void    ft_bzero(void *s, size_t n)
+{
+    ft_memset(s, '\0', n);
+}
+
+void    *ft_calloc(size_t nmemb, size_t size)
+{
+    int    *mem;
+
+    mem = malloc(nmemb * size);
+        if (!mem)
+          return(NULL);
+    ft_bzero(mem, nmemb * size);
+    return (mem);
+}
+
+char    *ft_itoa(int nb)
+{
+    char    *str;
+    int        len;
+    long    nbr;
+
+    nbr = (long int) nb;
+    len = ft_nbrlen(nbr);
+    str = (char *) ft_calloc(sizeof(char), len + 1);
+    if (!str)
+        return (NULL);
+    str[len] = '\0';
+    if (nbr < 0)
+    {
+        nbr *= -1;
+        str[0] = '-';
+    }
+    while (--len >= 0 && !str[len])
+    {
+        str[len] = (nbr % 10) + '0';
+        nbr /= 10;
+    }
+    return (str);
 }

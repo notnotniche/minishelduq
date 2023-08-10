@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:51:32 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/07/23 18:08:44 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/10 20:25:20 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ int	the_real_pwd(t_init *init)
 	if (path == NULL)
 		return(printf("ERROR"), 1);
 	printf("%s\n", path);
+	free(path);
 	return (0);
 }

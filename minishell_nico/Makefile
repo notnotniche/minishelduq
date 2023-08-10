@@ -32,6 +32,7 @@ SRCS =		${LAUNCHER_DIR}launcher.c\
 			${UTILS_DIR}array_list.c\
 			${UTILS_DIR}megafree.c\
 			${UTILS_DIR}ft_itoa.c\
+			${EXEC_DIR}heredoc.c\
 			${LEXER_DIR}lexer_utils_1.c\
 			${LEXER_DIR}lexer.c\
 			${LEXER_DIR}expand.c\
@@ -40,6 +41,7 @@ SRCS =		${LAUNCHER_DIR}launcher.c\
 			${ENVP_DIR}env_list_utils.c\
 			${BUILTINS_DIR}echo.c\
 			${BUILTINS_DIR}env.c\
+			${BUILTINS_DIR}cd.c\
 			${BUILTINS_DIR}unset.c\
 			${BUILTINS_DIR}export.c\
 			${BUILTINS_DIR}pwd.c\
