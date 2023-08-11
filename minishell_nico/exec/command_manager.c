@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 19:21:37 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 18:41:06 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 19:22:23 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void	command_manager(t_init *init, t_exec_init *exec_init, int i)
 		close(exec_init->mypipe[1]);
 		close(exec_init->mypipe[0]);
 		close(exec_init->pipetmp);
-		return(builtin_manage(init, all_args[0], all_args), free(NULL));
+		builtin_manage(init, all_args[0], all_args);
+		exit(2);
 	}
 }
