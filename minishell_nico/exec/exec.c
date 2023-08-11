@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:52:38 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/10 17:50:20 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 12:29:49 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,9 @@ void exec(t_init *init)
 		// printf("%d \n\n", exec_init.realpid);
 		if (exec_init.realpid < 0)
 				exit(1);
-		signal(SIGQUIT, sig_process);
-		signal(SIGINT, sig_process);
+		signal(SIGINT, handle_sigint);
+		if (signal(SIGQUIT, SIG_IGN) != SIG_ERR)
+			g_status_exit_code = 131;
 		if (exec_init.realpid == 0)
 				exec_all_pid(init, i, exec_init);
 		// printf("exec_init : %d\n",exec_init.pid[i]);
