@@ -60,6 +60,7 @@ SRCS =		${LAUNCHER_DIR}launcher.c\
 			${EXEC_DIR}path.c\
 			${EXEC_BUILTIN_DIR}is_builtin.c\
 			${EXEC_DIR}fd_manager.c\
+			${EXEC_DIR}signals.c\
 
 
 

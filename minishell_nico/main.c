@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 16:00:25 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/10 17:53:03 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 11:59:22 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,14 @@ int main(int argc, char **argv, char **env)
 	t_init init;
 
 	init.lst_env = init_env_list(env);
-	signal(SIGINT, routine_start);
+	//signal(SIGINT, routine_start);
+	signal(SIGINT, handle_sigint);
+	signal(SIGQUIT, SIG_IGN);
 	while(1)
 		{
 			init.read_line = readline("minishell :");
+			if (init.read_line == NULL) //ctrl d
+				break;
 			add_history(init.read_line);
 			if (ft_strlen(init.read_line) == 0)
 				;

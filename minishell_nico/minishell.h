@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:40:58 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/10 19:30:00 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 12:02:10 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,6 +246,7 @@ int		the_real_pwd(t_init *init);
 
 
 //exec
+void	handle_sigint(int sig);
 void    ft_heredoc(char *delimiteur, t_init *init);
 void real_exec(t_init *init);
 char *is_pathabs(t_init *init, char *str);
