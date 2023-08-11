@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 17:12:35 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/07/21 14:21:20 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 16:23:39 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ char *ft_strjoin(char *str1, char *str2)
 
 	i = 0;
 	y = 0;
-	// if (!str2)
-	// 	return (NULL);
+	if (!str2)
+		return (NULL);
 	str = malloc((ft_strlen(str1) + ft_strlen(str2) + 1) * sizeof(char));
 	if (!str)
 		return (NULL);

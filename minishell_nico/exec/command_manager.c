@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 19:21:37 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 14:59:47 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 16:54:20 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char **args_to_str(t_str_list *str, int size_str, t_init *init)
 		i++;
 		head = head->next;
 	} 
-	result[i] = 0;
+	result[i] = NULL;
 	return (result);
 }
 

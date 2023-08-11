@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 18:19:38 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 14:28:41 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 17:24:05 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,30 +76,32 @@ char    *get_home_path(char **envp)
 
 void grep_old_pwd_and_new(t_init *init)
 {
-	t_env_list *v2;
-	char *str;
-	char buffer[PATH_MAX];
-	
+    t_env_list *v2;
+    char *str;
+    char buffer[PATH_MAX];
 
-	v2 = init->lst_env;
-	str  = getcwd(buffer, PATH_MAX);
-	while(v2)
-	{
-		printf("init -> name : %s \n", v2->name);
-		if (ft_strsame(v2->name, "OLDPWD"))
-		{
-			change_env_value("OLDPWD",get_env_value("PWD",init), init);
-			break;
-		}
-		v2 = v2->next;
-	}
-	while(v2)
-	{
-		printf("v2 -> name : %s \n", v2->name);
-		if (ft_strsame(v2->name, "PWD"))
-			change_env_value("PWD", str, init);
-		v2 = v2->next;
-	}
+    v2 = init->lst_env;
+    str = getcwd(buffer, PATH_MAX);
+    
+    while (v2)
+    {
+        if (ft_strsame(v2->name, "OLDPWD"))
+        {
+            change_env_value("OLDPWD", get_env_value("PWD", init), init);
+            break;
+        }
+        v2 = v2->next;
+    }
+    v2 = init->lst_env;
+    while (v2)
+    {
+        if (ft_strsame(v2->name, "PWD"))
+        {
+            change_env_value("PWD", str, init);
+            break;
+        }
+        v2 = v2->next;
+    }
 }
 
 void 	the_real_cd(char **path, char **envp, t_init *init)

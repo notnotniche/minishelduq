@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:52:24 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/09 17:39:21 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 16:08:50 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,4 +119,6 @@ void the_real_export(char **arguments, t_init *init)
 		}
 		free(str);
 	}
+	else 
+		printf("error too many arugments");
 }

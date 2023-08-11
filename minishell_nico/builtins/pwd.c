@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:51:32 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 14:58:49 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 15:21:43 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	the_real_pwd(t_init *init)
 {
 	char buffer[PATH_MAX];
 	char *path;
+	(void)init;
 	
 	path = get_env_value("PWD", init);
 	if (path != NULL)
@@ -51,6 +52,5 @@ int	the_real_pwd(t_init *init)
 	if (path == NULL)
 		return(printf("ERROR"), 1);
 	printf("%s\n", path);
-	free(path);
 	return (0);
 }

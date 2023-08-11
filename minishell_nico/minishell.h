@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:40:58 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 13:25:33 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 16:46:04 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include "unistd.h"
 #include "stdlib.h"
+#include <errno.h>
 # include <termios.h>
 # include <term.h>
 # include <fcntl.h>
@@ -255,6 +256,7 @@ int check_infile_fd(t_token_list *tok_list);
 int check_if_directory(char *path);
 int file_exec(char *path);
 char **env_to_str(t_init *init, t_env_list *env_list, int size_env);
+void printalltab(char **tarb, char *arg);
 int name_exist_in_env(char *str, t_init *init);
 int check_file_exist(char *path);
 void exec_all_pid(t_init *init, int i, t_exec_init exec_init);

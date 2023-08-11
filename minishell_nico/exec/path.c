@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 18:14:13 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/10 19:11:21 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 15:16:44 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void free_tab_tab(char **splittos)
 		i++;
 	}
 	free(splittos);
-	exit(1);
+	return ;
 }
 
 char *path_maker(t_init *init, t_str_list *cmd, char *path)

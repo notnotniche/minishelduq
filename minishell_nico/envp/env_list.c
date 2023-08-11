@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:44:04 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 14:30:19 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 16:53:08 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ char	*get_env_value(char *name, t_init *init)
 		if (ft_strsame(name, env_list->name))
 			return (env_list->value);
 		env_list = env_list->next;
-		
 	}
-	return ("");
+	return (NULL);
 }
