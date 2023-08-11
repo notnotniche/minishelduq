@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:40:58 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 16:46:04 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 19:02:40 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,9 @@ int		ft_isalpha(char c);
 void	check_pipe(int fd);
 int		ft_isalnum(char c);
 int		is_quote(char c);
+char	*ft_strcpy(char *dest, const char *src);
 void	close_fds(int fd_nbr, ...);
+char *ft_strcat(char *dest, const char *src);
 int		ft_isitenv(char c);
 int    ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strdup(char *str);
@@ -197,6 +199,7 @@ void print_lst_lex(t_lex_list *list);
 
 //env_list_utils
 void		print_lst_env(t_env_list *list);
+
 void		lstadd_back_env(t_env_list **list, t_env_list *new);
 t_env_list	*lstlast_env(t_env_list *list);
 t_env_list	*lstnew_env(char *name, char *value);
@@ -236,6 +239,7 @@ int builtin_manage(t_init *init, char *str, char **all_args);
 int is_command_builtin(char *str);
 void 	the_real_cd(char **path, char **envp, t_init *init);
 void the_real_env(char **arguments, t_init *init);
+void free_tab_tab(char **splittos);
 void the_real_unset(char **arguments, t_init *init);
 void    text_to_print(char    **line);
 void printLinkedList(t_env_list *head);

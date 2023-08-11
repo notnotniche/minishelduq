@@ -16,6 +16,15 @@
 #include <stdio.h>
 #include "../minishell.h"
 
+char *ft_strjoin_space(char *s1, char *s2) {
+    if (!s1)
+        return ft_strdup(s2);
+    char *result = malloc(ft_strlen(s1) + ft_strlen(s2) + 2); // +2 for the added space and null terminator
+    ft_strcpy(result, s1);
+    ft_strcat(result, " ");
+    ft_strcat(result, s2);
+    return result;
+}
 
 int     ft_scmp(const char *s1, const char *s2)
 {
@@ -51,7 +60,7 @@ void    text_to_print(char    **line)
 
     i = 0;
     n = 0;
-    res = "";
+    res = NULL;
     while (line[i])
         i++;
     i = 0;
@@ -68,7 +77,7 @@ void    text_to_print(char    **line)
             && ft_scmp(line[i], ">") != 0 && ft_scmp(line[i], "<<") != 0
             && ft_scmp(line[i], ">>") != 0))
     {
-        res = ft_strjoin(res, line[i]);
+        res = ft_strjoin_space(res, line[i]);
         i++;
     }
     if (n == 0)

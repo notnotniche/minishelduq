@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 16:00:25 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 13:52:58 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 18:56:01 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int main(int argc, char **argv, char **env)
 	t_init init;
 
 	init.lst_env = init_env_list(env);
-	//signal(SIGINT, routine_start);
 	signal(SIGINT, handle_sigint);
 	signal(SIGQUIT, SIG_IGN);
 	while(1)
@@ -57,7 +56,6 @@ int main(int argc, char **argv, char **env)
 			if (init.read_line == NULL) //ctrl d
 			{
 				free_env_list(init.lst_env);
-				free_s_init(&init);
 				break;
 			}
 			add_history(init.read_line);
@@ -72,6 +70,7 @@ int main(int argc, char **argv, char **env)
 			if (!init.read_line)
 				free(init.read_line);
 			}
+			free_s_init(&init);
 		}
 	if (init.read_line)
 		free(init.read_line);

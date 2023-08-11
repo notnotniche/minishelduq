@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 18:19:38 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 17:24:05 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 18:57:50 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,30 +74,31 @@ char    *get_home_path(char **envp)
     return (home_path);
 }
 
-void grep_old_pwd_and_new(t_init *init)
-{
-    t_env_list *v2;
-    char *str;
+void grep_old_pwd_and_new(t_init *init) {
+    t_env_list *v2 = init->lst_env;
     char buffer[PATH_MAX];
-
-    v2 = init->lst_env;
-    str = getcwd(buffer, PATH_MAX);
+    char *str = getcwd(buffer, PATH_MAX);
     
-    while (v2)
-    {
-        if (ft_strsame(v2->name, "OLDPWD"))
-        {
-            change_env_value("OLDPWD", get_env_value("PWD", init), init);
+    while (v2) {
+        if (ft_strsame(v2->name, "OLDPWD")) {
+            char *oldpath = get_env_value("PWD", init);
+            if (oldpath) {
+                change_env_value("OLDPWD", oldpath, init); 
+            }
             break;
         }
         v2 = v2->next;
     }
+
     v2 = init->lst_env;
-    while (v2)
-    {
-        if (ft_strsame(v2->name, "PWD"))
-        {
-            change_env_value("PWD", str, init);
+    while (v2) {
+        if (ft_strsame(v2->name, "PWD")) {
+            printf("Changing PWD with current value: %s\n", str);
+            char *new_path = ft_strdup(str); 
+			lstaddback_malloc(init, lstnew_malloc(new_path));
+            if (new_path) {
+                change_env_value("PWD", new_path, init); 
+            }
             break;
         }
         v2 = v2->next;

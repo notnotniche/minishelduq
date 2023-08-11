@@ -1,44 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   echo_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/30 14:17:53 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 17:25:05 by nklingsh         ###   ########.fr       */
+/*   Created: 2023/08/11 19:01:37 by nklingsh          #+#    #+#             */
+/*   Updated: 2023/08/11 19:01:55 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	ft_strcmp(char *str, char *str2)
-{
-	int i;
-	int	compteur;
-
-	i = 0;
-	compteur = 0;
-	if (ft_strlen(str) > ft_strlen(str2))
-		return (1);
-	if (ft_strlen(str) < ft_strlen(str2))
-		return (-1);
-	while(str[i] && str2[i])
-	{
-		compteur = compteur + str[i] - str2[i];
-		i++;
-	}
-	return (compteur);
+char *ft_strcpy(char *dest, const char *src) {
+    char *d = dest;
+    while ((*d++ = *src++))
+        ;
+    return dest;
 }
 
-int ft_strlen(char *str)
-{
-	int i;
-
-	i = 0;
-	if (!str)
-		return (0);
-	while (str[i])
-		i++;
-	return (i);
+char *ft_strcat(char *dest, const char *src) {
+    char *d = dest;
+    while (*d)
+        d++;
+    while ((*d++ = *src++))
+        ;
+    return dest;
 }
+
+
+
+
+

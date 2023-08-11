@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 19:21:37 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 16:54:20 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 18:41:06 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,14 @@ void	command_manager(t_init *init, t_exec_init *exec_init, int i)
 	path = NULL;
 	env = env_to_str(init, init->lst_env, ft_size_env(init->lst_env));
 	all_args = args_to_str(init->lst_token->arguments, ft_size_str(init->lst_token->arguments), init);
-	// builtin here
 	if (!is_command_builtin(all_args[0]))
+	{
 		path = path_maker(init, init->lst_token->arguments, get_env_value("PATH", init));
+		close(exec_init->mypipe[1]);
+		close(exec_init->mypipe[0]);
+		close(exec_init->pipetmp);
+		execve(path, all_args, env);
+	}
 	else if (is_command_builtin(all_args[0]))
 	{
 		close(exec_init->mypipe[1]);
@@ -98,8 +103,4 @@ void	command_manager(t_init *init, t_exec_init *exec_init, int i)
 		close(exec_init->pipetmp);
 		return(builtin_manage(init, all_args[0], all_args), free(NULL));
 	}
-	close(exec_init->mypipe[1]);
-	close(exec_init->mypipe[0]);
-	close(exec_init->pipetmp);
-	execve(path, all_args, env);
 }

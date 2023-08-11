@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:44:04 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 16:53:08 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 18:54:33 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,22 +59,28 @@ t_env_list	*init_env_list(char **env)
 	}
 	return (env_list);
 }
+void change_env_value(char *name, char *new_value, t_init *init) {
+    t_env_list *tmp;
 
-void	change_env_value(char *name, char *new_value, t_init *init)
-{
-	t_env_list *tmp;
+    tmp = init->lst_env;
+    while (tmp) {
+        if (ft_strsame(tmp->name, name)) {
+            // Free the old value
+            free(tmp->value);
 
-	tmp = init->lst_env;
-	while (tmp)
-	{
-		if (ft_strsame(tmp->name, name))
-		{
-			tmp->value = new_value;
-			return ;
-		}
-		tmp = tmp->next;
-	}
-	lstadd_back_env(&init->lst_env, lstnew_env(ft_strdup(name), new_value));
+            // Update the new value
+            if (new_value) {
+                tmp->value = ft_strdup(new_value); // Copy and assign the new value
+            } else {
+                tmp->value = NULL; // Set the value to NULL if new_value is NULL
+            }
+            return; // No need to continue searching
+        }
+        tmp = tmp->next;
+    }
+
+    // If the variable wasn't found, add it as a new entry
+    lstadd_back_env(&init->lst_env, lstnew_env(ft_strdup(name), new_value ? ft_strdup(new_value) : NULL));
 }
 
 char	*get_env_value(char *name, t_init *init)
