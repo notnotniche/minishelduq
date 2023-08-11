@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 16:00:25 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 18:56:01 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 21:13:03 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int main(int argc, char **argv, char **env)
 			else
 			{
 			parsing(&init, init.read_line);
+			print_all_token(init.lst_token);
 			if (ft_strcmp(init.read_line, "exit") == 0)
 				return (free(init.read_line), 0);
 			real_exec(&init);

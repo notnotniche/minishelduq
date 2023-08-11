@@ -6,23 +6,23 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:25:51 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 13:07:46 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 21:17:25 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	is_env(char *str)
-{
-	int	i;
+	int	is_env(char *str)
+	{
+		int	i;
 
-	i = 0;
-	if (str[i] != '$' || !str[i + 1])
-		return (0);
-	if (!ft_isalnum(str[i + 1]) && ft_isitenv(str[i + 1] == 0))
-		return (0);
-	return (1);
-}
+		i = 0;
+		if (str[i] != '$' || !str[i + 1])
+			return (0);
+		if (!ft_isalnum(str[i + 1]) && ft_isitenv(str[i + 1] == 0))
+			return (0);
+		return (1);
+	}
 
 char	*env_name_expander(char *str)
 {

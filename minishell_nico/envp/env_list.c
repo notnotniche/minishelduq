@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:44:04 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 18:54:33 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 20:57:09 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,11 @@ void change_env_value(char *name, char *new_value, t_init *init) {
 
             // Update the new value
             if (new_value) {
-                tmp->value = ft_strdup(new_value); // Copy and assign the new value
+                tmp->value = ft_strdup(new_value); 
             } else {
-                tmp->value = NULL; // Set the value to NULL if new_value is NULL
+                tmp->value = NULL; 
             }
-            return; // No need to continue searching
+            return; 
         }
         tmp = tmp->next;
     }

@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 15:06:08 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 13:07:40 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 21:15:57 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ char	*expand_env_and_quote(char *str,t_init *init)
 
 	result = "";
 	quote.quote = 0;
+	printf("chaine de caractere a expand ou pas %s \n", str);
 	while (*str)
 	{
 		if ((*str == '\'' || *str == '\"') && quote.quote == 0)
