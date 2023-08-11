@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 18:29:59 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/04 19:00:06 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 22:59:19 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_exec_init init_exec_struct(t_init *init)
 	exec_init.nb_command = ft_size_token(init->lst_token);
 	exec_init.pipetmp = dup(STDIN_FILENO);
 	exec_init.pid = malloc(sizeof(pid_t) * exec_init.nb_command);
+	lstaddback_malloc(init, lstnew_malloc(exec_init.pid));
 	return (exec_init);
 }
 
@@ -27,7 +28,7 @@ void exec_all_pid(t_init *init, int i, t_exec_init exec_init)
 	const int output_fd = init->lst_token->o_fd;
 	const int input_fd = init->lst_token->i_fd;
 
-	// print_all_token(init->lst_token);
+	print_all_token(init->lst_token);
 	
 	// printf("beforeeeeee --- > %d %d", input_fd, output_fd);
 	

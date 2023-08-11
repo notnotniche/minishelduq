@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:52:38 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 14:39:52 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 22:41:38 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 void my_wait_pid(t_exec_init exec_init)
 {
 	int i;
-	pid_t tmp; 
+	pid_t tmp;
+	(void)exec_init; 
 	
 	i = 0;
-	free(exec_init.pid);
 	while (1)
 	{
 		tmp = wait(NULL);
@@ -51,18 +51,11 @@ void real_exec(t_init *init)
 
 	if (here_doc_exist(init) >= 1)
 		ft_heredoc(init->lst_token->delimeter->str_list, init);
-	else if (ft_size_token(init->lst_token) == 1 && is_command_builtin(init->lst_token->arguments->str_list))
+	else if (ft_size_token(init->lst_token) == 1 && fork_builtin(init->lst_token->arguments->str_list) == 1)
 			builtin_manage(init, all_args[0], all_args);
 	else 
 		exec(init);
 }
-
-
-// void free_int(t_exec_init exec_init)
-// {
-// 	if (exec_init.realpid != NULL)
-// 		free(exec_init.realpid);
-// }
 
 void exec(t_init *init)
 {
@@ -89,7 +82,6 @@ void exec(t_init *init)
 			g_status_exit_code = 131;
 		if (exec_init.realpid == 0)
 				exec_all_pid(init, i, exec_init);
-		// printf("exec_init : %d\n",exec_init.pid[i]);
 		else
 		{
 			if (exec_init.pipetmp)

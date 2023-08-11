@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:25:56 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 19:35:20 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 22:24:46 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,21 @@ int is_command_builtin(char *str)
 		return (1);
 	if (ft_strsame(str, "pwd"))
 		return (1);
+	if (ft_strsame(str, "cd"))
+		return (1);
+	if (ft_strsame(str, "export"))
+		return (1);
+	if (ft_strsame(str, "unset"))
+		return (1);
+	if (ft_strsame(str, "env"))
+		return (1);
+	if (ft_strsame(str, "exit"))
+		return (1);
+	return (0);
+}
+
+int fork_builtin(char *str)
+{
 	if (ft_strsame(str, "cd"))
 		return (1);
 	if (ft_strsame(str, "export"))

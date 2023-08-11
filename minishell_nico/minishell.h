@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:40:58 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 19:36:24 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 22:25:02 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,6 +243,7 @@ void free_tab_tab(char **splittos);
 void the_real_unset(char **arguments, t_init *init);
 void    text_to_print(char    **line);
 void printLinkedList(t_env_list *head);
+int fork_builtin(char *str);
 void the_real_export(char **arguments, t_init *init);
 void free_env_list(t_env_list *head);
 
