@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 15:06:08 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 12:44:49 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 13:07:40 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	expander_expanding(t_init *init)
 	{
 		if (l_list->operator == HERE_DOC)
 		{	
-			printf("l_list->operator : %d \n", l_list->operator);
 			l_list = l_list->next;
 		}
 		else if (l_list->operator == WORD)

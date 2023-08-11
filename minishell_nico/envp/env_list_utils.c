@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:33:54 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/10 19:42:30 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 13:25:10 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,15 @@ void print_lst_env(t_env_list *list)
 			printf("\"\"\n");
 		list = list->next;
 	}
-}	
+}
+
+void free_env_list(t_env_list *head) {
+    t_env_list *current = head;
+    while (current != NULL) {
+        t_env_list *temp = current;
+        current = current->next;
+        free(temp->name);
+        free(temp->value);
+        free(temp);
+    }
+}

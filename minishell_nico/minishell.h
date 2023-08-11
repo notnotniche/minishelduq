@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:40:58 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 12:02:10 by itahani          ###   ########.fr       */
+/*   Updated: 2023/08/11 13:25:33 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,7 +239,7 @@ void the_real_unset(char **arguments, t_init *init);
 void    text_to_print(char    **line);
 void printLinkedList(t_env_list *head);
 void the_real_export(char **arguments, t_init *init);
-void free_env_list(t_env_list* list);
+void free_env_list(t_env_list *head);
 
 void	ft_echo(char *cmd);
 int		the_real_pwd(t_init *init);

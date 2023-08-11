@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 19:31:37 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/07/24 19:38:47 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 13:03:59 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ char	*ft_join_str_in_init(t_init *init, char c, 	char *src)
 {
 	char *res;
 	int		i;
+	printf("str : %s \n", src);
 
 	i = 0;
 	res = malloc(sizeof(char) * (ft_strlen(src) + 2));

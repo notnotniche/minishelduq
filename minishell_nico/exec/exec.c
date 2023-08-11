@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:52:38 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 12:29:49 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 14:39:52 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void my_wait_pid(t_exec_init exec_init)
 	pid_t tmp; 
 	
 	i = 0;
-	printf ("-------------------------------------------------------------------------------------> %d \n", exec_init.nb_command);
+	free(exec_init.pid);
 	while (1)
 	{
 		tmp = wait(NULL);
@@ -27,7 +27,7 @@ void my_wait_pid(t_exec_init exec_init)
 	}
 }
 
-int here_doc_exit(t_init *init)
+int here_doc_exist(t_init *init)
 {
 	t_str_list *tmp;
 	int i;
@@ -47,13 +47,12 @@ int here_doc_exit(t_init *init)
 void real_exec(t_init *init)
 {
 	char **all_args;
-	if (here_doc_exit(init) >= 1)
-		ft_heredoc(init->lst_token->delimeter->str_list, init);
 	all_args = args_to_str(init->lst_token->arguments, ft_size_str(init->lst_token->arguments), init);
-	if (ft_size_token(init->lst_token) == 1 && is_command_builtin(init->lst_token->arguments->str_list))
-	{
+
+	if (here_doc_exist(init) >= 1)
+		ft_heredoc(init->lst_token->delimeter->str_list, init);
+	else if (ft_size_token(init->lst_token) == 1 && is_command_builtin(init->lst_token->arguments->str_list))
 			builtin_manage(init, all_args[0], all_args);
-	}
 	else 
 		exec(init);
 }

@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 19:21:37 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/09 16:05:52 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 14:59:47 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,9 @@ void	command_manager(t_init *init, t_exec_init *exec_init, int i)
 	char *path;
 	
 	(void)i;
-	env = env_to_str(init, init->lst_env, ft_size_env(init->lst_env));
-	// printf("\n%s\n",env[0]);
-	all_args = args_to_str(init->lst_token->arguments, ft_size_str(init->lst_token->arguments), init);
-	// printf("%s\n",all_args[0]);
 	path = NULL;
+	env = env_to_str(init, init->lst_env, ft_size_env(init->lst_env));
+	all_args = args_to_str(init->lst_token->arguments, ft_size_str(init->lst_token->arguments), init);
 	// builtin here
 	if (!is_command_builtin(all_args[0]))
 		path = path_maker(init, init->lst_token->arguments, get_env_value("PATH", init));

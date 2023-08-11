@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 16:00:25 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 12:45:15 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 13:52:58 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,11 @@ int main(int argc, char **argv, char **env)
 		{
 			init.read_line = readline("minishell :");
 			if (init.read_line == NULL) //ctrl d
+			{
+				free_env_list(init.lst_env);
+				free_s_init(&init);
 				break;
+			}
 			add_history(init.read_line);
 			if (ft_strlen(init.read_line) == 0)
 				;
@@ -64,13 +68,12 @@ int main(int argc, char **argv, char **env)
 			parsing(&init, init.read_line);
 			if (ft_strcmp(init.read_line, "exit") == 0)
 				return (free(init.read_line), 0);
-				
 			real_exec(&init);
-			// print_lst_env(init.lst_env);
-			// printf("")
-			free(init.read_line);
+			if (!init.read_line)
+				free(init.read_line);
 			}
 		}
-	free(init.read_line);
+	if (init.read_line)
+		free(init.read_line);
 	return (printf("finito bizarre"), 0);
 }

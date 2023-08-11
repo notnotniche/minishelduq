@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 11:49:10 by itahani           #+#    #+#             */
-/*   Updated: 2023/08/11 12:26:06 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 13:15:53 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,5 @@ void	handle_sigint(int sig)
 	rl_replace_line("", 0);
 	rl_redisplay(); // Change what's displayed on the screen to reflect the current contents of rl_line_buffer.
 	g_status_exit_code = 130;
-	//nouveau prompt
-	//free du process
 	return ;
 }

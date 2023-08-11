@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 18:19:38 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/10 20:30:57 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 14:28:41 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ void grep_old_pwd_and_new(t_init *init)
 			change_env_value("PWD", str, init);
 		v2 = v2->next;
 	}
-	free(str);
 }
 
 void 	the_real_cd(char **path, char **envp, t_init *init)

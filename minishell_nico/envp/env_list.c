@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:44:04 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/10 16:38:08 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 14:30:19 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void	change_env_value(char *name, char *new_value, t_init *init)
 	{
 		if (ft_strsame(tmp->name, name))
 		{
-			free(tmp->value);
 			tmp->value = new_value;
 			return ;
 		}
