@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_builtin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:25:56 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 16:46:11 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 22:00:13 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ int builtin_manage(t_init *init, char *str, char **all_args)
 	if (ft_strsame(str, "unset"))
 		the_real_unset(all_args, init);
 	if (ft_strsame(str, "cd"))
-	{
 		the_real_cd(all_args, env_to_str(init, init->lst_env, ft_size_env(init->lst_env)), init);
-	}
+	if (ft_strsame(str, "exit"))
+		the_real_exit(all_args, init);
 	return (0);
 }

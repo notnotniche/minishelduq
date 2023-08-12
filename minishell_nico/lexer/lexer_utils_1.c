@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils_1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 15:23:26 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/09 19:16:52 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 22:37:35 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int length_word(char *word)
 		i++;
 		word++;
 	}
-	printf("lets go : %s\n", word);
+	//printf("lets go : %s\n", word);
 	return (i);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:52:24 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 16:08:50 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 22:34:55 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int valid_until_equal(char *str)
 	i = 0;
 	while (str[i] && str[i] != '=')
 	{
-		printf("---------> %c ", i);
+		//printf("---------> %c ", i);
 		if (ft_isalnum(str[i]) == 0)
 			return (printf("\n cest ciao : %c : --> \n", str[i]), 0);
 		i++;
@@ -73,7 +73,7 @@ int valid_after_equal(char *str)
 
 int valid_export(char **arguments)
 {
-	printf("arguemtns :%s \n", arguments[1]);
+	//printf("arguemtns :%s \n", arguments[1]);
 	if (valid_first_letter(arguments[1], 0) == 0)
 		return (printf("cest pas bon1"),0);
 	if (valid_until_equal(arguments[1]) == 0)

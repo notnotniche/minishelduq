@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 16:00:25 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 13:52:58 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 22:40:36 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	parsing(t_init *init, char *read_line)
 	// print_lst_env(init->lst_env);
 	init->lst_token = get_all_token(init);
 	head = init->lst_token;
-	print_all_token(init->lst_token);
+	//print_all_token(init->lst_token);
 	
 	return (0);
 }
@@ -50,7 +50,8 @@ int main(int argc, char **argv, char **env)
 	init.lst_env = init_env_list(env);
 	//signal(SIGINT, routine_start);
 	signal(SIGINT, handle_sigint);
-	signal(SIGQUIT, SIG_IGN);
+	if (signal(SIGQUIT, SIG_IGN) != SIG_ERR)
+		g_status_exit_code = 131;
 	while(1)
 		{
 			init.read_line = readline("minishell :");

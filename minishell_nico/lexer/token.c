@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:40:36 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/01 17:28:47 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 22:38:08 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_token_list *get_all_token(t_init *init)
 	// print_lst_lex(init->lst_lex);
 	while (init->lst_lex)
 	{
-		printf("----------> %d\n", init->lst_lex->operator);
+		//printf("----------> %d\n", init->lst_lex->operator);
 		if (init->lst_lex->operator == PIPE)
 		{
 			tokenator(&token_head, &token_next, init);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:40:58 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 16:46:04 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/12 01:30:11 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ typedef struct s_init
 	t_malloc *lst_mal;
 	t_lex_list *lst_lex;
 	t_token_list *lst_token;
+	char			*err_msg;
 	
 } t_init;
 
@@ -121,6 +122,7 @@ typedef struct s_init
 //
 
 //utils
+int	ft_atoi(const char *str);
 int		ft_strcmp(char *str, char *str2);
 int		ft_strlen(char *str);
 char	*ft_strtrim(char *str, int i , int y);
@@ -232,6 +234,7 @@ char	*env_name_expander(char *str);
 void	expander_expanding(t_init *init);
 
 //builtins
+void the_real_exit(char **all_args, t_init *init);
 int builtin_manage(t_init *init, char *str, char **all_args);
 int is_command_builtin(char *str);
 void 	the_real_cd(char **path, char **envp, t_init *init);
@@ -247,6 +250,7 @@ int		the_real_pwd(t_init *init);
 
 
 //exec
+void	heredoc_sigint(int sig);
 void	handle_sigint(int sig);
 void    ft_heredoc(char *delimiteur, t_init *init);
 void real_exec(t_init *init);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_fd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:18:45 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/07/24 20:20:15 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 19:50:27 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,11 @@
 
 void	ft_print_fd(char *str, int fd)
 {
-	write(fd, str, ft_strlen(str));	
+	char	*s;
+
+	s = ft_strjoin("minishell : ", str);
+	s = ft_strjoin(s, "\n");
+	write(fd, s, ft_strlen(s));
+	rl_on_new_line();
+	rl_replace_line("", 0);
 }

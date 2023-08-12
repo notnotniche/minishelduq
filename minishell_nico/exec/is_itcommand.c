@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_itcommand.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 15:38:45 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/08 13:42:37 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 19:26:19 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int file_exec(char *path)
 {
 	if (!path)
 		return (0);
-	if (access(path, R_OK) == 0)
+	if (access(path, X_OK) == 0)
 		return (1);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_manager.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 19:21:37 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 16:54:20 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 22:39:20 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,12 @@ void printalltab(char **tarb, char *arg)
 {
 	int i;
 	
+	(void)arg;
 	i = 0;
-	printf("---%s----\n",arg);
+	//printf("---%s----\n",arg);
 	while (tarb[i])
 	{
-		printf("%d ----> %s\n",i, tarb[i]);
+		//printf("%d ----> %s\n",i, tarb[i]);
 		i++;
 	}
 }

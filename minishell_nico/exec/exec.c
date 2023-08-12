@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:52:38 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 14:39:52 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/12 02:39:23 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,18 @@
 void my_wait_pid(t_exec_init exec_init)
 {
 	int i;
-	pid_t tmp; 
+	pid_t tmp;
+	int	status; 
 	
 	i = 0;
 	free(exec_init.pid);
 	while (1)
 	{
-		tmp = wait(NULL);
+		tmp = wait(&status);
+		if (WIFEXITED(status))
+            g_status_exit_code = WEXITSTATUS(status);
+		if (WIFSIGNALED(status))
+			g_status_exit_code = 128 + WTERMSIG(status);
 		if (tmp == -1)
 			break;
 	}
@@ -39,7 +44,7 @@ int here_doc_exist(t_init *init)
 		i++;
 		tmp = tmp->next;
 	}
-	printf("nb delimeter :%d", i);
+	//printf("nb delimeter :%d\n", i);
 	return (i);
 }
 
@@ -51,7 +56,7 @@ void real_exec(t_init *init)
 
 	if (here_doc_exist(init) >= 1)
 		ft_heredoc(init->lst_token->delimeter->str_list, init);
-	else if (ft_size_token(init->lst_token) == 1 && is_command_builtin(init->lst_token->arguments->str_list))
+	if (ft_size_token(init->lst_token) == 1 && is_command_builtin(init->lst_token->arguments->str_list))
 			builtin_manage(init, all_args[0], all_args);
 	else 
 		exec(init);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 14:17:53 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 16:49:40 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 19:06:01 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int ft_strlen(char *str)
 	int i;
 
 	i = 0;
-	printf("======= %p %s \n", str , str);
+	//printf("======= %p %s \n", str , str);
 	if (!str)
 		return (0);
 	while (str[i])

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 17:12:21 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/04 18:57:45 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 22:36:34 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	app_out_manager(t_token_list *token_list)
 	char *file;
 
 	file = lstlast_str(token_list->out_file)->str_list;
-	printf("\n append file ---->%s",file);
+	//printf("\n append file ---->%s",file);
 	fd = open(file, O_APPEND | O_RDWR | O_CREAT, 0666);
 	if (token_list->arguments != NULL)
 		dup2(fd, STDOUT_FILENO);
