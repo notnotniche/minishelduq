@@ -6,10 +6,9 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 17:12:36 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/09 14:40:55 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/12 00:02:48 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../minishell.h"
 #include <stdio.h>

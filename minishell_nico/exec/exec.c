@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:52:38 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 22:41:38 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/12 03:30:37 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,31 @@ int here_doc_exist(t_init *init)
 
 void real_exec(t_init *init)
 {
+	t_token_list *head;
+	t_str_list *del;
 	char **all_args;
 	all_args = args_to_str(init->lst_token->arguments, ft_size_str(init->lst_token->arguments), init);
 
+	print_all_token(init->lst_token);
+	
+	head = init->lst_token;
+	del = init->lst_token->delimeter;
 	if (here_doc_exist(init) >= 1)
-		ft_heredoc(init->lst_token->delimeter->str_list, init);
-	else if (ft_size_token(init->lst_token) == 1 && fork_builtin(init->lst_token->arguments->str_list) == 1)
+	{
+		while(init->lst_token)
+		{
+			while(init->lst_token->delimeter)
+			{
+				printf("here_doc   %s\n", init->lst_token->delimeter->str_list);
+				ft_heredoc(init->lst_token->delimeter->str_list, init);
+				init->lst_token->delimeter = init->lst_token->delimeter->next;
+			}
+			
+			init->lst_token = init->lst_token->next;
+		}
+		init->lst_token = head;
+	}
+	if (ft_size_token(init->lst_token) == 1 && fork_builtin(init->lst_token->arguments->str_list) == 1)
 			builtin_manage(init, all_args[0], all_args);
 	else 
 		exec(init);

@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 14:17:53 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 17:25:05 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 23:53:14 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_strcmp(char *str, char *str2)
 {
-	int i;
+	int	i;
 	int	compteur;
 
 	i = 0;
@@ -23,7 +23,7 @@ int	ft_strcmp(char *str, char *str2)
 		return (1);
 	if (ft_strlen(str) < ft_strlen(str2))
 		return (-1);
-	while(str[i] && str2[i])
+	while (str[i] && str2[i])
 	{
 		compteur = compteur + str[i] - str2[i];
 		i++;
@@ -31,9 +31,9 @@ int	ft_strcmp(char *str, char *str2)
 	return (compteur);
 }
 
-int ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!str)

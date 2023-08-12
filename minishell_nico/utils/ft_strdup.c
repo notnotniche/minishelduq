@@ -6,16 +6,16 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 15:25:54 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 22:51:57 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 23:53:36 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char *ft_strdup(char *str)
+char	*ft_strdup(char *str)
 {
-	int i;
-	char *dup;
+	int		i;
+	char	*dup;
 
 	i = 0;
 	dup = malloc((ft_strlen(str) + 1) * sizeof(char));

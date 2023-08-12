@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:33:54 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 13:07:48 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 23:46:11 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ int	ft_isalpha(char c)
 	return (0);
 }
 
-int ft_isalnum(char c)
+int	ft_isalnum(char c)
 {
-	if ((c >= 65 && c <= 90) || (c >= 97 && c  <= 122) || (c >= 48 && c <= 57))
+	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122) || (c >= 48 && c <= 57))
 		return (1);
 	return (0);
 }
 
-int ft_isitenv(char c)
+int	ft_isitenv(char c)
 {
 	if ((c == '_' || c == '?' || c == '\'' || c == '\"'))
 		return (1);

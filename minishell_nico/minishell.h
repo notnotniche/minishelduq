@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:40:58 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 22:25:02 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/12 01:07:41 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ int		ft_strlen(char *str);
 char	*ft_strtrim(char *str, int i , int y);
 int		ft_strsame(char *str1, char *str2);
 char    **ft_split(const char *s, char c);
+int		is_only_isspace(char *str);
 char *ft_strncpy(char *dest, const char *src, size_t n);
 char	*ft_strjoin(char *str1, char *str2);
 int		ft_isalpha(char c);
@@ -237,11 +238,12 @@ void	expander_expanding(t_init *init);
 //builtins
 int builtin_manage(t_init *init, char *str, char **all_args);
 int is_command_builtin(char *str);
+void	sh_lvl_manager(t_init *init);
 void 	the_real_cd(char **path, char **envp, t_init *init);
 void the_real_env(char **arguments, t_init *init);
 void free_tab_tab(char **splittos);
 void the_real_unset(char **arguments, t_init *init);
-void    text_to_print(char    **line);
+void    text_to_print(char    **line, t_init *init);
 void printLinkedList(t_env_list *head);
 int fork_builtin(char *str);
 void the_real_export(char **arguments, t_init *init);

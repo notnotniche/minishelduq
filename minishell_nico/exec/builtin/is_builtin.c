@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:25:56 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 22:24:46 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/12 00:45:24 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int fork_builtin(char *str)
 int builtin_manage(t_init *init, char *str, char **all_args)
 {
 	if (ft_strsame(str, "echo"))
-		text_to_print(all_args);
+		text_to_print(all_args, init);
 	if (ft_strsame(str, "pwd"))
 		the_real_pwd(init);
 	if (ft_strsame(str, "export"))

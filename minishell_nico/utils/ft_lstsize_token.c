@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:48:48 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/07/31 20:08:45 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 23:51:48 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_size_token(t_token_list *head)
 		return (1 + ft_size_token(head->next));
 }
 
-int ft_size_env(t_env_list *head)
+int	ft_size_env(t_env_list *head)
 {
 	if (head == NULL)
 		return (0);
@@ -28,7 +28,7 @@ int ft_size_env(t_env_list *head)
 		return (1 + ft_size_env(head->next));
 }
 
-int ft_size_str(t_str_list *head)
+int	ft_size_str(t_str_list *head)
 {
 	if (head == NULL)
 		return (0);

@@ -22,6 +22,7 @@ SRCS =		${LAUNCHER_DIR}launcher.c\
 			${UTILS_DIR}splittos.c\
 			${BUILTINS_DIR}echo_utils.c\
 			${LEXER_DIR}token_utils.c\
+			${UTILS_DIR}shlvl.c\
 			${UTILS_DIR}ft_strcmp.c\
 			${UTILS_DIR}isnumber.c\
 			${UTILS_DIR}ft_strsame.c\

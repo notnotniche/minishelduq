@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 17:12:21 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/04 18:57:45 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/12 03:14:43 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	redir_here_doc(t_token_list *token_list)
 	t_str_list	*del;
 
 	del = lstlast_str(token_list->delimeter);
+	// printf("%s", del->str_list2);
 	fd = open(del->str_list2, O_RDONLY);
 	dup2(fd, STDIN_FILENO);
 	close(fd);

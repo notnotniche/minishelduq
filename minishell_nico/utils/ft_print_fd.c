@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:18:45 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/07/24 20:20:15 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 23:52:28 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	ft_print_fd(char *str, int fd)
 {
-	write(fd, str, ft_strlen(str));	
+	write(fd, str, ft_strlen(str));
 }

@@ -6,22 +6,22 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:49:24 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 18:26:20 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/12 00:02:30 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void free_s_init(t_init *init)
+void	free_s_init(t_init *init)
 {
-    t_malloc *copy;
-    
-    while (init->lst_mal)
-    {
-        copy = init->lst_mal->next;
-        if (init->lst_mal->adr)
-            free(init->lst_mal->adr);
-        free(init->lst_mal);
-        init->lst_mal = copy;
-    }
+	t_malloc	*copy;
+
+	while (init->lst_mal)
+	{
+		copy = init->lst_mal->next;
+		if (init->lst_mal->adr)
+			free(init->lst_mal->adr);
+		free(init->lst_mal);
+		init->lst_mal = copy;
+	}
 }

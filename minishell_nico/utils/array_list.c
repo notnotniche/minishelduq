@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 15:01:09 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/07/27 16:44:30 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/11 23:45:14 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,15 @@ void	lstaddback_str(t_str_list **lst, t_str_list *new)
 		*lst = new;
 }
 
-
 void	print_str(t_str_list *str_list, char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	printf("%s : ", str);
 	while (str_list)
 	{
-		printf(" % d : %s ",i , str_list->str_list);
+		printf(" % d : %s ", i, str_list->str_list);
 		i++;
 		str_list = str_list->next;
 	}
