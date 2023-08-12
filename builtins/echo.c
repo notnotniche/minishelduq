@@ -44,7 +44,8 @@ int    echo_n_option(char **line, int i)
     int    j;
 
     j = 0;
-
+	if (size_double_tab(line) == 0)
+		return (1);
     if (line[i][j] == '-' && line[i][j + 1] == 'n')
     {
         j += 1;

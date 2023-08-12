@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 18:14:13 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 15:30:13 by itahani          ###   ########.fr       */
+/*   Updated: 2023/08/12 19:37:27 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ char *is_pathabs(t_init *init, char *str)
 		if (check_if_directory(str))
 		{
 			init->err_msg = ft_strjoin(str, ": Is a directory");
+			lstaddback_malloc(init, lstnew_malloc(init->err_msg));
 			ft_print_fd(init->err_msg, 2);
 			exit(126);
 		}
@@ -28,6 +29,7 @@ char *is_pathabs(t_init *init, char *str)
 		if (file_exec(str) != 1)
 		{
 			init->err_msg = ft_strjoin(str, ": Permission denied");
+			lstaddback_malloc(init, lstnew_malloc(init->err_msg));
 			ft_print_fd(init->err_msg, 2);
 			exit(126);
 		}
@@ -36,6 +38,7 @@ char *is_pathabs(t_init *init, char *str)
 	else if ((str[0] == '/' || str[0] == '.') && access(str, F_OK) == -1)
 	{
 		init->err_msg = ft_strjoin(str, ": No such file or directory");
+		lstaddback_malloc(init, lstnew_malloc(init->err_msg));
 		ft_print_fd(init->err_msg, 2);
 		exit(127);
 	}
@@ -80,9 +83,8 @@ char *path_maker(t_init *init, t_str_list *cmd, char *path,t_exec_init *exec_ini
 	
 	i = 0;
 	res = path_res(init, cmd);
-		printf("res      %s", res);
 	if (res)
-		return (printf("--> path_res %s res \n",res), res);
+		return (res);
 	if (!path)
 		exit(1);
 	splittos = ft_split(path, ':');
@@ -90,7 +92,6 @@ char *path_maker(t_init *init, t_str_list *cmd, char *path,t_exec_init *exec_ini
 	{
 		tmp = ft_strjoin(splittos[i], "/");
 		res = ft_strjoin(tmp, cmd->str_list);
-		printf("arguments :::::::: ->    %s \n", res);
 		free(tmp);
 		// printf("\n%s", res);
 		if (file_exec(res) == 1)

@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:44:04 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 20:57:09 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/12 19:39:36 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void change_env_value(char *name, char *new_value, t_init *init) {
             // Free the old value
             free(tmp->value);
 
-            // Update the new value
             if (new_value) {
                 tmp->value = ft_strdup(new_value); 
             } else {
@@ -78,8 +77,6 @@ void change_env_value(char *name, char *new_value, t_init *init) {
         }
         tmp = tmp->next;
     }
-
-    // If the variable wasn't found, add it as a new entry
     lstadd_back_env(&init->lst_env, lstnew_env(ft_strdup(name), new_value ? ft_strdup(new_value) : NULL));
 }
 

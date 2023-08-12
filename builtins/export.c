@@ -51,9 +51,8 @@
 		i = 0;
 		while (str[i] && str[i] != '=')
 		{
-			printf("---------> %c ", i);
 			if (ft_isalnum(str[i]) == 0)
-				return (printf("\n cest ciao : %c : --> \n", str[i]), 0);
+				return (0);
 			i++;
 		}
 		return (1);
@@ -73,13 +72,12 @@
 
 	int valid_export(char **arguments)
 	{
-		printf("arguemtns :%s \n", arguments[1]);
 		if (valid_first_letter(arguments[1], 0) == 0)
-			return (printf("cest pas bon1"),0);
+			return (0);
 		if (valid_until_equal(arguments[1]) == 0)
-			return (printf("cest pas bon2"),0);
+			return (0);
 		else if (valid_after_equal(arguments[1]) == 0)
-			return (printf("cest pas bon3"),0);
+			return (0);
 		return (1);
 	}
 
@@ -97,10 +95,7 @@
 	{
 		char **splittos;
 
-
-		printf("args to split in exportator : %s \n", str);
 		splittos = ft_split(str, '=');
-		printf(" str 1    %s    :      str 2 %s  \n", splittos[0] , splittos[1]);
 		return (splittos);
 	}
 

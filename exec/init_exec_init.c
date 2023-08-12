@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 18:29:59 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 22:59:19 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/12 18:46:08 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void exec_all_pid(t_init *init, int i, t_exec_init exec_init)
 	const int output_fd = init->lst_token->o_fd;
 	const int input_fd = init->lst_token->i_fd;
 
-	print_all_token(init->lst_token);
+	// print_all_token(init->lst_token);
 	
 	// printf("beforeeeeee --- > %d %d", input_fd, output_fd);
 	

@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 18:19:38 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 18:57:50 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/12 18:38:51 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,18 @@ char    *ft_strjoin_cr(char const *s1, char s2)
     return (res);
 }
 
-char    *cd_error_no_access(char *path)
+char    *cd_error_no_access(char *path, t_init *init)
 {
     char    *ret_error;
 
     ret_error = ft_strjoin(" cd: ", path);
+	lstaddback_malloc(init, lstnew_malloc(ret_error));
     ret_error = ft_strjoin(ret_error, ": No such file or directory\n");
+	lstaddback_malloc(init, lstnew_malloc(ret_error));
     return (ret_error);
 }
 
-char    *get_home_path(char **envp)
+char    *get_home_path(char **envp, t_init *init)
 {
     int        i;
     int        j;
@@ -66,6 +68,7 @@ char    *get_home_path(char **envp)
             while (envp[i][j])
             {
                 home_path = ft_strjoin_cr(home_path, envp[i][j]);
+				lstaddback_malloc(init, lstnew_malloc(home_path));
                 j++;
             }
         }
@@ -93,7 +96,6 @@ void grep_old_pwd_and_new(t_init *init) {
     v2 = init->lst_env;
     while (v2) {
         if (ft_strsame(v2->name, "PWD")) {
-            printf("Changing PWD with current value: %s\n", str);
             char *new_path = ft_strdup(str); 
 			lstaddback_malloc(init, lstnew_malloc(new_path));
             if (new_path) {
@@ -109,17 +111,17 @@ void 	the_real_cd(char **path, char **envp, t_init *init)
 {
     if (size_double_tab(path) == 1 || path[1][0] == '~' )
     {
-        if (ft_strcmp(get_home_path(envp), "") == 0)
+        if (ft_strcmp(get_home_path(envp, init), "") == 0)
             return (ft_print_fd("cd : HOME not set\n", 2), free(NULL));
 			
         else
 		{
-            chdir(get_home_path(envp));
+            chdir(get_home_path(envp, init));
 			grep_old_pwd_and_new(init);
 		}
 	}
     else if (access(path[1], F_OK) != 0)
-        return (ft_print_fd(cd_error_no_access(path[1]), 2), free(NULL));
+        return (ft_print_fd(cd_error_no_access(path[1], init), 2), free(NULL));
     else if (chdir(path[1]) == 0)
         grep_old_pwd_and_new(init);
 	

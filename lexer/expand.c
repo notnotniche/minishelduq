@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 15:06:08 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 17:51:09 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/12 18:12:38 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ void	expander_expanding(t_init *init)
                     lstadd_back_lex(&init->lst_lex, lstnew_lex(*splittos, WORD, init));
                     splittos++;
 				}
+				l_list->must_split = 0;
 			}
 		}
 		l_list = l_list->next;

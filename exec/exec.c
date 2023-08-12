@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:52:38 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 16:18:54 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/12 20:58:33 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 void my_wait_pid(t_exec_init exec_init)
 {
-	int i;
-	pid_t tmp;
-	int	status;
-	(void)exec_init;
-	
-	i = 0;
-	while (1)
-	{
-		tmp = wait(&status);
-		if (WIFEXITED(status))
-            g_status_exit_code = WEXITSTATUS(status);
-		if (WIFSIGNALED(status))
-			g_status_exit_code = 128 + WTERMSIG(status);
-		if (tmp == -1)
-			break;
+		int i;
+		pid_t tmp;
+		int	status;
+		(void)exec_init;
+		
+		i = 0;
+		while (1)
+		{
+			tmp = wait(&status);
+			if (WIFEXITED(status))
+				g_status_exit_code = WEXITSTATUS(status);
+			if (WIFSIGNALED(status))
+				g_status_exit_code = 128 + WTERMSIG(status);
+			if (tmp == -1)
+				break;
 	}
 }
 
@@ -44,7 +44,6 @@ int here_doc_exist(t_init *init)
 		i++;
 		tmp = tmp->next;
 	}
-	printf("nb delimeter :%d", i);
 	return (i);
 }
 
@@ -63,11 +62,13 @@ void exec(t_init *init)
 	{
 		
 		if ( pipe(exec_init.mypipe) == -1)
-				exit(1);
+		{
+			printf("!233123131311231");
+		}
 		exec_init.realpid = fork();
 		// printf("%d \n\n", exec_init.realpid);
 		if (exec_init.realpid < 0)
-				exit(1);
+				printf("deuxieme");
 		signal(SIGINT, handle_sigint);
 		if (signal(SIGQUIT, SIG_IGN) != SIG_ERR)
 			g_status_exit_code = 131;
@@ -95,9 +96,6 @@ void real_exec(t_init *init)
 	t_str_list *del;
 	char **all_args;
 	all_args = args_to_str(init->lst_token->arguments, ft_size_str(init->lst_token->arguments), init);
-
-	print_all_token(init->lst_token);
-	
 	head = init->lst_token;
 	del = init->lst_token->delimeter;
 	if (here_doc_exist(init) >= 1)

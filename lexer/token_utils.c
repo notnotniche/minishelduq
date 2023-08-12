@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 14:22:57 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/10 17:55:32 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/12 18:53:25 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	token_here_doc(t_token_list **token, t_lex_list **lex_lst, t_init *init)
 
 	(*token)->i_fd = HERE_DOC;
 	*lex_lst = (*lex_lst)->next;
-	printf("\n%s",(*lex_lst)->word);
 	next = lstnew_str((*lex_lst)->word, init);
 	lstaddback_str(&(*token)->delimeter, next);
 	*lex_lst = (*lex_lst)->next;

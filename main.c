@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 16:00:25 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 02:04:34 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/12 18:56:03 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ int	parsing(t_init *init, char *read_line)
 	// print_lst_env(init->lst_env);
 	init->lst_token = get_all_token(init);
 	head = init->lst_token;
-	print_all_token(init->lst_token);
-	
 	return (0);
 }
 
@@ -47,6 +45,8 @@ int main(int argc, char **argv, char **env)
 	(void)argv;
 	t_init init;
 
+	if (!ttyname(1) || !ttyname(0))
+		return(0);
 	init.lst_env = init_env_list(env);
 	sh_lvl_manager(&init);
 	signal(SIGINT, handle_sigint);
@@ -60,7 +60,7 @@ int main(int argc, char **argv, char **env)
 				break;
 			}
 			if (is_only_isspace(init.read_line) == 1 || ft_strlen(init.read_line) == 0)
-				printf("21312312312\n");
+				;
 			else
 			{
 			add_history(init.read_line);
@@ -73,5 +73,5 @@ int main(int argc, char **argv, char **env)
 		}
 	if (init.read_line)
 		free(init.read_line);
-	return (printf("finito bizarre"), 0);
+	printf("\n");
 }

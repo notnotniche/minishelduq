@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:33:12 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/09 18:28:40 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/12 18:39:49 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,12 @@ void remove_node_env_name(t_init *init, char *str)
 void the_real_unset(char **arguments, t_init *init)
 {
 	if (size_double_tab(arguments) == 1)
-		printf("ciao");
+		;
 	else if (size_double_tab(arguments) == 2)
 	{
 		if (name_exist_in_env(arguments[1], init) == 1)
 		{
 			remove_node_env_name(init, arguments[1]);
-			printf("check_if_good\n");
 		}
 	}
 }

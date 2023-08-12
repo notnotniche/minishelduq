@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:54:28 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 14:55:53 by itahani          ###   ########.fr       */
+/*   Updated: 2023/08/12 18:53:09 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void ft_heredoc(char *delimiteur, t_init *init)
     int        fd;
     char    *line;
 	char	*stock_itoa_i;
-	printf("%s\n", delimiteur);
 	static int i = 1;
 
 	filename = "/tmp/heredoc_tmp";
@@ -27,11 +26,9 @@ void ft_heredoc(char *delimiteur, t_init *init)
 	lstaddback_malloc(init, lstnew_malloc(filename));
 	filename = ft_strjoin(filename, ".txt");
 	lstaddback_malloc(init, lstnew_malloc(filename));
-	printf("------filename %s -------\n\n", filename);
 	i++;
 	init->lst_token->delimeter->str_list2 = ft_strdup(filename);
 	lstaddback_malloc(init, lstnew_malloc(init->lst_token->delimeter->str_list2));	
-	printf("filename strdup %s \n", init->lst_token->delimeter->str_list2);
 	free(stock_itoa_i);
     if (!filename)
         ft_print_fd("Malloc error\n", 2);

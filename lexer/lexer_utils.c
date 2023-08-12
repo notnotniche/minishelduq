@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:18:29 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 17:17:47 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/12 18:13:22 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_lex_list *lstnew_lex(char *word, int operator, t_init *init)
 	lstaddback_malloc(init, lstnew_malloc(result));
 	result->word = word;
 	result->operator = operator;
+	result->must_split = 0;
 	result->next = NULL;
 	return (result); 
 }

@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 15:23:26 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/09 19:16:52 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/12 18:44:02 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int length_word(char *word)
 		i++;
 		word++;
 	}
-	printf("lets go : %s\n", word);
 	return (i);
 }
 
