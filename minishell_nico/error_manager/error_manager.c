@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:23:48 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/01 17:02:32 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/12 15:42:25 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int is_pipe_good(t_lex_list *lst_lex)
 
 int check_error(t_lex_list *lst_lex)
 {
-	if (lst_lex->operator == REDIR_OUT)
+	if (lst_lex->operator ==PIPE)
 		return (ft_print_fd("parse error near '|'", 2), g_status_exit_code = 2, 1);
 	while (lst_lex)
 	{
