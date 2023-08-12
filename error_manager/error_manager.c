@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:23:48 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 14:18:16 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/12 23:39:46 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,31 +57,210 @@ int is_pipe_good(t_lex_list *lst_lex)
 	return (0);
 }
 
-int check_error(t_lex_list *lst)
+int	is_word_after_operator(t_init *init)
 {
 	t_lex_list *lst_lex;
 
-	lst_lex = lst;
-	if (lst_lex->operator == REDIR_OUT)
-		return (ft_print_fd("parse error near '|'", 2), g_status_exit_code = 2, 1);
-	while (lst_lex)
+	lst_lex = init->lst_lex;
+	while (lst_lex->operator != PIPE
+			&& lst_lex->operator != REDIR_IN && lst_lex->operator != REDIR_OUT 
+			&& lst_lex->operator != HERE_DOC && lst_lex->operator != APP_OUT)
 	{
-		if (lst_lex->operator == REDIR_OUT)
-		{
-			if (is_pipe_good(lst_lex))
-				return (g_status_exit_code = 1, 1);
-		}
-		if (lst_lex->operator != REDIR_OUT && lst_lex->operator != WORD)
-		{
-			if (is_redir_good(lst_lex))
-				return (g_status_exit_code = 2, 1);
-		}
-		else if (lst_lex->operator == WORD)
-		{
-			if (check_quote_ends(lst_lex->word))
-				return (g_status_exit_code = 2, 1);
-		}
-		lst_lex = lst_lex->next;
+		if (lst_lex->next)
+			lst_lex = lst_lex->next;
+		else
+			break ;
 	}
+	if (lst_lex->operator == PIPE
+			|| lst_lex->operator == REDIR_IN || lst_lex->operator == REDIR_OUT 
+			|| lst_lex->operator == HERE_DOC || lst_lex->operator == APP_OUT)
+	{
+		if (!lst_lex->next)
+		{
+			change_env_value("?", "2", init);
+			return (ft_print_fd("syntax error near unexpected token `newline'", 2), g_status_exit_code = 2, 1);
+		}
+	}
+	return (0);
+}
+
+int	syntax_pipe(t_init	*init)
+{
+	t_lex_list *lst_lex;
+	int			i;
+
+	i = 0;
+	lst_lex = init->lst_lex;
+	// printf("lst_lex->operator ==== %d\n", lst_lex->operator);
+	if (lst_lex && lst_lex->operator == PIPE)
+	{
+		while (lst_lex->operator && lst_lex->operator == PIPE)
+		{
+			i++;
+			if (lst_lex->next)
+				lst_lex = lst_lex->next;
+			else
+				break;
+		}
+		if (!lst_lex->next)
+		{
+			change_env_value("?", "2", init);
+			return (ft_print_fd("syntax error near unexpected token `||'", 2), g_status_exit_code = 2, 1);
+		}
+		if (i >= 2) //change_env_value to change '?' error code value
+		{
+			change_env_value("?", "2", init);
+			return (ft_print_fd("syntax error near unexpected token `||'", 2), g_status_exit_code = 2, 1);
+		}
+	}
+	if (i == 1)
+	{
+		change_env_value("?", "2", init);
+		return (ft_print_fd("syntax error near unexpected token `|'", 2), g_status_exit_code = 2, 1);
+	}
+	return (0);
+}
+
+int	syntax_redir_out(t_init	*init)
+{
+	t_lex_list *lst_lex;
+	int			i;
+
+	i = 0;
+	lst_lex = init->lst_lex;
+	if (lst_lex && lst_lex->operator == REDIR_OUT)
+	{
+		while (lst_lex->operator && (lst_lex->operator == REDIR_OUT))
+		{
+			i++;
+			if (lst_lex->next)
+				lst_lex = lst_lex->next;
+			else
+				break;
+		}
+		if (i >= 4) //change_env_value to change '?' error code value
+			return (ft_print_fd("syntax error near unexpected token `>>'", 2), g_status_exit_code = 2, 1);
+	}
+	if (i == 1 || i == 2)
+	{
+		change_env_value("?", "2", init);
+		return (ft_print_fd("syntax error near unexpected token `newline'", 2), g_status_exit_code = 2, 1);
+	}
+	if (i == 3)
+	{
+		change_env_value("?", "2", init);
+		return (ft_print_fd("syntax error near unexpected token `>'", 2), g_status_exit_code = 2, 1);
+	}
+	return (0);
+}
+
+int	syntax_redir_in(t_init	*init)
+{
+	t_lex_list *lst_lex;
+	int			i;
+
+	i = 0;
+	lst_lex = init->lst_lex;
+	if (lst_lex && (lst_lex->operator == REDIR_IN || lst_lex->operator == HERE_DOC))
+	{
+		while (lst_lex->operator && (lst_lex->operator == REDIR_IN || lst_lex->operator == HERE_DOC))
+		{
+			i++;
+			if (lst_lex->next)
+				lst_lex = lst_lex->next;
+			else
+				break;
+		}
+		if (i >= 5) //change_env_value to change '?' error code value
+		{
+			change_env_value("?", "2", init);
+			return (ft_print_fd("syntax error near unexpected token `<<'", 2), g_status_exit_code = 2, 1);
+		}
+	}
+	if (i >= 1 && i <= 3)
+	{
+		change_env_value("?", "2", init);
+		return (ft_print_fd("syntax error near unexpected token `newline'", 2), g_status_exit_code = 2, 1);
+	}
+	if (i == 4)
+	{
+		change_env_value("?", "2", init);
+		return (ft_print_fd("syntax error near unexpected token `<'", 2), g_status_exit_code = 2, 1);
+	}
+	return (0);
+}
+
+int	syntax_heredoc(t_init	*init)
+{
+	t_lex_list *lst_lex;
+	int			i;
+
+	i = 0;
+	lst_lex = init->lst_lex;
+	if (lst_lex && lst_lex->operator == HERE_DOC)
+	{
+		if (!lst_lex->next)
+		{
+			change_env_value("?", "2", init);
+			return (ft_print_fd("syntax error near unexpected token", 2), g_status_exit_code = 2, 1);
+		}
+		if (lst_lex->next)
+		{
+			lst_lex = lst_lex->next;
+			if (lst_lex->operator == PIPE
+				|| lst_lex->operator == REDIR_IN || lst_lex->operator == REDIR_OUT 
+				|| lst_lex->operator == HERE_DOC || lst_lex->operator == APP_OUT)
+			{
+				change_env_value("?", "2", init);
+				return (ft_print_fd("syntax error near unexpected token", 2), g_status_exit_code = 2, 1);
+			}
+		}
+	}
+	return (0);
+}
+
+int	syntax_app(t_init	*init)
+{
+	t_lex_list *lst_lex;
+	int			i;
+
+	i = 0;
+	lst_lex = init->lst_lex;
+	if (lst_lex && lst_lex->operator == APP_OUT)
+	{
+		if (!lst_lex->next)
+		{
+			change_env_value("?", "2", init);
+			return (ft_print_fd("syntax error near unexpected token", 2), g_status_exit_code = 2, 1);
+		}
+		if (lst_lex->next)
+		{
+			lst_lex = lst_lex->next;
+			if (lst_lex->operator == PIPE
+				|| lst_lex->operator == REDIR_IN || lst_lex->operator == REDIR_OUT 
+				|| lst_lex->operator == HERE_DOC || lst_lex->operator == APP_OUT)
+				{
+				change_env_value("?", "2", init);
+				return (ft_print_fd("syntax error near unexpected token", 2), g_status_exit_code = 2, 1);
+				}
+		}
+	}
+	return (0);
+}
+
+int check_error(t_init *init)
+{
+	if (is_word_after_operator(init) == 1)
+		return (1);
+	if (syntax_pipe(init) == 1)
+		return (1);
+	if (syntax_redir_out(init) == 1)
+		return (1);
+	if (syntax_redir_in(init) == 1)
+		return (1);
+	if (syntax_heredoc(init) == 1)
+		return (1);
+	if (syntax_app(init) == 1)
+		return (1);
 	return (0);
 }

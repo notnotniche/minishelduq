@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:52:38 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 20:58:33 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/12 22:11:33 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,16 @@ void my_wait_pid(t_exec_init exec_init)
 			if (WIFEXITED(status))
 				g_status_exit_code = WEXITSTATUS(status);
 			if (WIFSIGNALED(status))
+			{
 				g_status_exit_code = 128 + WTERMSIG(status);
+				if (g_status_exit_code == 130 || g_status_exit_code == 131)
+					write(1, "\n" , 1);
+			}
 			if (tmp == -1)
 				break;
-	}
+		}
+		signal(SIGINT, handle_sigint);
+		signal(SIGQUIT, SIG_IGN);
 }
 
 int here_doc_exist(t_init *init)
@@ -69,13 +75,15 @@ void exec(t_init *init)
 		// printf("%d \n\n", exec_init.realpid);
 		if (exec_init.realpid < 0)
 				printf("deuxieme");
-		signal(SIGINT, handle_sigint);
-		if (signal(SIGQUIT, SIG_IGN) != SIG_ERR)
-			g_status_exit_code = 131;
 		if (exec_init.realpid == 0)
+		{
+				signal(SIGINT, handle_sigint);
 				exec_all_pid(init, i, exec_init);
+		}
 		else
 		{
+			if (signal(SIGINT, SIG_IGN) != SIG_ERR)
+				g_status_exit_code = 131;
 			if (exec_init.pipetmp)
 				close(exec_init.pipetmp);
 			exec_init.pipetmp = exec_init.mypipe[0];

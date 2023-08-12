@@ -6,16 +6,16 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 11:49:10 by itahani           #+#    #+#             */
-/*   Updated: 2023/08/12 20:56:52 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/12 22:00:27 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-//ctrl+c
 void	handle_sigint(int sig)
 {
 	(void)sig;
+	write(1, "\n", 1);
 	write(1, "\n", 1);
 	rl_on_new_line(); // Tell the update routines that we have moved onto a new (empty) line, usually after ouputting a newline.
 	rl_replace_line("", 0);

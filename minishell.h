@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:40:58 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 17:18:00 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/12 23:31:36 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ void	print_all_str(t_init *init);
 void	delete_last_node_lex(t_lex_list **list);
 
 //check_error
-int check_error(t_lex_list *lst_lex);
+int check_error(t_init *init);
 void free_s_init(t_init *init);
 
 
@@ -259,7 +259,7 @@ void	heredoc_sigint(int sig);
 void	handle_sigint(int sig);
 void    ft_heredoc(char *delimiteur, t_init *init);
 void real_exec(t_init *init);
-char *is_pathabs(t_init *init, char *str);
+char *is_pathabs(t_init *init, char *str, t_exec_init *exec_init);
 int check_outfile_fd(t_token_list *tok_list);
 int check_infile_fd(t_token_list *tok_list);
 int check_if_directory(char *path);

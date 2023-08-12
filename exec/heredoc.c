@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:54:28 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 18:53:09 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/12 21:24:35 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,12 @@ void ft_heredoc(char *delimiteur, t_init *init)
     {
 		line = readline("> ");
 		if (line == NULL) //msg erreur --> prompt: warning: here-document at line n delimited by end-of-file (wanted `EOF')
-			break;
+			exit(0);
         if (ft_strcmp(delimiteur, line) == 0)
         {
+			free(line);
 			close(fd);
-			return ;
+			exit(0);
 		}
         else
         {
