@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:40:58 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 16:19:33 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/12 17:18:00 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct l_list
 {
 	char *word;
 	int operator;
+	int must_split;
 	struct l_list *next;
 } t_lex_list;
 
@@ -130,6 +131,7 @@ char    **ft_split(const char *s, char c);
 int		is_only_isspace(char *str);
 char *ft_strncpy(char *dest, const char *src, size_t n);
 char **args_to_str(t_str_list *str, int size_str, t_init *init);
+char    **ft_split_piscine(char *str, char *charset);
 char	*ft_strjoin(char *str1, char *str2);
 int		ft_isalpha(char c);
 void	check_pipe(int fd);
@@ -154,6 +156,7 @@ t_str_list *lstlast_str(t_str_list *str_list);
 void	lstaddback_str(t_str_list **str_list, t_str_list *new);
 void	print_str(t_str_list *str_list, char *str);
 void	print_all_str(t_init *init);
+void	delete_last_node_lex(t_lex_list **list);
 
 //check_error
 int check_error(t_lex_list *lst_lex);

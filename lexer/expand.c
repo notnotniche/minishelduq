@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 15:06:08 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 02:11:51 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/12 17:51:09 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,31 @@ char	*expand_env_and_quote(char *str, t_init *init)
 		else if (quote.quote != '\'' && is_env(str))
 		{
 			expand_env(&str, &result, init);
-			printf("in expqnd_end : %s \n", result);
+			init->lst_lex->must_split = 1;
 		}
 		else
 			result = ft_join_str_in_init(init, *str++, result);
 	}
 	return (result);
 }
+	
+char **split_for_expand(t_init *init, char *str)
+{
+	char **splittos;
+	(void)init;
+	char sep[]={9, 10, 11, 12, 13, 32};
+	
+	splittos = ft_split_piscine(str, sep);
+	lstaddback_malloc(init, lstnew_malloc(splittos));
+	printalltab(splittos, "split_expand");
+	return (splittos);
+	
+}
 
 void	expander_expanding(t_init *init)
 {
 	t_lex_list	*l_list;
+	char		**splittos;
 
 	l_list = init->lst_lex;
 	while (l_list)
@@ -83,6 +97,16 @@ void	expander_expanding(t_init *init)
 		else if (l_list->operator == WORD)
 		{
 			l_list->word = expand_env_and_quote(l_list->word, init);
+			if (l_list->must_split == 1)
+			{
+				splittos = split_for_expand(init, l_list->word);
+				delete_last_node_lex(&init->lst_lex);
+                while (*splittos)
+                {
+                    lstadd_back_lex(&init->lst_lex, lstnew_lex(*splittos, WORD, init));
+                    splittos++;
+				}
+			}
 		}
 		l_list = l_list->next;
 	}

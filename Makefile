@@ -30,6 +30,7 @@ SRCS =		${LAUNCHER_DIR}launcher.c\
 			${UTILS_DIR}ft_strtrim.c\
 			${UTILS_DIR}malloc_list.c\
 			${UTILS_DIR}ft_isalpha.c\
+			${UTILS_DIR}ft_split_piscine.c\
 			${UTILS_DIR}ft_strdup.c\
 			${UTILS_DIR}array_list.c\
 			${UTILS_DIR}megafree.c\

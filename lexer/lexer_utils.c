@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:18:29 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/07/27 19:32:06 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/12 17:17:47 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,26 @@ void print_lst_lex(t_lex_list *list)
 		printf(" %d  --> %s \n", list->operator, list->word);
 		list = list->next;
 	}
+}
+
+void delete_last_node_lex(t_lex_list **list)
+{
+	t_lex_list *tmp;
+	t_lex_list *prev;
+	
+	tmp = *list;
+	if (*list == NULL)
+		return ;
+	if (tmp->next == NULL)
+	{
+		*list = NULL;
+		return;
+	}
+	while (tmp->next)
+	{
+		prev = tmp;
+		tmp = tmp->next;
+	}
+	prev->next = NULL;
+	free(tmp);
 }
