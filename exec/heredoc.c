@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:54:28 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 21:24:35 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/13 00:50:35 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void ft_heredoc(char *delimiteur, t_init *init)
     fd = open(filename, O_CREAT | O_RDWR | O_TRUNC , 0777);
 	if (fd == -1)
 		return ((void)perror(filename));
-	signal(SIGINT, handle_sigint);
+	signal(SIGINT, SIG_DFL);
     while (1)
     {
 		line = readline("> ");
@@ -60,6 +60,7 @@ void  while_here_doc_exist(t_init *init)
 {
 	t_token_list *token;
 	t_str_list *head;
+	pid_t 		child_pid;
 
 	token = init->lst_token;
 	while(init->lst_token)
@@ -67,13 +68,28 @@ void  while_here_doc_exist(t_init *init)
 		head = init->lst_token->delimeter;
 		while (init->lst_token->delimeter)
 		{
-			ft_heredoc(init->lst_token->delimeter->str_list, init);
+			child_pid = fork();
+            if (child_pid == -1) {
+                perror("fork");
+                exit(EXIT_FAILURE);
+            } else if (child_pid == 0) {
+  
+                ft_heredoc(init->lst_token->delimeter->str_list, init);
+                exit(g_status_exit_code);
+            } else {
+				signal(SIGINT, SIG_IGN);
+				g_status_exit_code = 131;
+                int status;
+                waitpid(child_pid, &status, 0);
+				signal(SIGINT, handle_sigint);
+			}
 			init->lst_token->delimeter = init->lst_token->delimeter->next;
 		}
 		init->lst_token->delimeter = head;
 		init->lst_token = init->lst_token->next;
 	}
 	init->lst_token = token;
+	print_all_token(init->lst_token);
 }
 
 void	heredoc_supp(t_token_list *token_lst)

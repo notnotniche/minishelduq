@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 16:00:25 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 23:35:18 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/13 01:02:17 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,4 @@ int main(int argc, char **argv, char **env)
 	}
 	if (init.read_line)
 		free(init.read_line);
-	printf("\n");
 }

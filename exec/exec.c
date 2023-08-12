@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:52:38 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 22:11:33 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/13 01:03:01 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void my_wait_pid(t_exec_init exec_init)
 			tmp = wait(&status);
 			if (WIFEXITED(status))
 				g_status_exit_code = WEXITSTATUS(status);
-			if (WIFSIGNALED(status))
+			else if (WIFSIGNALED(status))
 			{
 				g_status_exit_code = 128 + WTERMSIG(status);
 				if (g_status_exit_code == 130 || g_status_exit_code == 131)
-					write(1, "\n" , 1);
+					;
 			}
 			if (tmp == -1)
 				break;
@@ -77,7 +77,6 @@ void exec(t_init *init)
 				printf("deuxieme");
 		if (exec_init.realpid == 0)
 		{
-				signal(SIGINT, handle_sigint);
 				exec_all_pid(init, i, exec_init);
 		}
 		else
