@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:52:38 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 15:06:54 by itahani          ###   ########.fr       */
+/*   Updated: 2023/08/12 16:18:54 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,26 +48,6 @@ int here_doc_exist(t_init *init)
 	return (i);
 }
 
-
-void real_exec(t_init *init)
-{
-	t_token_list *head;
-	t_str_list *del;
-	char **all_args;
-	all_args = args_to_str(init->lst_token->arguments, ft_size_str(init->lst_token->arguments), init);
-
-	print_all_token(init->lst_token);
-	
-	head = init->lst_token;
-	del = init->lst_token->delimeter;
-	if (here_doc_exist(init) >= 1)
-		while_here_doc_exist(init);
-	if (ft_size_token(init->lst_token) == 1 && fork_builtin(init->lst_token->arguments->str_list) == 1)
-			builtin_manage(init, all_args[0], all_args);
-	else 
-		exec(init);
-}
-
 void exec(t_init *init)
 {
 	int i;
@@ -107,4 +87,23 @@ void exec(t_init *init)
 	close(exec_init.pipetmp);
 	heredoc_supp(init->lst_token);
 	init->lst_token = head;
+}
+
+void real_exec(t_init *init)
+{
+	t_token_list *head;
+	t_str_list *del;
+	char **all_args;
+	all_args = args_to_str(init->lst_token->arguments, ft_size_str(init->lst_token->arguments), init);
+
+	print_all_token(init->lst_token);
+	
+	head = init->lst_token;
+	del = init->lst_token->delimeter;
+	if (here_doc_exist(init) >= 1)
+		while_here_doc_exist(init);
+	if (ft_size_token(init->lst_token) == 1 && fork_builtin(init->lst_token->arguments->str_list) == 1)
+			builtin_manage(init, all_args[0], all_args);
+	else 
+		exec(init);
 }

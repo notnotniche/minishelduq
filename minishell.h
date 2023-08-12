@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:40:58 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 15:27:10 by itahani          ###   ########.fr       */
+/*   Updated: 2023/08/12 16:19:33 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ int		ft_strsame(char *str1, char *str2);
 char    **ft_split(const char *s, char c);
 int		is_only_isspace(char *str);
 char *ft_strncpy(char *dest, const char *src, size_t n);
+char **args_to_str(t_str_list *str, int size_str, t_init *init);
 char	*ft_strjoin(char *str1, char *str2);
 int		ft_isalpha(char c);
 void	check_pipe(int fd);
@@ -167,7 +168,7 @@ void lstaddback_malloc(t_init *init, t_malloc *new);
 void	free_lst_malloc(t_malloc *lst);
 
 //lexer
-int	ft_is_operator(char *read_line, t_lex_list **lex_list, t_init *init);
+int	ft_is_operator(char *read_line);
 int	ft_isspace(char c);
 int length_word(char *word);
 void write_word(char *word, char **split);
@@ -244,6 +245,7 @@ void printLinkedList(t_env_list *head);
 int fork_builtin(char *str);
 void the_real_export(char **arguments, t_init *init);
 void free_env_list(t_env_list *head);
+void  while_here_doc_exist(t_init *init);
 
 void	ft_echo(char *cmd);
 int		the_real_pwd(t_init *init);
@@ -267,6 +269,8 @@ void exec_all_pid(t_init *init, int i, t_exec_init exec_init);
 char *path_maker(t_init *init, t_str_list *cmd, char *path,t_exec_init *exec_init);
 void	command_manager(t_init *init, t_exec_init *exec_init,int i);
 void	close_fd(int fd_nbr, int *fd_array);
+t_exec_init init_exec_struct(t_init *init);
+
 
 //exec file_manager
 void	redir_out_manager(t_token_list *token_list);

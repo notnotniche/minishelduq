@@ -1,3 +1,9 @@
+res      (null)arguments :::::::: ->    /mnt/nfs/homes/nklingsh/bin/cat 
+arguments :::::::: ->    /mnt/nfs/homes/nklingsh/bin/cat 
+arguments :::::::: ->    /usr/local/sbin/cat 
+arguments :::::::: ->    /usr/local/bin/cat 
+arguments :::::::: ->    /usr/sbin/cat 
+arguments :::::::: ->    /usr/bin/cat 
 NAME =		minishell
 
 LAUNCHER_DIR = launcher/
@@ -46,6 +52,7 @@ SRCS =		${LAUNCHER_DIR}launcher.c\
 			${BUILTINS_DIR}cd.c\
 			${BUILTINS_DIR}unset.c\
 			${BUILTINS_DIR}export.c\
+			${BUILTINS_DIR}exit.c\
 			${BUILTINS_DIR}pwd.c\
 			${UTILS_DIR}ft_strjoin.c\
 			${LEXER_DIR}token.c\
@@ -53,6 +60,7 @@ SRCS =		${LAUNCHER_DIR}launcher.c\
 			${UTILS_DIR}join_str_in_init.c\
 			${UTILS_DIR}ft_print_fd.c\
 			${UTILS_DIR}ft_lstsize_token.c\
+			${UTILS_DIR}ft_atoi.c\
 			${ERROR_DIR}error_manager.c\
 			${EXEC_DIR}init_exec_init.c\
 			${EXEC_DIR}exec.c\
