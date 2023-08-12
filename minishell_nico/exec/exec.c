@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:52:38 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 03:30:37 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/12 13:59:03 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,20 +56,7 @@ void real_exec(t_init *init)
 	head = init->lst_token;
 	del = init->lst_token->delimeter;
 	if (here_doc_exist(init) >= 1)
-	{
-		while(init->lst_token)
-		{
-			while(init->lst_token->delimeter)
-			{
-				printf("here_doc   %s\n", init->lst_token->delimeter->str_list);
-				ft_heredoc(init->lst_token->delimeter->str_list, init);
-				init->lst_token->delimeter = init->lst_token->delimeter->next;
-			}
-			
-			init->lst_token = init->lst_token->next;
-		}
-		init->lst_token = head;
-	}
+		while_here_doc_exist(init);
 	if (ft_size_token(init->lst_token) == 1 && fork_builtin(init->lst_token->arguments->str_list) == 1)
 			builtin_manage(init, all_args[0], all_args);
 	else 
@@ -113,5 +100,6 @@ void exec(t_init *init)
 	}
 	my_wait_pid(exec_init);
 	close(exec_init.pipetmp);
+	heredoc_supp(init->lst_token);
 	init->lst_token = head;
 }

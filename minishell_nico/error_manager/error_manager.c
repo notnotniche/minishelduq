@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:23:48 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 02:01:19 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/12 14:18:16 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int is_redir_good(t_lex_list *lst_lex)
 {
 	if (!lst_lex->next)
 		return (ft_print_fd("no word after redir",2),1);
-	if (lst_lex->next->operator != WORD)
+	if (lst_lex->next->operator != REDIR_IN)
 		return (ft_print_fd("no word after redir check syntax", 2), 1);
 	return (0);
 }

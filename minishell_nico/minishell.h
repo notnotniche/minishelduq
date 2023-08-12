@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:40:58 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 01:07:41 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/12 14:18:26 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ char	*ft_strjoin(char *str1, char *str2);
 int		ft_isalpha(char c);
 void	check_pipe(int fd);
 int		ft_isalnum(char c);
+void	heredoc_supp(t_token_list *token_lst);
 int		is_quote(char c);
 char	*ft_strcpy(char *dest, const char *src);
 void	close_fds(int fd_nbr, ...);
@@ -165,14 +166,7 @@ void lstaddback_malloc(t_init *init, t_malloc *new);
 void	free_lst_malloc(t_malloc *lst);
 
 //lexer
-int	ft_is_operator(char *read_line);
-int	ft_isspace(char c);
-int length_word(char *word);
-void write_word(char *word, char **split);
-void end_of_word(char **splittos);
-
-void operator_manager(char **read_line, t_lex_list **lex_list, t_init *init);
-void word_manager(char *read_line, t_lex_list **lex_list, t_init *init);
+int	ft_is_operator(char *read_line, t_lex_list **lex_list, t_init *init);
 t_lex_list *lexer_lexing(char *read_line, t_init *init);
 
 //token
@@ -223,6 +217,7 @@ void		print_lst_env(t_env_list *list);
 
 //exec
 t_exec_init init_exec_struct(t_init *init);
+void  while_here_doc_exist(t_init *init);
 char **args_to_str(t_str_list *str, int size_str, t_init *init);
 void	sig_process(int sig_num);
 void		exec(t_init *init);
