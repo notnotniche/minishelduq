@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 18:19:38 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 18:57:50 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/13 20:51:26 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,14 @@ char    *ft_strjoin_cr(char const *s1, char s2)
     return (res);
 }
 
-char    *cd_error_no_access(char *path)
+char    *cd_error_no_access(char *path, t_init *init)
 {
     char    *ret_error;
 
     ret_error = ft_strjoin(" cd: ", path);
+	lstaddback_malloc(init, lstnew_malloc(ret_error));
     ret_error = ft_strjoin(ret_error, ": No such file or directory\n");
+	lstaddback_malloc(init, lstnew_malloc(ret_error));
     return (ret_error);
 }
 
