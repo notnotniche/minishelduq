@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:54:28 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/13 21:57:49 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/14 01:03:47 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,25 @@ void ft_heredoc(char *delimiteur, t_init *init)
 		line = readline("> ");
 		if (line == NULL) //ctrl d
 		{
-			//free_env_list(init->lst_env); // mettre les free
+			printf("warning: here-document delimited by end-of-file\n");
+			close(oui);
+			unlink(filename);
+			close(fd);
 			break;
 		}
 		if (ft_strcmp(delimiteur, line) == 0)
 			break;
 		else
 		{
-			write(fd, line, ft_strlen(line));
+			write(fd, expand_env_and_quote(line, init), ft_strlen(expand_env_and_quote(line, init)));
 			write(fd, "\n", 1);
 		}
 	}
+	close(fd);
 	dup2(oui, 0);
 	close(oui);
 	free(line);
-}
+}	
 
 void  while_here_doc_exist(t_init *init)
 {

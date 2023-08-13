@@ -1,0 +1,19 @@
+total 204
+  4 -rw-r--r-- 1 nklingsh 2022_paris    416 Aug 13 15:27 a.out
+  4 drwxr-xr-x 2 nklingsh 2022_paris   4096 Aug 13 21:10 builtins
+  4 -rw-r--r-- 1 nklingsh 2022_paris   3910 Aug 14 00:51 dofus
+  4 drwxr-xr-x 2 nklingsh 2022_paris   4096 Aug 13 21:10 envp
+  4 drwxr-xr-x 2 nklingsh 2022_paris   4096 Aug 13 22:00 error_manager
+  4 drwxr-xr-x 3 nklingsh 2022_paris   4096 Aug 14 00:19 exec
+  0 -rw-r--r-- 1 nklingsh 2022_paris      0 Aug 14 00:57 files.txt
+  4 -rw-r--r-- 1 nklingsh 2022_paris    157 Aug 12 15:45 ignore_readline_leaks.supp
+  4 drwxr-xr-x 2 nklingsh 2022_paris   4096 Aug 13 21:10 launcher
+  4 drwxr-xr-x 2 nklingsh 2022_paris   4096 Aug 14 00:18 lexer
+  4 -rw-r--r-- 1 nklingsh 2022_paris   2205 Aug 13 23:10 main.c
+  8 -rw-r--r-- 1 nklingsh 2022_paris   7360 Aug 13 23:13 main.o
+  4 -rw-r--r-- 1 nklingsh 2022_paris   2007 Aug 12 16:49 Makefile
+128 -rwxr-xr-x 1 nklingsh 2022_paris 130112 Aug 14 00:19 minishell
+ 12 -rw-r--r-- 1 nklingsh 2022_paris   8408 Aug 14 00:05 minishell.h
+  4 -rw-r--r-- 1 nklingsh 2022_paris      6 Aug 14 00:57 output.txt
+  4 drwxr-xr-x 2 nklingsh 2022_paris   4096 Aug 13 21:10 utils
+  4 -rw-r--r-- 1 nklingsh 2022_paris     26 Aug 13 22:13 wc

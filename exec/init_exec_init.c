@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 18:29:59 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/13 16:17:34 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/14 00:53:08 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ void exec_all_pid(t_init *init, int i, t_exec_init exec_init)
 	 	redir_here_doc(init->lst_token);
 	if (init->lst_token->arguments != NULL || ft_strlen(init->lst_token->arguments->str_list) == 0)
 	{
-		// if (ft_strlen(init->lst_token->arguments->str_list))
-		// 	exit(0);
 		command_manager(init, &exec_init, i);
 	}
 	exit(0);

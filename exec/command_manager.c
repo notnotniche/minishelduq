@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 19:21:37 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/13 18:24:52 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/13 23:08:05 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,7 @@ void	command_manager(t_init *init, t_exec_init *exec_init, int i)
 	(void)i;
 	path = NULL;
 	env = env_to_str(init, init->lst_env, ft_size_env(init->lst_env));
-	// printalltab(env, "env");
 	all_args = args_to_str(init->lst_token->arguments, ft_size_str(init->lst_token->arguments), init);
-	// printalltab(all_args, "all_args");
 	if (!is_command_builtin(all_args[0]))
 	{
 		path = path_maker(init, init->lst_token->arguments, get_env_value("PATH", init), exec_init);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:40:58 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/13 21:02:55 by itahani          ###   ########.fr       */
+/*   Updated: 2023/08/14 00:05:40 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ char	*ft_strcpy(char *dest, const char *src);
 void	close_fds(int fd_nbr, ...);
 char *ft_strcat(char *dest, const char *src);
 int		ft_isitenv(char c);
+char	*expand_env_and_quote(char *str, t_init *init);
 int    ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strdup(char *str);
 char			*ft_itoa(int n);
