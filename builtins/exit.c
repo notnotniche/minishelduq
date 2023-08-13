@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 21:04:31 by itahani           #+#    #+#             */
-/*   Updated: 2023/08/12 15:18:40 by itahani          ###   ########.fr       */
+/*   Updated: 2023/08/13 14:10:10 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void the_real_exit(char **all_args, t_init *init)
 	{
 		free_s_init(init);
 		free_env_list(init->lst_env);	
+		printf("exit\n");
 		exit(0);
 	}
 	if (size_double_tab(all_args) > 2)
@@ -52,12 +53,14 @@ void the_real_exit(char **all_args, t_init *init)
 		ft_print_fd(init->err_msg, 2);
 		free_s_init(init);
 		free_env_list(init->lst_env);	
+		printf("exit\n");
 		exit(2);
 	}
 	if (is_str_or_int(all_args[1]) == 0)
 	{
 		free_s_init(init);
-		free_env_list(init->lst_env);	
+		free_env_list(init->lst_env);
+		printf("exit\n");
 		exit(ft_atoi(all_args[1])); 
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:52:38 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/13 01:03:01 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/13 14:19:52 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ void my_wait_pid(t_exec_init exec_init)
 			if (tmp == -1)
 				break;
 		}
-		signal(SIGINT, handle_sigint);
-		signal(SIGQUIT, SIG_IGN);
 }
 
 int here_doc_exist(t_init *init)
@@ -57,13 +55,12 @@ void exec(t_init *init)
 {
 	int i;
 	t_exec_init exec_init;
-	t_token_list *head;
+	// t_token_list *head;
 
 	i = 0;
-	head = init->lst_token;
+	// head = init->lst_token;
 	if (ft_size_token(init->lst_token) != 0)
 		exec_init = init_exec_struct(init);
-	//printf("nb_command : %d \n ", exec_init.nb_command);
 	while (i < exec_init.nb_command)
 	{
 		
@@ -72,12 +69,13 @@ void exec(t_init *init)
 			printf("!233123131311231");
 		}
 		exec_init.realpid = fork();
-		// printf("%d \n\n", exec_init.realpid);
 		if (exec_init.realpid < 0)
 				printf("deuxieme");
 		if (exec_init.realpid == 0)
 		{
-				exec_all_pid(init, i, exec_init);
+			signal(SIGINT, SIG_DFL);
+			signal(SIGQUIT, SIG_DFL);
+			exec_all_pid(init, i, exec_init);
 		}
 		else
 		{
@@ -92,9 +90,15 @@ void exec(t_init *init)
 		init->lst_token = init->lst_token->next;
 	}
 	my_wait_pid(exec_init);
+	if (g_status_exit_code == 130)
+		printf("\n");
+	else if (g_status_exit_code == 131)
+		printf("Quit (core dumped)\n"); 
 	close(exec_init.pipetmp);
 	heredoc_supp(init->lst_token);
-	init->lst_token = head;
+	// init->lst_token = head;
+	signal(SIGINT, handle_sigint);
+	signal(SIGQUIT, SIG_IGN);
 }
 
 void real_exec(t_init *init)

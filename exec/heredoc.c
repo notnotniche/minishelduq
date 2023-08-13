@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:54:28 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/13 00:50:35 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/13 15:14:54 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void ft_heredoc(char *delimiteur, t_init *init)
 {
     char    *filename;
-    int        fd;
     char    *line;
+	int fd;
 	char	*stock_itoa_i;
 	static int i = 1;
 
@@ -30,59 +30,35 @@ void ft_heredoc(char *delimiteur, t_init *init)
 	init->lst_token->delimeter->str_list2 = ft_strdup(filename);
 	lstaddback_malloc(init, lstnew_malloc(init->lst_token->delimeter->str_list2));	
 	free(stock_itoa_i);
+    fd = open(filename, O_CREAT | O_RDWR | O_TRUNC , 0777);
     if (!filename)
         ft_print_fd("Malloc error\n", 2);
-    fd = open(filename, O_CREAT | O_RDWR | O_TRUNC , 0777);
-	if (fd == -1)
-		return ((void)perror(filename));
-	signal(SIGINT, SIG_DFL);
-    while (1)
-    {
-		line = readline("> ");
-		if (line == NULL) //msg erreur --> prompt: warning: here-document at line n delimited by end-of-file (wanted `EOF')
-			exit(0);
-        if (ft_strcmp(delimiteur, line) == 0)
-        {
-			free(line);
-			close(fd);
-			exit(0);
+		while (1)
+		{
+			line = readline("> ");
+			if (ft_strcmp(delimiteur, line) == 0)
+				break;
+			else
+			{
+				write(fd, line, ft_strlen(line));
+				write(fd, "\n", 1);
+			}
 		}
-        else
-        {
-            write(fd, line, ft_strlen(line));
-            write(fd, "\n", 1);
-        }
-		free(line);
-    }
+	free(line);
 }
 
 void  while_here_doc_exist(t_init *init)
 {
 	t_token_list *token;
 	t_str_list *head;
-	pid_t 		child_pid;
-
 	token = init->lst_token;
 	while(init->lst_token)
 	{
 		head = init->lst_token->delimeter;
 		while (init->lst_token->delimeter)
 		{
-			child_pid = fork();
-            if (child_pid == -1) {
-                perror("fork");
-                exit(EXIT_FAILURE);
-            } else if (child_pid == 0) {
-  
-                ft_heredoc(init->lst_token->delimeter->str_list, init);
-                exit(g_status_exit_code);
-            } else {
-				signal(SIGINT, SIG_IGN);
-				g_status_exit_code = 131;
-                int status;
-                waitpid(child_pid, &status, 0);
-				signal(SIGINT, handle_sigint);
-			}
+
+			ft_heredoc(init->lst_token->delimeter->str_list, init);
 			init->lst_token->delimeter = init->lst_token->delimeter->next;
 		}
 		init->lst_token->delimeter = head;

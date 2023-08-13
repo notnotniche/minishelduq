@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 18:14:13 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 23:12:13 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/13 14:31:13 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ char *path_res(t_init *init, t_str_list *cmd, t_exec_init *exec_init)
 	
 	if (ft_strlen(cmd->str_list) == 0)
 		exit(1);
-	// printf("\n cmd->str_list : %s \n",cmd->str_list);
+	printf("\n cmd->str_list : %s \n",cmd->str_list);
 	res = is_pathabs(init, cmd->str_list, exec_init);
-	// printf("path res  : --> %s\n", res);
+	printf("path res  : --> %s\n", res);
 	if (res)
 		return (res);
 	return (NULL);

@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 15:06:08 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 18:12:38 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/13 14:18:20 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,20 @@ void	expand_env(char **str, char **result, t_init *init)
 	free(env_name);
 }
 
+int at_least_oneisspace(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (ft_isspace(str[i]) == 1)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 char	*expand_env_and_quote(char *str, t_init *init)
 {
 	t_quote	quote;
@@ -61,7 +75,8 @@ char	*expand_env_and_quote(char *str, t_init *init)
 		else if (quote.quote != '\'' && is_env(str))
 		{
 			expand_env(&str, &result, init);
-			init->lst_lex->must_split = 1;
+			if (at_least_oneisspace(result))
+				init->lst_lex->must_split = 1;
 		}
 		else
 			result = ft_join_str_in_init(init, *str++, result);
@@ -91,9 +106,7 @@ void	expander_expanding(t_init *init)
 	while (l_list)
 	{
 		if (l_list->operator == HERE_DOC)
-		{	
 			l_list = l_list->next;
-		}
 		else if (l_list->operator == WORD)
 		{
 			l_list->word = expand_env_and_quote(l_list->word, init);
