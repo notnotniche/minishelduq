@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:52:38 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/13 21:12:51 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/13 21:52:58 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ void exec(t_init *init)
 		printf("Quit (core dumped)\n"); 
 	close(exec_init.pipetmp);
 	heredoc_supp(init->lst_token);
-	// init->lst_token = head;
 	signal(SIGINT, handle_sigint);
 	signal(SIGQUIT, SIG_IGN);
 }

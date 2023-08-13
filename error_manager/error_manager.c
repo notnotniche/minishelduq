@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:23:48 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/13 21:44:17 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/13 22:00:21 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	is_word_after_operator(t_init *init)
 			|| lst_lex->operator == REDIR_IN || lst_lex->operator == REDIR_OUT 
 			|| lst_lex->operator == HERE_DOC || lst_lex->operator == APP_OUT)
 	{
-		if (lst_lex->next->operator != WORD)
+		if (lst_lex->next == NULL || lst_lex->next->operator != WORD)
 		{
 			change_env_value("?", "2", init);
 			return (ft_print_fd("syntax error near unexpected token `newline'", 2), g_status_exit_code = 2, 1);

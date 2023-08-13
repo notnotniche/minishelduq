@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:54:28 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/13 21:10:30 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/13 21:57:49 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,11 @@ void  while_here_doc_exist(t_init *init)
 	t_token_list *token;
 	t_str_list *head;
 	token = init->lst_token;
-	printf("123");
 	while(init->lst_token)
 	{
 		head = init->lst_token->delimeter;
-		printf("123");
 		while (init->lst_token->delimeter)
 		{
-			printf("4566");
 			ft_heredoc(init->lst_token->delimeter->str_list, init);
 			init->lst_token->delimeter = init->lst_token->delimeter->next;
 		}
