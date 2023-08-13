@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 18:14:13 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/13 18:26:16 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/13 21:00:30 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 char *is_pathabs(t_init *init, char *str, t_exec_init *exec_init)
 {
-	if ((str[0] == '/' || str[0] == '.') && access(str, F_OK) == 0)
+	if (str[0] == '~')
+		str = get_path_from_home(str, env_to_str(init, init->lst_env, ft_size_env(init->lst_env)), init);
+	if ((str[0] == '~' || str[0] == '/' || str[0] == '.') && access(str, F_OK) == 0)
 	{
 		if (check_if_directory(str))
 		{
@@ -44,7 +46,7 @@ char *is_pathabs(t_init *init, char *str, t_exec_init *exec_init)
 		}
 		exit(1);
 	}
-	else if ((str[0] == '/' || str[0] == '.') && access(str, F_OK) == -1)
+else if ((str[0] == '~' || str[0] == '/' || str[0] == '.') && access(str, F_OK) == -1)
 	{
 		init->err_msg = ft_strjoin(str, ": No such file or directory");
 		lstaddback_malloc(init, lstnew_malloc(init->err_msg));

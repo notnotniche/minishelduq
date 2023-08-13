@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:40:58 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/13 19:03:43 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/13 21:02:55 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,6 +239,7 @@ void	expander_expanding(t_init *init);
 
 //builtins
 void the_real_exit(char **all_args, t_init *init);
+char    *get_path_from_home(char *path, char **envp, t_init *init);
 int builtin_manage(t_init *init, char *str, char **all_args);
 int is_command_builtin(char *str);
 void	sh_lvl_manager(t_init *init);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 18:19:38 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 23:28:35 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/13 20:53:34 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,23 @@ void grep_old_pwd_and_new(t_init *init) {
     }
 }
 
+char    *get_path_from_home(char *path, char **envp, t_init *init)
+{
+    char    *pathfh;
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = malloc(sizeof(char) * (ft_strlen(path) - 1));
+	while (path[i + 1])
+	{
+		tmp[i] = path[i + 1];
+		i++;
+	}
+    pathfh = ft_strjoin(get_home_path(envp, init), tmp);
+    return (pathfh);
+}
+
 void 	the_real_cd(char **path, char **envp, t_init *init)
 {
 	if ((path[1]) && path[1][0] == '-' && ft_strlen(path[1]) == 1)
@@ -115,7 +132,19 @@ void 	the_real_cd(char **path, char **envp, t_init *init)
 		grep_old_pwd_and_new(init);
 		return ;
 	}
-    if (size_double_tab(path) == 1 || path[1][0] == '~' )
+    if (size_double_tab(path) == 1 || (path[1][0] == '~' && path[1][1] == '/'))
+    {
+        printf("NTM\n");
+        if (ft_strcmp(get_home_path(envp, init), "") == 0)
+            return (ft_print_fd("cd : HOME not set\n", 2), free(NULL));
+        else
+		{	
+            chdir(get_path_from_home(path[1], envp, init));
+			printf("NEWWWWWWWWWWW======= %s\n", getcwd(NULL, 0));
+			grep_old_pwd_and_new(init);
+		}
+	}
+    else if (size_double_tab(path) == 1 || (path[1][0] == '~' && ft_strlen(path[1]) == 1))
     {
         if (ft_strcmp(get_home_path(envp, init), "") == 0)
             return (ft_print_fd("cd : HOME not set\n", 2), free(NULL));
