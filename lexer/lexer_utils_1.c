@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 15:23:26 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 18:44:02 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/13 17:20:55 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int length_word(char *word)
 		i++;
 		word++;
 	}
+	printf("%d    \n", i);
 	return (i);
 }
 
@@ -86,6 +87,7 @@ void write_word(char *word, char **result)
 			quote = 0;
 			quote_type = 0;
 		}
+		printf("\n%s \n", word);
 		(*result)[i++] = *word++;
 	}
 	(*result)[i] = 0;
@@ -111,7 +113,7 @@ void end_of_word(char **splittos)
 		}	
 		else if (quote == 1 && **splittos == quotes)
 		{
-			quote++;
+			quote--;
 			quotes = 0;
 		}
 		(*splittos)++;

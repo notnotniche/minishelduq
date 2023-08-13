@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:40:58 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 23:31:36 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/13 15:58:03 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ typedef struct s_init
 	t_lex_list *lst_lex;
 	t_token_list *lst_token;
 	char			*err_msg;
+	int check_exec;
 } t_init;
 
 

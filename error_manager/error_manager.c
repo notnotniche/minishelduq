@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:23:48 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 23:39:46 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/13 15:43:45 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int check_quote_ends(char *str)
 		i++;
 	}
 	if (quote.quote_bool != 0)
-		return (ft_print_fd("error quote", 2), 1);
+		return (ft_print_fd("Subject syntax error \n", 2), 1);
 	return (0);
 }
 
@@ -250,6 +250,8 @@ int	syntax_app(t_init	*init)
 
 int check_error(t_init *init)
 {
+	if (check_quote_ends(init->read_line))
+		return (1);
 	if (is_word_after_operator(init) == 1)
 		return (1);
 	if (syntax_pipe(init) == 1)
