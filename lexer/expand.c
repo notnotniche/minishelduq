@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 15:06:08 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/13 15:49:55 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/13 18:27:25 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ char	*expand_env_and_quote(char *str, t_init *init)
 		else
 			result = ft_join_str_in_init(init, *str++, result);
 	}
-	printf("------>   %s     \n", result);
 	return (result);
 }
 	
@@ -93,7 +92,7 @@ char **split_for_expand(t_init *init, char *str)
 	
 	splittos = ft_split_piscine(str, sep);
 	lstaddback_malloc(init, lstnew_malloc(splittos));
-	printalltab(splittos, "split_expand");
+	// printalltab(splittos, "split_expand");
 	return (splittos);
 	
 }

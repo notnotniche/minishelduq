@@ -74,7 +74,12 @@ void    text_to_print(char    **line, t_init *init)
     while (ft_scmp(line[i], "echo") != 0)
         i++;
     if (ft_scmp(line[i], "echo") == 0)
-        i++;
+         i++;
+	if (size_double_tab(line) == 1)
+	{
+		printf("\n");
+		return ;
+	}
     while (echo_n_option(line, i) == 0)
     {
         i++;

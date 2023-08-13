@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:33:54 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/11 18:22:56 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/13 19:26:22 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,17 @@ void print_lst_env(t_env_list *list)
 {
 	while (list)
 	{
-		printf("%s=",list->name);
-		if (list->value)
-			printf("\"%s\"\n", list->value);
-		else
-			printf("\"\"\n");
+		if (list->i == VALID)
+		{
+			printf("1%s\n", list->name);
+		}
+		else 
+			printf("2 %s=\"%s\"\n", list->name, list->value);
 		list = list->next;
 	}
 }
+
+
 
 void free_env_list(t_env_list *head) {
     t_env_list *current = head;

@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:33:12 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 18:39:49 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/13 17:46:56 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,14 @@ void remove_node_env_name(t_init *init, char *str)
 	}
 	while (now)
 	{
-		if (ft_strcmp(str,now->name) == 0)
-		{
-			before->next= now->next;
-			free(now);
-			return ;
-		}
+    if (ft_strcmp(str, now->name) == 0)
+    {
+        before->next = now->next;
+        free(now->name);
+		free(now->value);
+        free(now);
+        return;
+    }
 		before = now;
 		now = now->next;
 	}

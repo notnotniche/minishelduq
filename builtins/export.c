@@ -81,14 +81,36 @@
 		return (1);
 	}
 
+void change_env_value_export(char *name, char *new_value, t_init *init, int i) {
+    t_env_list *tmp;
 
+    tmp = init->lst_env;
+    while (tmp) {
+        if (ft_strsame(tmp->name, name)) {
+            // Free the old value
+            free(tmp->value);
+
+            if (new_value) {
+                tmp->value = ft_strdup(new_value);
+				tmp->i = 0; 
+            } else {
+				if (i == VALID)
+					tmp->i = VALID;
+                tmp->value = NULL; 
+            }
+            return; 
+        }
+        tmp = tmp->next;
+    }
+    lstadd_back_env(&init->lst_env, lstnew_env(ft_strdup(name), new_value ? ft_strdup(new_value) : NULL));
+}
 
 	void export_to_linked_list(t_init *init, char **str)
 	{
 		if (str[1] == NULL)
-			change_env_value(str[0], str[1], init);
+			change_env_value_export(str[0], str[1], init, VALID);
 		else
-			change_env_value(str[0],str[1], init);
+			change_env_value_export(str[0],str[1], init, 0);
 	}
 
 	char  **exportator(char *str)

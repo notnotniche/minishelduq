@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:40:58 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/13 15:58:03 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/13 19:03:43 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ extern int g_status_exit_code;
 # define NO_ACCESS 126// G_STATUS
 # define SUCESS 0 // G_STATUS
 # define ERROR 1 // NERD
+# define VALID 1
 
 
 
@@ -83,6 +84,7 @@ typedef struct env_list
 {
 	char *name;
 	char *value;
+	int	 i;
 	struct env_list *next;
 } t_env_list;
 
@@ -225,7 +227,6 @@ char	*get_env_value(char *name, t_init *init);
 t_env_list	*lstnew_env(char *name, char *value);
 t_env_list	*lstlast_env(t_env_list *list);
 void		lstadd_back_env(t_env_list **list, t_env_list *new);
-void print_lst_env(t_env_list *list);
 
 
 //expand
@@ -233,6 +234,7 @@ int		is_env(char *str);
 int		size_double_tab(char **arguments);
 int valid_first_letter(char *str, int i);
 char	*env_name_expander(char *str);
+void print_export(t_env_list *list);
 void	expander_expanding(t_init *init);
 
 //builtins

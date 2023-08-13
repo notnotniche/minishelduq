@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 18:14:13 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/13 16:31:01 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/13 18:26:16 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ char *path_res(t_init *init, t_str_list *cmd, t_exec_init *exec_init)
 	
 	if (ft_strlen(cmd->str_list) == 0)
 		exit(1);
-	printf("\n cmd->str_list : %s \n",cmd->str_list);
+	// printf("\n cmd->str_list : %s \n",cmd->str_list);
 	res = is_pathabs(init, cmd->str_list, exec_init);
-	printf("path res  : --> %s\n", res);
+	// printf("path res  : --> %s\n", res);
 	if (res)
 		return (res);
 	return (NULL);
@@ -99,18 +99,29 @@ char *path_maker(t_init *init, t_str_list *cmd, char *path,t_exec_init *exec_ini
 	if (ft_strlen(init->lst_token->arguments->str_list) != 0)
 	{	
 		res = path_res(init, cmd, exec_init);
-		printf("paaaaatah res %s\n", res);
+		// printf("paaaaatah res %s\n", res);
 		if (res)
 			return (res);
 		if (!path)
-			exit(1);
+		{
+			init->err_msg = ft_strjoin(cmd->str_list, ": command not found");
+			ft_print_fd(init->err_msg, 2);
+			free(init->err_msg);
+			free(res);
+			free_env_list(init->lst_env);
+			free_s_init(init);
+			close(exec_init->mypipe[0]);
+			close(exec_init->mypipe[1]);
+			close(exec_init->pipetmp);
+			exit(127);
+		}
 		splittos = ft_split(path, ':');
 		while (splittos[i])		
 		{
 			tmp = ft_strjoin(splittos[i], "/");
 			res = ft_strjoin(tmp, cmd->str_list);
 			free(tmp);
-			printf("\n%s", res);
+			// printf("\n%s", res);
 			if (file_exec(res) == 1)
 				return (ft_strdup(res));
 			free(res);

@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:54:28 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/13 15:14:54 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/13 18:26:40 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void  while_here_doc_exist(t_init *init)
 		init->lst_token = init->lst_token->next;
 	}
 	init->lst_token = token;
-	print_all_token(init->lst_token);
+	// print_all_token(init->lst_token);
 }
 
 void	heredoc_supp(t_token_list *token_lst)

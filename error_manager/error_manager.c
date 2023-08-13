@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:23:48 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/13 15:43:45 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/13 19:23:49 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,6 +248,22 @@ int	syntax_app(t_init	*init)
 	return (0);
 }
 
+int	check_if_syntax_ok(t_init *init)
+{
+	t_lex_list *lst_lex;
+	int			i;
+
+	i = 0;
+	lst_lex = init->lst_lex;
+	while (lst_lex)
+	{
+		if (lst_lex->operator != WORD && (!lst_lex->next->operator || lst_lex->next->operator != WORD))
+			return (ft_print_fd("syntax error near unexpected token", 2), g_status_exit_code = 2, 1);
+		lst_lex = lst_lex->next;
+	}
+	return (0);
+}
+
 int check_error(t_init *init)
 {
 	if (check_quote_ends(init->read_line))
@@ -264,5 +280,7 @@ int check_error(t_init *init)
 		return (1);
 	if (syntax_app(init) == 1)
 		return (1);
+	// if (check_if_syntax_ok(init) == 1)
+	// 	return (1);
 	return (0);
 }

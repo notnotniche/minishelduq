@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:44:04 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 19:39:36 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/13 19:28:01 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ t_env_list	*init_env_list(char **env)
 		name = env_name(env[i]);
 		value = ft_strdup(getenv(name));
 		lstadd_back_env(&env_list, lstnew_env(name, value));
+		env_list->i = 0;
 		i++;
 	}
 	return (env_list);
