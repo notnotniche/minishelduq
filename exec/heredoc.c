@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:54:28 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/13 20:59:17 by itahani          ###   ########.fr       */
+/*   Updated: 2023/08/13 21:10:30 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,14 @@ void  while_here_doc_exist(t_init *init)
 	t_token_list *token;
 	t_str_list *head;
 	token = init->lst_token;
+	printf("123");
 	while(init->lst_token)
 	{
 		head = init->lst_token->delimeter;
+		printf("123");
 		while (init->lst_token->delimeter)
 		{
+			printf("4566");
 			ft_heredoc(init->lst_token->delimeter->str_list, init);
 			init->lst_token->delimeter = init->lst_token->delimeter->next;
 		}
@@ -76,7 +79,6 @@ void  while_here_doc_exist(t_init *init)
 		init->lst_token = init->lst_token->next;
 	}
 	init->lst_token = token;
-	print_all_token(init->lst_token);
 }
 
 void	heredoc_supp(t_token_list *token_lst)

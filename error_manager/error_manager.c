@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_manager.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:23:48 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/13 20:57:26 by itahani          ###   ########.fr       */
+/*   Updated: 2023/08/13 21:44:17 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	is_word_after_operator(t_init *init)
 			|| lst_lex->operator == REDIR_IN || lst_lex->operator == REDIR_OUT 
 			|| lst_lex->operator == HERE_DOC || lst_lex->operator == APP_OUT)
 	{
-		if (!lst_lex->next)
+		if (lst_lex->next->operator != WORD)
 		{
 			change_env_value("?", "2", init);
 			return (ft_print_fd("syntax error near unexpected token `newline'", 2), g_status_exit_code = 2, 1);
@@ -154,6 +154,16 @@ int	syntax_redir_out(t_init	*init)
 	return (0);
 }
 
+int syntax_append(t_init *init)
+{
+	t_lex_list *lst_lex;
+
+	lst_lex = init->lst_lex;
+	if (lst_lex->operator == APP_OUT)
+		return (1);
+	return (0);
+}
+
 int	syntax_redir_in(t_init	*init)
 {
 	t_lex_list *lst_lex;
@@ -161,9 +171,9 @@ int	syntax_redir_in(t_init	*init)
 
 	i = 0;
 	lst_lex = init->lst_lex;
-	if (lst_lex && (lst_lex->operator == REDIR_IN || lst_lex->operator == HERE_DOC))
+	if (lst_lex && (lst_lex->operator == REDIR_IN))
 	{
-		while (lst_lex->operator && (lst_lex->operator == REDIR_IN || lst_lex->operator == HERE_DOC))
+		while (lst_lex->operator && (lst_lex->operator == REDIR_IN))
 		{
 			i++;
 			if (lst_lex->next)
@@ -209,7 +219,7 @@ int	syntax_heredoc(t_init	*init)
 				change_env_value("?", "2", init);
 				return (ft_print_fd("syntax error near unexpected token", 2), g_status_exit_code = 2, 1);
 			}
-			if(is_word_after_operator(init) == 0)
+			if(is_word_after_operator(init) == 1)
 				return(2);
 		}
 		else
@@ -282,7 +292,9 @@ int check_error(t_init *init)
 		return (1);
 	else if (syntax_app(init) == 1)
 		return (1);
+	else if (syntax_append(init) == 1)
+		return (1);
 	// if (check_if_syntax_ok(init) == 1)
-	// 	return (1);
+	// 	return (1)7
 	return (0);
 }

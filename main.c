@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 16:00:25 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/13 18:26:46 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/13 21:34:55 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int main(int argc, char **argv, char **env)
 				add_history(init.read_line);
 				if (parsing(&init, init.read_line) == 0)
 				{	
-					// print_all_token(init.lst_token);
 					real_exec(&init);
 					free_s_init(&init);
 					if (!init.read_line)
