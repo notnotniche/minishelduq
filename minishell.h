@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:40:58 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/14 00:05:40 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/14 12:53:44 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ typedef struct s_init
 	t_token_list *lst_token;
 	char			*err_msg;
 	int check_exec;
+	int here_doc_tinker;
 } t_init;
 
 

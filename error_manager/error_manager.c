@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:23:48 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/13 22:00:21 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/14 12:30:10 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,6 @@ int check_quote_ends(char *str)
 	return (0);
 }
 
-int is_redir_good(t_lex_list *lst_lex)
-{
-	if (!lst_lex->next)
-		return (ft_print_fd("no word after redir",2),1);
-	if (lst_lex->next->operator != REDIR_IN)
-		return (ft_print_fd("no word after redir check syntax", 2), 1);
-	return (0);
-}
-
-int is_pipe_good(t_lex_list *lst_lex)
-{
-	if (!lst_lex->next)
-		return (ft_print_fd("no word after redir",2),1);
-	if (lst_lex->next->operator == REDIR_OUT)
-		return (ft_print_fd("no word after redir check synta ", 2), 1);
-	return (0);
-}
-
 int	is_word_after_operator(t_init *init)
 {
 	t_lex_list *lst_lex;
@@ -71,6 +53,8 @@ int	is_word_after_operator(t_init *init)
 		else
 			break ;
 	}
+	// if (lst_lex->operator == PIPE && lst_lex->next->operator == REDIR_IN)
+	// 	return (0);
 	if (lst_lex->operator == PIPE
 			|| lst_lex->operator == REDIR_IN || lst_lex->operator == REDIR_OUT 
 			|| lst_lex->operator == HERE_DOC || lst_lex->operator == APP_OUT)
@@ -260,26 +244,32 @@ int	syntax_app(t_init	*init)
 	return (0);
 }
 
-int	check_if_syntax_ok(t_init *init)
-{
-	t_lex_list *lst_lex;
-	int			i;
+// int check_all_redir(t_init *init)
+// {
+// 	t_lex_list *lst_lex;
 
-	i = 0;
-	lst_lex = init->lst_lex;
-	while (lst_lex)
-	{
-		if (lst_lex->operator != WORD && (!lst_lex->next->operator || lst_lex->next->operator != WORD))
-			return (ft_print_fd("syntax error near unexpected token", 2), g_status_exit_code = 2, 1);
-		lst_lex = lst_lex->next;
-	}
-	return (0);
-}
+// 	lst_lex = init->lst_lex;
+// 	while (lst_lex)
+// 	{
+// 		if (lst_lex->operator == REDIR_IN || 
+// 			lst_lex->operator == REDIR_OUT || lst_lex->operator == APP_OUT || 
+// 			lst_lex->operator == HERE_DOC)
+// 		{
+// 			if (!(lst_lex->next == NULL || lst_lex->next->operator == WORD))
+// 				return (1);
+// 		}
+// 		lst_lex = lst_lex->next;
+// 	}
+// 	return (0);
+// }
+
 
 int check_error(t_init *init)
 {
 	if (check_quote_ends(init->read_line))
 		return (1);
+	// if (check_all_redir(init) == 1)
+	// 	return (1);
 	if (is_word_after_operator(init) == 1)
 		return (1);
 	else if (syntax_pipe(init) == 1)
@@ -295,6 +285,6 @@ int check_error(t_init *init)
 	else if (syntax_append(init) == 1)
 		return (1);
 	// if (check_if_syntax_ok(init) == 1)
-	// 	return (1)7
+	// 	return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 16:00:25 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/13 23:10:59 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/14 12:57:20 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int main(int argc, char **argv, char **env)
 	while(1)
 		{
 			init.read_line = readline("minishell :");
+			init.here_doc_tinker = 0;
 			if (init.read_line == NULL) //ctrl d
 			{
 				free_env_list(init.lst_env);

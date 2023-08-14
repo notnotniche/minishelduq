@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 18:19:38 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/14 01:09:25 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/14 13:19:05 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,8 @@ char    *get_path_from_home(char *path, char **envp, t_init *init)
 	int		i;
 
 	i = 0;
+	if (ft_strlen(path) == 0 || (ft_strlen(path) == 1 && path[0] == '~'))
+		return (get_home_path(envp, init));
 	tmp = malloc(sizeof(char) * (ft_strlen(path) - 1));
 	while (path[i + 1])
 	{
@@ -124,40 +126,37 @@ char    *get_path_from_home(char *path, char **envp, t_init *init)
     return (pathfh);
 }
 
-void 	the_real_cd(char **path, char **envp, t_init *init)
+void     the_real_cd(char **path, char **envp, t_init *init)
 {
-	if(size_double_tab(path) == 1)
-	{}
-	if ((path[1]) && path[1][0] == '-' && ft_strlen(path[1]) == 1)
-	{
-		chdir(get_env_value("OLDPWD", init));
-		grep_old_pwd_and_new(init);
-		return ;
-	}
+    if ((path[1]) && path[1][0] == '-' && ft_strlen(path[1]) == 1)
+    {
+        chdir(get_env_value("OLDPWD", init));
+        grep_old_pwd_and_new(init);
+        return ;
+    }
     if (size_double_tab(path) == 1 || (path[1][0] == '~' && path[1][1] == '/'))
     {
         if (ft_strcmp(get_home_path(envp, init), "") == 0)
             return (ft_print_fd("cd : HOME not set\n", 2), free(NULL));
-	    else
-		{	
+        else
+        {    
             chdir(get_path_from_home("~", envp, init));
-			grep_old_pwd_and_new(init);
-		}
-	}
+            grep_old_pwd_and_new(init);
+        }
+    }
     else if (size_double_tab(path) == 1 || (path[1][0] == '~' && ft_strlen(path[1]) == 1))
     {
         if (ft_strcmp(get_home_path(envp, init), "") == 0)
             return (ft_print_fd("cd : HOME not set\n", 2), free(NULL));
-			
+            
         else
-		{	
+        {    
             chdir(get_home_path(envp, init));
-			grep_old_pwd_and_new(init);
-		}
-	}
+            grep_old_pwd_and_new(init);
+        }
+    }
     else if (access(path[1], F_OK) != 0)
         return (ft_print_fd(cd_error_no_access(path[1], init), 2), free(NULL));
     else if (chdir(path[1]) == 0)
-        grep_old_pwd_and_new(init);
-	
+        grep_old_pwd_and_new(init);  
 }

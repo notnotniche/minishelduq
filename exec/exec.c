@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:52:38 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/14 00:55:55 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/14 12:56:16 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,12 +140,17 @@ void real_exec(t_init *init)
 	print_all_token(init->lst_token);
 	if (here_doc_exist(init) >= 1)
 		while_here_doc_exist(init);
-	if (only_here_doc(init->lst_token) == 0)
+	if (init->here_doc_tinker == 0)
 	{
-		if (ft_size_token(init->lst_token) == 1 && fork_builtin(init->lst_token->arguments->str_list) == 1)
-				builtin_manage(init, all_args[0], all_args);
-		else 
-			exec(init);
+		if (only_here_doc(init->lst_token) == 0)
+		{
+			if (ft_size_token(init->lst_token) == 1 && fork_builtin(init->lst_token->arguments->str_list) == 1)
+					builtin_manage(init, all_args[0], all_args);
+			else 
+				exec(init);
+		}
+		else
+			free_s_init(init);
 	}
 	else
 		free_s_init(init);
