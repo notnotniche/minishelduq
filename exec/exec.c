@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:52:38 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/14 17:19:45 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/14 20:17:33 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@ int	here_doc_exist(t_init *init)
 	return (i);
 }
 
-static void	exec_child_process(t_init *init, int i, t_exec_init exec_init)
+void	exec_child_process(t_init *init, int i, t_exec_init exec_init)
 {
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
 	exec_all_pid(init, i, exec_init);
 }
 
-static void	exec_parent_process(t_exec_init *exec_init)
+void	exec_parent_process(t_exec_init *exec_init)
 {
 	if (signal(SIGINT, SIG_IGN) != SIG_ERR)
 		g_status_exit_code = 131;
@@ -68,34 +68,10 @@ static void	exec_parent_process(t_exec_init *exec_init)
 	close(exec_init->mypipe[1]);
 }
 
-void	exec(t_init *init)
+void	initialize_exec(t_init *init, int *i, t_exec_init *exec_init)
 {
-	int				i;
-	t_exec_init		exec_init;
-
 	if (ft_size_token(init->lst_token) == 0)
 		return ;
-	exec_init = init_exec_struct(init);
-	i = 0;
-	while (i < exec_init.nb_command)
-	{
-		if (pipe(exec_init.mypipe) == -1)
-			printf("!233123131311231");
-		exec_init.realpid = fork();
-		if (exec_init.realpid < 0)
-			printf("deuxieme");
-		else if (exec_init.realpid == 0)
-			exec_child_process(init, i, exec_init);
-		else
-			exec_parent_process(&exec_init);
-		i++;
-		init->lst_token = init->lst_token->next;
-	}
-	my_wait_pid(exec_init);
-	if (g_status_exit_code == 130)
-		printf("\n");
-	else if (g_status_exit_code == 131)
-		printf("Quit (core dumped)\n");
-	close(exec_init.pipetmp);
-	heredoc_supp(init->lst_token);
+	*exec_init = init_exec_struct(init);
+	*i = 0;
 }

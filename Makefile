@@ -23,10 +23,12 @@ SRCS =		${UTILS_DIR}splittos.c\
 			${LEXER_DIR}token_utils.c\
 			${ERROR_DIR}syntax_utils2.c\
 			${ERROR_DIR}syntax_utils.c\
+			${EXEC_DIR}exec_utils1.c\
 			${ERROR_DIR}syntax_redir.c\
 			${BUILTINS_DIR}echo2.c\
 			${BUILTINS_DIR}export2.c\
 			${BUILTINS_DIR}export3.c\
+			${LEXER_DIR}expand_utils1.c\
 			${ERROR_DIR}quotes.c\
 			${BUILTINS_DIR}cd2.c\
 			${UTILS_DIR}shlvl.c\

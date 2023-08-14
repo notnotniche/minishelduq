@@ -6,7 +6,7 @@
 /*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:51:43 by itahani           #+#    #+#             */
-/*   Updated: 2023/08/14 14:55:50 by itahani          ###   ########.fr       */
+/*   Updated: 2023/08/14 20:27:13 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,25 +62,13 @@ t_env_list	*init_env_list(char **env)
 	return (env_list);
 }
 
-void	change_env_value(char *name, char *new_value, t_init *init)
+void	set_value(t_env_list *tmp, char *new_value)
 {
-	t_env_list	*tmp;
-
-	tmp = init->lst_env;
-	while (tmp)
-	{
-		if (ft_strsame(tmp->name, name))
-		{
-			free(tmp->value);
-			if (new_value)
-				tmp->value = ft_strdup(new_value);
-			else
-				tmp->value = NULL;
-			return ;
-		}
-		tmp = tmp->next;
-	}
-	lstadd_back_env(&init->lst_env, lstnew_env(ft_strdup(name), new_value ? ft_strdup(new_value) : NULL));
+	free(tmp->value);
+	if (new_value)
+		tmp->value = ft_strdup(new_value);
+	else
+		tmp->value = NULL;
 }
 
 char	*get_env_value(char *name, t_init *init)

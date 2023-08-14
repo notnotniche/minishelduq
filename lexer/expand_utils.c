@@ -6,7 +6,7 @@
 /*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:25:51 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/14 13:07:09 by itahani          ###   ########.fr       */
+/*   Updated: 2023/08/14 20:25:28 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,18 @@ void	end_env_name(char **str)
 			break ;
 		(*str)++;
 	}
+}
+
+void	add_back_env(t_init *init, char *name, char *new_value)
+{
+	char	*duplicated_name;
+	char	*duplicated_value;
+
+	duplicated_name = ft_strdup(name);
+	if (new_value)
+		duplicated_value = ft_strdup(new_value);
+	else
+		duplicated_value = NULL;
+	lstadd_back_env(&init->lst_env, \
+		lstnew_env(duplicated_name, duplicated_value));
 }

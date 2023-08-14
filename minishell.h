@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:40:58 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/14 20:06:23 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/14 20:27:27 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-#define MINISHELL_H
+# ifndef MINISHELL_H
+# define MINISHELL_H
 
 #include "unistd.h"
 #include "stdlib.h"
@@ -136,15 +136,26 @@ int		is_only_isspace(char *str);
 char *ft_strncpy(char *dest, const char *src, size_t n);
 char	*heredoc_name(char *delimiteur, t_init *init);
 void closer_totally_spies(int fd, int oui, char *line);
+void	my_wait_pid(t_exec_init exec_init);
+void	expand_env(char **str, char **result, t_init *init);
 void closer_the_magasine(int fd, char *filename, int oui, t_init *init);
 void	the_writer(int fd, char *str, int size_str);
+void	handle_execution(t_init *init, int *i, t_exec_init *exec_init);
 char **args_to_str(t_str_list *str, int size_str, t_init *init);
 char    **ft_split_piscine(char *str, char *charset);
 char	*ft_strjoin(char *str1, char *str2);
+int	at_least_oneisspace(char *str);
+char	*sep_init(char *sep);
+void	set_value(t_env_list *tmp, char *new_value);
+void	add_back_env(t_init *init, char *name, char *new_value);
+char	**split_for_expand(t_init *init, char *str);
 int		ft_isalpha(char c);
+void	exec_child_process(t_init *init, int i, t_exec_init exec_init);
 void	check_pipe(int fd);
 int		ft_isalnum(char c);
+void	initialize_exec(t_init *init, int *i, t_exec_init *exec_init);
 void	heredoc_supp(t_token_list *token_lst);
+void	exec_parent_process(t_exec_init *exec_init);
 int		is_quote(char c);
 void	exec(t_init *init);
 int	here_doc_exist(t_init *init);
