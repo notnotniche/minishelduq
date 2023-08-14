@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 18:29:59 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/14 13:44:13 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/14 17:03:19 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	exec_all_pid(t_init *init, int i, t_exec_init exec_init)
 	const int	output_fd = init->lst_token->o_fd;
 	const int	input_fd = init->lst_token->i_fd;
 
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 	if (check_infile_fd(init->lst_token) || check_outfile_fd(init->lst_token))
 		exit(1);
 	dup2(exec_init.pipetmp, STDIN_FILENO);

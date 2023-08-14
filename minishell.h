@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:40:58 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/14 14:20:23 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/14 17:21:28 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,10 @@ int		ft_strsame(char *str1, char *str2);
 char    **ft_split(const char *s, char c);
 int		is_only_isspace(char *str);
 char *ft_strncpy(char *dest, const char *src, size_t n);
+char	*heredoc_name(char *delimiteur, t_init *init);
+void closer_totally_spies(int fd, int oui, char *line);
+void closer_the_magasine(int fd, char *filename, int oui, t_init *init);
+void	the_writer(int fd, char *str, int size_str);
 char **args_to_str(t_str_list *str, int size_str, t_init *init);
 char    **ft_split_piscine(char *str, char *charset);
 char	*ft_strjoin(char *str1, char *str2);
@@ -142,15 +146,20 @@ void	check_pipe(int fd);
 int		ft_isalnum(char c);
 void	heredoc_supp(t_token_list *token_lst);
 int		is_quote(char c);
+void	exec(t_init *init);
+int	here_doc_exist(t_init *init);
 char	*ft_strcpy(char *dest, const char *src);
 void	close_fds(int fd_nbr, ...);
 char *ft_strcat(char *dest, const char *src);
+char *execute_from_path(char **splittos, t_str_list *c);
 int		ft_isitenv(char c);
 char	*expand_env_and_quote(char *str, t_init *init);
 int    ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strdup(char *str);
-void	free_err_msg(t_init *init,t_exec_init *exec_init, char *str, char *err_msg, int exittos);
+void	f_msg(t_init *init, char *str, char *err_msg);
+int tinker_path(t_init *init, t_exec_init *exec_init, char *str);
 void	free_close_exit(t_init *init, t_exec_init *exec_init, int exittos);
+char *concatenate_strings(char *s1, char *s2);
 char			*ft_itoa(int n);
 char	*ft_join_str_in_init(t_init *init, char c, 	char *src);
 void	ft_print_fd(char *str, int fd);

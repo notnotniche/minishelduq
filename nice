@@ -62,7 +62,6 @@ SRCS =		${LAUNCHER_DIR}launcher.c\
 			${ERROR_DIR}error_manager.c\
 			${EXEC_DIR}init_exec_init.c\
 			${EXEC_DIR}exec.c\
-			${EXEC_DIR}exec2.c\
 			${EXEC_DIR}is_itcommand.c\
 			${EXEC_DIR}file_manager.c\
 			${EXEC_DIR}command_manager.c\

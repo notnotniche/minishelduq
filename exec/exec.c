@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:52:38 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/14 13:37:52 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/14 17:19:45 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,38 +51,43 @@ int	here_doc_exist(t_init *init)
 	return (i);
 }
 
+static void	exec_child_process(t_init *init, int i, t_exec_init exec_init)
+{
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
+	exec_all_pid(init, i, exec_init);
+}
+
+static void	exec_parent_process(t_exec_init *exec_init)
+{
+	if (signal(SIGINT, SIG_IGN) != SIG_ERR)
+		g_status_exit_code = 131;
+	if (exec_init->pipetmp)
+		close(exec_init->pipetmp);
+	exec_init->pipetmp = exec_init->mypipe[0];
+	close(exec_init->mypipe[1]);
+}
+
 void	exec(t_init *init)
 {
-	int			i;
-	t_exec_init	exec_init;
+	int				i;
+	t_exec_init		exec_init;
 
+	if (ft_size_token(init->lst_token) == 0)
+		return ;
+	exec_init = init_exec_struct(init);
 	i = 0;
-	if (ft_size_token(init->lst_token) != 0)
-		exec_init = init_exec_struct(init);
 	while (i < exec_init.nb_command)
 	{
 		if (pipe(exec_init.mypipe) == -1)
-		{
 			printf("!233123131311231");
-		}
 		exec_init.realpid = fork();
 		if (exec_init.realpid < 0)
 			printf("deuxieme");
-		if (exec_init.realpid == 0)
-		{
-			signal(SIGINT, SIG_DFL);
-			signal(SIGQUIT, SIG_DFL);
-			exec_all_pid(init, i, exec_init);
-		}
+		else if (exec_init.realpid == 0)
+			exec_child_process(init, i, exec_init);
 		else
-		{
-			if (signal(SIGINT, SIG_IGN) != SIG_ERR)
-				g_status_exit_code = 131;
-			if (exec_init.pipetmp)
-				close(exec_init.pipetmp);
-			exec_init.pipetmp = exec_init.mypipe[0];
-			close(exec_init.mypipe[1]);
-		}
+			exec_parent_process(&exec_init);
 		i++;
 		init->lst_token = init->lst_token->next;
 	}
@@ -93,65 +98,4 @@ void	exec(t_init *init)
 		printf("Quit (core dumped)\n");
 	close(exec_init.pipetmp);
 	heredoc_supp(init->lst_token);
-	signal(SIGINT, handle_sigint);
-	signal(SIGQUIT, SIG_IGN);
-}
-
-int	size_str_list(t_str_list *list)
-{
-	int	i;
-
-	i = 0;
-	while (list)
-	{
-		i++;
-		list = list->next;
-	}
-	return (i);
-}
-
-int	only_here_doc(t_token_list *token_list)
-{
-	if (size_str_list(token_list->arguments) == 0)
-	{
-		if (size_str_list(token_list->in_file) == 0)
-		{
-			if (size_str_list(token_list->out_file) == 0)
-			{
-				if (size_str_list(token_list->delimeter) != 0)
-					return (1);
-			}
-		}
-	}
-	return (0);
-}
-
-void	real_exec(t_init *init)
-{
-	t_token_list	*head;
-	t_str_list		*del;
-	char			**all_args;
-
-	all_args = args_to_str(init->lst_token->arguments, \
-		ft_size_str(init->lst_token->arguments), init);
-	head = init->lst_token;
-	del = init->lst_token->delimeter;
-	print_all_token(init->lst_token);
-	if (here_doc_exist(init) >= 1)
-		while_here_doc_exist(init);
-	if (init->here_doc_tinker == 0)
-	{
-		if (only_here_doc(init->lst_token) == 0)
-		{
-			if (ft_size_token(init->lst_token) == 1 && \
-				fork_builtin(init->lst_token->arguments->str_list) == 1)
-				builtin_manage(init, all_args[0], all_args);
-			else
-				exec(init);
-		}
-		else
-			free_s_init(init);
-	}
-	else
-		free_s_init(init);
 }
