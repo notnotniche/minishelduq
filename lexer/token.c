@@ -6,7 +6,7 @@
 /*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:40:36 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/14 13:49:27 by itahani          ###   ########.fr       */
+/*   Updated: 2023/08/14 18:20:40 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	tokenator(t_token_list **t_head, t_token_list **t_next, t_init *init)
 {
 	lstaddback_token(t_head, *t_next);
-	*token_next = lst_new_token(init);
+	*t_next = lst_new_token(init);
 }
 
 t_token_list	*get_all_token(t_init *init)
