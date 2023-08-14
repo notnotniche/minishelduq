@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:25:02 by itahani           #+#    #+#             */
-/*   Updated: 2023/08/14 19:59:38 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/14 21:06:52 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,4 @@ void	text_to_print(char **line, t_init *init)
 		printf("%s\n", res);
 	else
 		printf("%s", res);
-	free(res);
 }
