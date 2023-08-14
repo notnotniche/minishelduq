@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   token_list_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:55:17 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 14:07:16 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/14 13:39:56 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_token_list *lst_new_token(t_init *init)
+t_token_list	*lst_new_token(t_init *init)
 {
-	t_token_list *result;
-	
+	t_token_list	*result;
+
 	result = malloc(sizeof(t_token_list));
 	lstaddback_malloc(init, lstnew_malloc(result));
 	result->arguments = NULL;
@@ -29,9 +29,9 @@ t_token_list *lst_new_token(t_init *init)
 	return (result);
 }
 
-t_token_list *lstlast_token(t_token_list *lst)
+t_token_list	*lstlast_token(t_token_list *lst)
 {
-	t_token_list *head;
+	t_token_list	*head;
 
 	if (lst == NULL)
 	{
@@ -45,9 +45,9 @@ t_token_list *lstlast_token(t_token_list *lst)
 	return (head);
 }
 
-void lstaddback_token(t_token_list **lst, t_token_list *new)
+void	lstaddback_token(t_token_list **lst, t_token_list *new)
 {
-	t_token_list *last;
+	t_token_list	*last;
 
 	if (*lst)
 	{
@@ -60,20 +60,20 @@ void lstaddback_token(t_token_list **lst, t_token_list *new)
 	}
 }
 
-void print_all_token(t_token_list *lst)
+void	print_all_token(t_token_list *lst)
 {
-	t_token_list *head;
-	int		i;
+	t_token_list	*head;
+	int				i;
 
 	i = 0;
 	head = lst;
-	while(head)
+	while (head)
 	{
 		print_str(head->arguments, "arguments");
 		print_str(head->in_file, "in_file");
 		print_str(head->out_file, "out_file");
 		print_str(head->delimeter, "delimiter");
-		printf("index = %d  %d \n", i , head->o_fd);
+		printf("index = %d  %d \n", i, head->o_fd);
 		printf("index = %d  %d \n", i, head->i_fd);
 		head = head->next;
 	}

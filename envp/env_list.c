@@ -3,49 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   env_list.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/12 16:44:04 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/13 19:28:01 by nklingsh         ###   ########.fr       */
+/*   Created: 2023/08/14 14:51:43 by itahani           #+#    #+#             */
+/*   Updated: 2023/08/14 14:55:50 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int env_name_size(char *env) {
-    int i = 0;
+int	env_name_size(char *env)
+{
+	int	i;
 
-    while (env[i] && env[i] != '=')
-        i++;
-
-    if (i > 0 && env[i - 1] == '+')
-        i--;
-
-    return i;
+	i = 0;
+	while (env[i] && env[i] != '=')
+		i++;
+	if (i > 0 && env[i - 1] == '+')
+		i--;
+	return (i);
 }
 
-char *env_name(char *env) {
-    if (env[0] == '=')
-        return NULL;
+char	*env_name(char *env)
+{
+	int		namelength;
+	char	*name;
 
-    int nameLength = env_name_size(env);
-    if (nameLength <= 0)
-        return NULL;
-
-    char *name = malloc((nameLength + 1) * sizeof(char));
-    if (name == NULL)
-        return NULL;
-
-    ft_strncpy(name, env, nameLength);
-    name[nameLength] = '\0';
-    return name;
+	if (env[0] == '=')
+		return (NULL);
+	namelength = env_name_size(env);
+	if (namelength <= 0)
+		return (NULL);
+	name = malloc((namelength + 1) * sizeof(char));
+	if (name == NULL)
+		return (NULL);
+	ft_strncpy(name, env, namelength);
+	name[namelength] = '\0';
+	return (name);
 }
 
 t_env_list	*init_env_list(char **env)
 {
 	t_env_list	*env_list;
-	char 		*value;
-	char 		*name;
+	char		*value;
+	char		*name;
 	int			i;
 
 	i = 0;
@@ -60,30 +61,31 @@ t_env_list	*init_env_list(char **env)
 	}
 	return (env_list);
 }
-void change_env_value(char *name, char *new_value, t_init *init) {
-    t_env_list *tmp;
 
-    tmp = init->lst_env;
-    while (tmp) {
-        if (ft_strsame(tmp->name, name)) {
-            // Free the old value
-            free(tmp->value);
+void	change_env_value(char *name, char *new_value, t_init *init)
+{
+	t_env_list	*tmp;
 
-            if (new_value) {
-                tmp->value = ft_strdup(new_value); 
-            } else {
-                tmp->value = NULL; 
-            }
-            return; 
-        }
-        tmp = tmp->next;
-    }
-    lstadd_back_env(&init->lst_env, lstnew_env(ft_strdup(name), new_value ? ft_strdup(new_value) : NULL));
+	tmp = init->lst_env;
+	while (tmp)
+	{
+		if (ft_strsame(tmp->name, name))
+		{
+			free(tmp->value);
+			if (new_value)
+				tmp->value = ft_strdup(new_value);
+			else
+				tmp->value = NULL;
+			return ;
+		}
+		tmp = tmp->next;
+	}
+	lstadd_back_env(&init->lst_env, lstnew_env(ft_strdup(name), new_value ? ft_strdup(new_value) : NULL));
 }
 
 char	*get_env_value(char *name, t_init *init)
 {
-	t_env_list *env_list;
+	t_env_list	*env_list;
 
 	env_list = init->lst_env;
 	while (env_list)

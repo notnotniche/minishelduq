@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shlvl.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 00:58:33 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 18:53:56 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/14 13:52:16 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ static int	ft_atoi1(char *str)
 	return (result * sign);
 }
 
-void sh_lvl_manager(t_init *init)
+void	sh_lvl_manager(t_init *init)
 {
-	int	sh_lvl;
-	char *free_itoa;
-	
+	int		sh_lvl;
+	char	*free_itoa;
+
 	sh_lvl = ft_atoi1(get_env_value("SHLVL", init));
 	sh_lvl++;
 	if (sh_lvl > 1000)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 15:06:08 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/14 00:05:05 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/14 13:30:16 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ void	expand_env(char **str, char **result, t_init *init)
 	free(env_name);
 }
 
-int at_least_oneisspace(char *str)
+int	at_least_oneisspace(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -83,17 +83,29 @@ char	*expand_env_and_quote(char *str, t_init *init)
 	}
 	return (result);
 }
-	
-char **split_for_expand(t_init *init, char *str)
+
+char	*sep_init(char *sep)
 {
-	char **splittos;
+	sep[1] = 9;
+	sep[2] = 10;
+	sep[3] = 11;
+	sep[4] = 12;
+	sep[5] = 13;
+	sep[6] = 32;
+	return (sep);
+}
+
+char	**split_for_expand(t_init *init, char *str)
+{
+	char	**splittos;
+	char	*sep;
+
+	sep = NULL;
+	sep = sep_init(sep);
 	(void)init;
-	char sep[]={9, 10, 11, 12, 13, 32};
-	
 	splittos = ft_split_piscine(str, sep);
 	lstaddback_malloc(init, lstnew_malloc(splittos));
 	return (splittos);
-	
 }
 
 void	expander_expanding(t_init *init)
@@ -113,10 +125,11 @@ void	expander_expanding(t_init *init)
 			{
 				splittos = split_for_expand(init, l_list->word);
 				delete_last_node_lex(&init->lst_lex);
-                while (*splittos)
-                {
-                    lstadd_back_lex(&init->lst_lex, lstnew_lex(*splittos, WORD, init));
-                    splittos++;
+				while (*splittos)
+				{
+					lstadd_back_lex(&init->lst_lex, \
+					lstnew_lex(*splittos, WORD, init));
+					splittos++;
 				}
 				l_list->must_split = 0;
 			}

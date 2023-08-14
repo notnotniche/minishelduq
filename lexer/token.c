@@ -6,26 +6,25 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:40:36 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 18:44:53 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/14 18:30:06 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	tokenator(t_token_list **token_head, t_token_list **token_next, t_init *init)
+void	tokenator(t_token_list **t_head, t_token_list **t_next, t_init *init)
 {
-	lstaddback_token(token_head, *token_next);
-	*token_next = lst_new_token(init);
+	lstaddback_token(t_head, *t_next);
+	*t_next = lst_new_token(init);
 }
 
-t_token_list *get_all_token(t_init *init)
+t_token_list	*get_all_token(t_init *init)
 {
-	t_token_list *token_head;
-	t_token_list *token_next;
+	t_token_list	*token_head;
+	t_token_list	*token_next;
 
 	token_head = NULL;
 	token_next = lst_new_token(init);
-	// print_lst_lex(init->lst_lex);
 	while (init->lst_lex)
 	{
 		if (init->lst_lex->operator == PIPE)

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   expand_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:25:51 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/14 00:18:16 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/14 13:07:09 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int		is_env(char *str)
+int	is_env(char *str)
 {
 	int	i;
 

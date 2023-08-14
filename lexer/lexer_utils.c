@@ -3,32 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:18:29 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/13 23:10:51 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/14 13:35:37 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_lex_list *lstnew_lex(char *word, int operator, t_init *init)
+t_lex_list	*lstnew_lex(char *word, int operator, t_init *init)
 {
-	t_lex_list *result;
+	t_lex_list	*result;
 
 	lstaddback_malloc(init, lstnew_malloc(word));
-	result = malloc(sizeof(t_lex_list));	
+	result = malloc(sizeof(t_lex_list));
 	lstaddback_malloc(init, lstnew_malloc(result));
 	result->word = word;
 	result->operator = operator;
 	result->must_split = 0;
 	result->next = NULL;
-	return (result); 
+	return (result);
 }
 
-t_lex_list *lstlast_lex(t_lex_list *list)
+t_lex_list	*lstlast_lex(t_lex_list *list)
 {
-	t_lex_list *head;
+	t_lex_list	*head;
 
 	if (list == NULL)
 		return (0);
@@ -38,9 +38,9 @@ t_lex_list *lstlast_lex(t_lex_list *list)
 	return (head);
 }
 
-void lstadd_back_lex(t_lex_list **list, t_lex_list *new)
+void	lstadd_back_lex(t_lex_list **list, t_lex_list *new)
 {
-	t_lex_list *last;
+	t_lex_list	*last;
 
 	if (*list)
 	{
@@ -51,7 +51,7 @@ void lstadd_back_lex(t_lex_list **list, t_lex_list *new)
 		*list = new;
 }
 
-void print_lst_lex(t_lex_list *list)
+void	print_lst_lex(t_lex_list *list)
 {
 	while (list)
 	{
@@ -60,18 +60,18 @@ void print_lst_lex(t_lex_list *list)
 	}
 }
 
-void delete_last_node_lex(t_lex_list **list)
+void	delete_last_node_lex(t_lex_list **list)
 {
-	t_lex_list *tmp;
-	t_lex_list *prev;
-	
+	t_lex_list	*tmp;
+	t_lex_list	*prev;
+
 	tmp = *list;
 	if (*list == NULL)
 		return ;
 	if (tmp->next == NULL)
 	{
 		*list = NULL;
-		return;
+		return ;
 	}
 	while (tmp->next)
 	{
