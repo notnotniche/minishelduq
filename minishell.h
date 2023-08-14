@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:40:58 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/14 12:53:44 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/14 14:20:23 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,8 @@ int		ft_isitenv(char c);
 char	*expand_env_and_quote(char *str, t_init *init);
 int    ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strdup(char *str);
+void	free_err_msg(t_init *init,t_exec_init *exec_init, char *str, char *err_msg, int exittos);
+void	free_close_exit(t_init *init, t_exec_init *exec_init, int exittos);
 char			*ft_itoa(int n);
 char	*ft_join_str_in_init(t_init *init, char c, 	char *src);
 void	ft_print_fd(char *str, int fd);

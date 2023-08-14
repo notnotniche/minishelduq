@@ -1,25 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fd_manager.c                                       :+:      :+:    :+:   */
+/*   command_manager2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/01 15:19:03 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/14 13:38:19 by nklingsh         ###   ########.fr       */
+/*   Created: 2023/08/14 13:49:35 by nklingsh          #+#    #+#             */
+/*   Updated: 2023/08/14 13:58:11 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-void	close_fd(int fd_nbr, int *fd_array)
-{
-	int	i;
-
-	i = 0;
-	while (i < fd_nbr)
-	{
-		close(fd_array[i]);
-		i++;
-	}
-}

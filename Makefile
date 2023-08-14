@@ -56,6 +56,8 @@ SRCS =		${LAUNCHER_DIR}launcher.c\
 			${UTILS_DIR}ft_print_fd.c\
 			${UTILS_DIR}ft_lstsize_token.c\
 			${UTILS_DIR}ft_atoi.c\
+			${EXEC_DIR}command_manager2.c\
+			${EXEC_DIR}path2.c\
 			${ERROR_DIR}error_manager.c\
 			${EXEC_DIR}init_exec_init.c\
 			${EXEC_DIR}exec.c\

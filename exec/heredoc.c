@@ -6,13 +6,13 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:54:28 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/14 13:01:40 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/14 13:40:21 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
- 
-void ft_heredoc(char *delimiteur, t_init *init)
+
+void	ft_heredoc(char *delimiteur, t_init *init)
 {
     char    *filename;
     char    *line;
@@ -64,18 +64,19 @@ void ft_heredoc(char *delimiteur, t_init *init)
 	free(line);
 }	
 
-void  while_here_doc_exist(t_init *init)
+void	while_here_doc_exist(t_init *init)
 {
-	t_token_list *token;
-	t_str_list *head;
+	t_token_list	*token;
+	t_str_list		*head;
+
 	token = init->lst_token;
-	while(init->lst_token)
+	while (init->lst_token)
 	{
 		head = init->lst_token->delimeter;
 		while (init->lst_token->delimeter)
 		{
 			if (init->here_doc_tinker == 1)
-				break;
+				break ;
 			ft_heredoc(init->lst_token->delimeter->str_list, init);
 			init->lst_token->delimeter = init->lst_token->delimeter->next;
 		}
@@ -89,7 +90,7 @@ void	heredoc_supp(t_token_list *token_lst)
 {
 	while (token_lst)
 	{
-		while(token_lst->delimeter)
+		while (token_lst->delimeter)
 		{
 			unlink(token_lst->delimeter->str_list2);
 			token_lst->delimeter = token_lst->delimeter->next;

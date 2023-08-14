@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 17:12:21 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 18:53:00 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/14 13:39:06 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	redir_out_manager(t_token_list *token_list)
 {
-	int	fd;
-	char *file;
+	int		fd;
+	char	*file;
 
 	file = lstlast_str(token_list->out_file)->str_list;
 	fd = open(file, O_RDWR | O_CREAT | O_TRUNC, 0666);
@@ -26,8 +26,8 @@ void	redir_out_manager(t_token_list *token_list)
 
 void	app_out_manager(t_token_list *token_list)
 {
-	int	fd;
-	char *file;
+	int		fd;
+	char	*file;
 
 	file = lstlast_str(token_list->out_file)->str_list;
 	fd = open(file, O_APPEND | O_RDWR | O_CREAT, 0666);
@@ -38,8 +38,8 @@ void	app_out_manager(t_token_list *token_list)
 
 void	redir_in_manager(t_token_list *token_list)
 {
-	int	fd;
-	char *file;
+	int		fd;
+	char	*file;
 
 	file = lstlast_str(token_list->in_file)->str_list;
 	fd = open(file, O_RDONLY);
@@ -50,11 +50,10 @@ void	redir_in_manager(t_token_list *token_list)
 
 void	redir_here_doc(t_token_list *token_list)
 {
-	int	fd;
+	int			fd;
 	t_str_list	*del;
 
 	del = lstlast_str(token_list->delimeter);
-	// printf("%s", del->str_list2);
 	fd = open(del->str_list2, O_RDONLY);
 	dup2(fd, STDIN_FILENO);
 	close(fd);

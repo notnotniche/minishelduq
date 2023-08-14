@@ -6,42 +6,42 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:52:38 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/14 12:56:16 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/14 13:37:52 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void my_wait_pid(t_exec_init exec_init)
+void	my_wait_pid(t_exec_init exec_init)
 {
-		int i;
-		pid_t tmp;
-		int	status;
-		(void)exec_init;
-		
-		i = 0;
-		while (1)
+	int		i;
+	pid_t	tmp;
+	int		status;
+
+	(void)exec_init;
+	i = 0;
+	while (1)
+	{
+		tmp = wait(&status);
+		if (WIFEXITED(status))
+			g_status_exit_code = WEXITSTATUS(status);
+		else if (WIFSIGNALED(status))
 		{
-			tmp = wait(&status);
-			if (WIFEXITED(status))
-				g_status_exit_code = WEXITSTATUS(status);
-			else if (WIFSIGNALED(status))
-			{
-				g_status_exit_code = 128 + WTERMSIG(status);
-				if (g_status_exit_code == 130 || g_status_exit_code == 131)
-					;
-			}
-			if (tmp == -1)
-				break;
+			g_status_exit_code = 128 + WTERMSIG(status);
+			if (g_status_exit_code == 130 || g_status_exit_code == 131)
+				;
 		}
+		if (tmp == -1)
+			break ;
+	}
 }
 
-int here_doc_exist(t_init *init)
+int	here_doc_exist(t_init *init)
 {
-	t_str_list *tmp;
-	int i;
+	t_str_list	*tmp;
+	int			i;
 
-	i =0;
+	i = 0;
 	tmp = init->lst_token->delimeter;
 	while (tmp)
 	{
@@ -51,26 +51,23 @@ int here_doc_exist(t_init *init)
 	return (i);
 }
 
-void exec(t_init *init)
+void	exec(t_init *init)
 {
-	int i;
-	t_exec_init exec_init;
-	// t_token_list *head;
+	int			i;
+	t_exec_init	exec_init;
 
 	i = 0;
-	// head = init->lst_token;
 	if (ft_size_token(init->lst_token) != 0)
 		exec_init = init_exec_struct(init);
 	while (i < exec_init.nb_command)
 	{
-		
-		if ( pipe(exec_init.mypipe) == -1)
+		if (pipe(exec_init.mypipe) == -1)
 		{
-				printf("!233123131311231");
+			printf("!233123131311231");
 		}
 		exec_init.realpid = fork();
 		if (exec_init.realpid < 0)
-				printf("deuxieme");
+			printf("deuxieme");
 		if (exec_init.realpid == 0)
 		{
 			signal(SIGINT, SIG_DFL);
@@ -93,17 +90,17 @@ void exec(t_init *init)
 	if (g_status_exit_code == 130)
 		printf("\n");
 	else if (g_status_exit_code == 131)
-		printf("Quit (core dumped)\n"); 
+		printf("Quit (core dumped)\n");
 	close(exec_init.pipetmp);
 	heredoc_supp(init->lst_token);
 	signal(SIGINT, handle_sigint);
 	signal(SIGQUIT, SIG_IGN);
 }
 
-int size_str_list(t_str_list *list)
+int	size_str_list(t_str_list *list)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (list)
 	{
@@ -113,28 +110,30 @@ int size_str_list(t_str_list *list)
 	return (i);
 }
 
-int only_here_doc(t_token_list *token_list)
+int	only_here_doc(t_token_list *token_list)
 {
 	if (size_str_list(token_list->arguments) == 0)
 	{
 		if (size_str_list(token_list->in_file) == 0)
 		{
 			if (size_str_list(token_list->out_file) == 0)
-				{
-					if (size_str_list(token_list->delimeter) != 0)
-						return (1);
-				}
+			{
+				if (size_str_list(token_list->delimeter) != 0)
+					return (1);
+			}
 		}
 	}
 	return (0);
 }
 
-void real_exec(t_init *init)
+void	real_exec(t_init *init)
 {
-	t_token_list *head;
-	t_str_list *del;
-	char **all_args;
-	all_args = args_to_str(init->lst_token->arguments, ft_size_str(init->lst_token->arguments), init);
+	t_token_list	*head;
+	t_str_list		*del;
+	char			**all_args;
+
+	all_args = args_to_str(init->lst_token->arguments, \
+		ft_size_str(init->lst_token->arguments), init);
 	head = init->lst_token;
 	del = init->lst_token->delimeter;
 	print_all_token(init->lst_token);
@@ -144,9 +143,10 @@ void real_exec(t_init *init)
 	{
 		if (only_here_doc(init->lst_token) == 0)
 		{
-			if (ft_size_token(init->lst_token) == 1 && fork_builtin(init->lst_token->arguments->str_list) == 1)
-					builtin_manage(init, all_args[0], all_args);
-			else 
+			if (ft_size_token(init->lst_token) == 1 && \
+				fork_builtin(init->lst_token->arguments->str_list) == 1)
+				builtin_manage(init, all_args[0], all_args);
+			else
 				exec(init);
 		}
 		else

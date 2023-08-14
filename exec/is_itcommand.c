@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   is_itcommand.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 15:38:45 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 14:57:04 by itahani          ###   ########.fr       */
+/*   Updated: 2023/08/14 13:46:21 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int check_file_exist(char *path)
+int	check_file_exist(char *path)
 {
 	if (!path)
 		return (0);
@@ -21,7 +21,7 @@ int check_file_exist(char *path)
 	return (0);
 }
 
-int file_exec(char *path)
+int	file_exec(char *path)
 {
 	if (!path)
 		return (0);
@@ -30,18 +30,18 @@ int file_exec(char *path)
 	return (0);
 }
 
-int check_if_directory(char *path)
+int	check_if_directory(char *path)
 {
-	struct stat is_directory;
+	struct stat	is_directory;
 
 	if (stat(path, &is_directory) != 0)
 		return (0);
 	return (S_ISDIR(is_directory.st_mode));
 }
 
-int check_infile_fd(t_token_list *tok_list)
+int	check_infile_fd(t_token_list *tok_list)
 {
-	t_str_list *in_file;
+	t_str_list	*in_file;
 	int			fd;
 
 	in_file = tok_list->in_file;
@@ -56,10 +56,10 @@ int check_infile_fd(t_token_list *tok_list)
 	return (0);
 }
 
-int check_outfile_fd(t_token_list *tok_list)
+int	check_outfile_fd(t_token_list *tok_list)
 {
-	t_str_list *out_file;
-	int fd;
+	t_str_list	*out_file;
+	int			fd;
 
 	out_file = tok_list->out_file;
 	while (out_file)
@@ -77,5 +77,3 @@ int check_outfile_fd(t_token_list *tok_list)
 	}
 	return (0);
 }
-
-
