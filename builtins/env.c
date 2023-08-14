@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 16:32:41 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/09 17:25:00 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/14 14:29:33 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int str_without_equl(char *str)
+int	str_without_equl(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -26,7 +26,7 @@ int str_without_equl(char *str)
 	return (0);
 }
 
-int str_with_equal(char *str, int i)
+int	str_with_equal(char *str, int i)
 {
 	if (i == ft_strlen(str))
 		return (1);
@@ -35,9 +35,9 @@ int str_with_equal(char *str, int i)
 	return (0);
 }
 
-int check_if_all_args_are_good(char **arguments)
+int	check_if_all_args_are_good(char **arguments)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	while (arguments[i])
@@ -51,22 +51,20 @@ int check_if_all_args_are_good(char **arguments)
 	return (1);
 }
 
-void    print_for_env(t_init *init)
+void	print_for_env(t_init *init)
 {
-	
-	t_env_list    *suivant;
+	t_env_list	*suivant;
 
-	suivant =init->lst_env;
-    while(suivant)
-    {
-        if (suivant->name && suivant->value)
-            printf("%s=%s\n", suivant->name, suivant->value);
+	suivant = init->lst_env;
+	while (suivant)
+	{
+		if (suivant->name && suivant->value)
+			printf("%s=%s\n", suivant->name, suivant->value);
 		suivant = suivant->next;
-    }
+	}
 }
 
-
-void the_real_env(char **arguments, t_init *init)
+void	the_real_env(char **arguments, t_init *init)
 {
 	if (size_double_tab(arguments) == 1)
 		print_for_env(init);

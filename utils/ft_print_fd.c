@@ -6,7 +6,7 @@
 /*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:18:45 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 15:31:49 by itahani          ###   ########.fr       */
+/*   Updated: 2023/08/14 13:50:53 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_print_fd(char *str, int fd)
 {
 	char	*s;
-	char *tmp;
+	char	*tmp;
 
 	tmp = ft_strjoin("Minishell : ", str);
 	s = ft_strjoin(tmp, "\n");

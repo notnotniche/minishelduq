@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils_1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 15:23:26 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/13 18:28:02 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/14 13:33:48 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ int	ft_isspace(char c)
 	return (0);
 }
 
-int length_word(char *word)
+int	length_word(char *word)
 {
-	char quotes;
-	int quote;
-	int i;
+	char	quotes;
+	int		quote;
+	int		i;
 
 	i = 0;
 	quote = 0;
@@ -46,7 +46,7 @@ int length_word(char *word)
 	while (*word)
 	{
 		if (quote == 0 && (ft_is_operator(word) || ft_isspace(*word)))
-			break;
+			break ;
 		if ((*word == '\'' || (*word) == '\"') && quote == 0)
 		{
 			quote++;
@@ -60,11 +60,10 @@ int length_word(char *word)
 		i++;
 		word++;
 	}
-	// printf("%d    \n", i);
 	return (i);
 }
 
-void write_word(char *word, char **result)
+void	write_word(char *word, char **result)
 {
 	char	quote_type;
 	int		quote;
@@ -87,26 +86,25 @@ void write_word(char *word, char **result)
 			quote = 0;
 			quote_type = 0;
 		}
-		// printf("\n%s \n", word);
 		(*result)[i++] = *word++;
 	}
 	(*result)[i] = 0;
 }
 
-void end_of_word(char **splittos)
+void	end_of_word(char **splittos)
 {
-	char quotes;
-	int quote;
+	char	quotes;
+	int		quote;
 
 	quote = 0;
 	quotes = 0;
 	while ((**splittos))
 	{
 		if (quote == 0 && ft_is_operator(*splittos))
-			break;
+			break ;
 		if (ft_isspace(**splittos) && quote == 0)
-			break;
-		if ((**splittos == '\"' || **splittos =='\'') && quote == 0)
+			break ;
+		if ((**splittos == '\"' || **splittos == '\'') && quote == 0)
 		{
 			quote++;
 			quotes = **splittos;

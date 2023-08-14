@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   env_list_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:33:54 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/13 19:26:22 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/14 14:48:36 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_env_list *lstnew_env(char *name, char *value)
+t_env_list	*lstnew_env(char *name, char *value)
 {
-	t_env_list *result;
+	t_env_list	*result;
 
 	result = malloc(sizeof(t_env_list));
 	result->name = name;
@@ -23,9 +23,9 @@ t_env_list *lstnew_env(char *name, char *value)
 	return (result);
 }
 
-t_env_list *lstlast_env(t_env_list *list)
+t_env_list	*lstlast_env(t_env_list *list)
 {
-	t_env_list *head;
+	t_env_list	*head;
 
 	if (list == NULL)
 		return (0);
@@ -37,8 +37,8 @@ t_env_list *lstlast_env(t_env_list *list)
 
 void	lstadd_back_env(t_env_list **list, t_env_list *new)
 {
-	t_env_list *last;
-	
+	t_env_list	*last;
+
 	if (*list)
 	{
 		last = lstlast_env(*list);
@@ -48,7 +48,7 @@ void	lstadd_back_env(t_env_list **list, t_env_list *new)
 		*list = new;
 }
 
-void print_lst_env(t_env_list *list)
+void	print_lst_env(t_env_list *list)
 {
 	while (list)
 	{
@@ -56,22 +56,24 @@ void print_lst_env(t_env_list *list)
 		{
 			printf("1%s\n", list->name);
 		}
-		else 
+		else
 			printf("2 %s=\"%s\"\n", list->name, list->value);
 		list = list->next;
 	}
 }
 
+void	free_env_list(t_env_list *head)
+{
+	t_env_list	*current;
+	t_env_list	*temp;
 
-
-void free_env_list(t_env_list *head) {
-    t_env_list *current = head;
-    while (current != NULL) 
+	current = head;
+	while (current != NULL)
 	{
-        t_env_list *temp = current;
-        current = current->next;
-        free(temp->name);
+		temp = current;
+		current = current->next;
+		free(temp->name);
 		free(temp->value);
-        free(temp);
-    }
+		free(temp);
+	}
 }

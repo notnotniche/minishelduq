@@ -3,29 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:51:54 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/13 17:19:55 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/14 13:37:47 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //choisir ici assignation here doc , to	
 
-
 #include "../minishell.h"
 
-void operator_manager(char **read_line, t_lex_list **lex_list, t_init *init)
+void	operator_manager(char **read_line, t_lex_list **lex_list, t_init *init)
 {
 	if ((*read_line)[1] && (*read_line)[0] == '<' && (*read_line)[1] == '<')
 	{
 		lstadd_back_lex(lex_list, lstnew_lex(ft_strdup("<<"), HERE_DOC, init));
-		(*read_line)++;	
+		(*read_line)++;
 	}
-	else if ((*read_line)[1] && (*read_line)[0] == '>' && (*read_line)[1] == '>')
+	else if ((*read_line)[1]
+			&& (*read_line)[0] == '>' && (*read_line)[1] == '>')
 	{
 		lstadd_back_lex(lex_list, lstnew_lex(ft_strdup(">>"), APP_OUT, init));
-		(*read_line)++;	
+		(*read_line)++;
 	}
 	else if ((*read_line)[0] == '|')
 		lstadd_back_lex(lex_list, lstnew_lex(ft_strdup("|"), PIPE, init));
@@ -34,12 +34,11 @@ void operator_manager(char **read_line, t_lex_list **lex_list, t_init *init)
 	else if ((*read_line)[0] == '>')
 		lstadd_back_lex(lex_list, lstnew_lex(ft_strdup(">"), REDIR_OUT, init));
 	(*read_line)++;
-
 }
 
-void word_manager(char *read_line, t_lex_list **lex_list, t_init *init)
+void	word_manager(char *read_line, t_lex_list **lex_list, t_init *init)
 {
-	char *word;
+	char	*word;
 	int		size;
 
 	size = length_word(read_line);
@@ -48,9 +47,9 @@ void word_manager(char *read_line, t_lex_list **lex_list, t_init *init)
 	write_word(read_line, &word);
 }
 
-t_lex_list *lexer_lexing(char *read_line, t_init *init)
+t_lex_list	*lexer_lexing(char *read_line, t_init *init)
 {
-	t_lex_list *lex_list;
+	t_lex_list	*lex_list;
 
 	lex_list = NULL;
 	while (*read_line)
