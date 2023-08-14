@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 18:14:13 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/14 13:05:31 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/14 13:27:55 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ char *is_pathabs(t_init *init, char *str, t_exec_init *exec_init)
 			close(exec_init->mypipe[1]);
 			close(exec_init->mypipe[0]);
 			close(exec_init->pipetmp);
-			free(str);
 			exit(126);
 		}
 		if (file_exec(str) == 1)
@@ -43,7 +42,6 @@ char *is_pathabs(t_init *init, char *str, t_exec_init *exec_init)
 			close(exec_init->mypipe[1]);
 			close(exec_init->mypipe[0]);
 			close(exec_init->pipetmp);
-			free(str);
 			exit(126);
 		}
 		exit(1);
@@ -58,7 +56,6 @@ else if ((str[0] == '~' || str[0] == '/' || str[0] == '.') && access(str, F_OK) 
 		close(exec_init->mypipe[1]);
 		close(exec_init->mypipe[0]);
 		close(exec_init->pipetmp);
-		free(str);
 		exit(127);
 	}
 	return (NULL);

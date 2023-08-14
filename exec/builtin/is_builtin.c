@@ -6,13 +6,13 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:25:56 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/14 11:22:44 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/14 13:25:21 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int is_command_builtin(char *str)
+int	is_command_builtin(char *str)
 {
 	if (ft_strsame(str, "echo"))
 		return (1);
@@ -31,7 +31,7 @@ int is_command_builtin(char *str)
 	return (0);
 }
 
-int fork_builtin(char *str)
+int	fork_builtin(char *str)
 {
 	if (ft_strsame(str, "cd"))
 		return (1);
@@ -39,14 +39,12 @@ int fork_builtin(char *str)
 		return (1);
 	if (ft_strsame(str, "unset"))
 		return (1);
-	// if (ft_strsame(str, "env"))
-	// 	return (1);
 	if (ft_strsame(str, "exit"))
 		return (1);
 	return (0);
 }
 
-int builtin_manage(t_init *init, char *str, char **all_args)
+int	builtin_manage(t_init *init, char *str, char **all_args)
 {
 	if (ft_strsame(str, "echo"))
 		text_to_print(all_args, init);
@@ -59,7 +57,8 @@ int builtin_manage(t_init *init, char *str, char **all_args)
 	if (ft_strsame(str, "unset"))
 		the_real_unset(all_args, init);
 	if (ft_strsame(str, "cd"))
-		the_real_cd(all_args, env_to_str(init, init->lst_env, ft_size_env(init->lst_env)), init);
+		the_real_cd(all_args, env_to_str(init, init->lst_env, \
+			ft_size_env(init->lst_env)), init);
 	if (ft_strsame(str, "exit"))
 		the_real_exit(all_args, init);
 	return (0);
