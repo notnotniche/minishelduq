@@ -3,109 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:52:24 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/14 14:38:06 by itahani          ###   ########.fr       */
+/*   Updated: 2023/08/14 20:12:40 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-int	size_double_tab(char **arguments)
-{
-	int	i;
-
-	i = 0;
-	while (arguments[i])
-		i++;
-	return (i);
-}
-
-int	valid_first_letter(char *str, int i)
-{
-	if (ft_isalpha(str[i]) == 0)
-		return (0);
-	else
-		return (1);
-}
-
-int	valid_only_str(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (1);
-}
-
-int	valid_until_equal(char *str)
-{
-	int	i;
-	int	y;
-
-	y = 0;
-	i = 0;
-	while (str[i] && str[i] != '=')
-	{
-		if (ft_isalnum(str[i]) == 0)
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-int	valid_after_equal(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] && str[i + 1] != '=')
-		i++;
-	while (str[i])
-		i++;
-	return (1);
-}
-
-int	valid_export(char **arguments)
-{
-	if (valid_first_letter(arguments[1], 0) == 0)
-		return (0);
-	if (valid_until_equal(arguments[1]) == 0)
-		return (0);
-	else if (valid_after_equal(arguments[1]) == 0)
-		return (0);
-	return (1);
-}
-
-void	change_env_value_export(char *name, char *new_v, t_init *init, int i)
-{
-	t_env_list	*tmp;
-
-	tmp = init->lst_env;
-	while (tmp)
-	{
-		if (ft_strsame(tmp->name, name))
-		{
-			free(tmp->value);
-			if (new_v)
-			{
-				tmp->value = ft_strdup(new_v);
-				tmp->i = 0;
-			}
-			else
-			{
-				if (i == VALID)
-					tmp->i = VALID;
-				tmp->value = NULL;
-			}
-			return ;
-		}
-		tmp = tmp->next;
-	}
-	lstadd_back_env(&init->lst_env, lstnew_env(ft_strdup(name), new_v ? ft_strdup(new_v) : NULL));
-}
 
 void	export_to_linked_list(t_init *init, char **str)
 {

@@ -6,7 +6,7 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:40:58 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/14 17:21:28 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/14 20:06:23 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,10 @@ int	here_doc_exist(t_init *init);
 char	*ft_strcpy(char *dest, const char *src);
 void	close_fds(int fd_nbr, ...);
 char *ft_strcat(char *dest, const char *src);
+int	handle_syntax_error(t_init *init);
+int	redir_in_error(int count, t_init *init);
+int	increment_redir_in_count(t_lex_list *lst_lex);
+int	redir_out_error(int count, t_init *init);
 char *execute_from_path(char **splittos, t_str_list *c);
 int		ft_isitenv(char c);
 char	*expand_env_and_quote(char *str, t_init *init);
@@ -163,15 +167,29 @@ char *concatenate_strings(char *s1, char *s2);
 char			*ft_itoa(int n);
 char	*ft_join_str_in_init(t_init *init, char c, 	char *src);
 void	ft_print_fd(char *str, int fd);
+int	syntax_redir_in(t_init *init);
+int	handle_heredoc_error(t_init *init);
+char	*ft_strjoin_cr(char const *s1, char s2);
+int	syntax_error(int count, t_init *init);
+char	*cd_error_no_access(char *path, t_init *init);
+int	syntax_redir_out(t_init *init);
+int	increment_pipe_count(t_lex_list *lst_lex);
+char	*get_home_path(char **envp, t_init *init);
+int	is_word_after_operator(t_init *init);
+int	is_disallowed_op(t_lex_list *lst_lex);
+int	increment_redir_out_count(t_lex_list *lst_lex);
 int		ft_size_token(t_token_list *list);
 int		ft_size_env(t_env_list *head);
-int		ft_size_str(t_str_list *head);
-
+int		ft_size_str(t_str_list *head);int	check_quote_ends(char *str);
 t_str_list	*lstnew_str(char *content, t_init *init);
 t_str_list *lstlast_str(t_str_list *str_list);
 void	lstaddback_str(t_str_list **str_list, t_str_list *new);
 void	print_str(t_str_list *str_list, char *str);
+t_env_list	*v_value(t_init *init);
+char	*ft_strjoin_space(char *s1, char *s2, t_init *init);
+int	ft_scmp(const char *s1, const char *s2);
 void	print_all_str(t_init *init);
+int	echo_n_option(char **line, int i);
 void	delete_last_node_lex(t_lex_list **list);
 
 //check_error
@@ -222,6 +240,12 @@ void print_lst_lex(t_lex_list *list);
 
 //env_list_utils
 void		print_lst_env(t_env_list *list);
+int	valid_after_equal(char *str);
+int	valid_export(char **arguments);
+int	size_double_tab(char **arguments);
+int	valid_first_letter(char *str, int i);
+int	valid_only_str(char *str);
+int	valid_until_equal(char *str);
 void		lstadd_back_env(t_env_list **list, t_env_list *new);
 t_env_list	*lstlast_env(t_env_list *list);
 t_env_list	*lstnew_env(char *name, char *value);

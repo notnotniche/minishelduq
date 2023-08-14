@@ -6,13 +6,13 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 16:00:25 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/14 12:57:20 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/14 19:50:52 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int g_status_exit_code = 0;
+int	g_status_exit_code = 0;
 
 void	sig_process(int sig_num)
 {
@@ -26,7 +26,8 @@ void	sig_process(int sig_num)
 
 int	parsing(t_init *init, char *read_line)
 {
-	t_token_list *head;
+	t_token_list	*head;
+
 	init->lst_mal = NULL;
 	lstaddback_malloc(init, lstnew_malloc(read_line));
 	init->lst_lex = lexer_lexing(read_line, init);
@@ -39,12 +40,12 @@ int	parsing(t_init *init, char *read_line)
 }
 
 
-int main(int argc, char **argv, char **env)
+int	main(int argc, char **argv, char **env)
 {
-	(void)argc;
-	(void)argv;
 	t_init init;
 
+	(void)argc;
+	(void)argv;
 	if (!ttyname(1) || !ttyname(0))
 		return(0);
 	init.lst_env = init_env_list(env);

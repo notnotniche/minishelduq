@@ -18,10 +18,17 @@ ENVP_DIR = envp/
 
 MAIN = 		main.c
 
-SRCS =		${LAUNCHER_DIR}launcher.c\
-			${UTILS_DIR}splittos.c\
+SRCS =		${UTILS_DIR}splittos.c\
 			${BUILTINS_DIR}echo_utils.c\
 			${LEXER_DIR}token_utils.c\
+			${ERROR_DIR}syntax_utils2.c\
+			${ERROR_DIR}syntax_utils.c\
+			${ERROR_DIR}syntax_redir.c\
+			${BUILTINS_DIR}echo2.c\
+			${BUILTINS_DIR}export2.c\
+			${BUILTINS_DIR}export3.c\
+			${ERROR_DIR}quotes.c\
+			${BUILTINS_DIR}cd2.c\
 			${UTILS_DIR}shlvl.c\
 			${UTILS_DIR}ft_strcmp.c\
 			${UTILS_DIR}isnumber.c\
