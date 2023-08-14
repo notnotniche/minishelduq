@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:52:24 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/14 20:12:40 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/14 20:36:02 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	export_to_linked_list(t_init *init, char **str)
 {
 	if (str[1] == NULL)
-		change_env_value_export(str[0], str[1], init, VALID);
+		update_env_or_export(str[0], str[1], init, VALID);
 	else
-		change_env_value_export(str[0], str[1], init, 0);
+		update_env_or_export(str[0], str[1], init, 0);
 }
 
 char	**exportator(char *str)

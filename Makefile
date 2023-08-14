@@ -29,6 +29,7 @@ SRCS =		${UTILS_DIR}splittos.c\
 			${BUILTINS_DIR}export2.c\
 			${BUILTINS_DIR}export3.c\
 			${LEXER_DIR}expand_utils1.c\
+			${BUILTINS_DIR}export4.c\
 			${ERROR_DIR}quotes.c\
 			${BUILTINS_DIR}cd2.c\
 			${UTILS_DIR}shlvl.c\

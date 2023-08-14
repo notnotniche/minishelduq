@@ -6,7 +6,7 @@
 /*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:40:58 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/14 20:27:27 by itahani          ###   ########.fr       */
+/*   Updated: 2023/08/14 20:35:15 by itahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,10 @@ int		ft_strlen(char *str);
 char	*ft_strtrim(char *str, int i , int y);
 int		ft_strsame(char *str1, char *str2);
 char    **ft_split(const char *s, char c);
+int      is_same_name(t_env_list *env, char *name);
 int		is_only_isspace(char *str);
+void     modify_env(t_env_list *tmp, char *new_val, int flag);
+void update_env_or_export(char *name, char *new_val, t_init *init, int flag);
 char *ft_strncpy(char *dest, const char *src, size_t n);
 char	*heredoc_name(char *delimiteur, t_init *init);
 void closer_totally_spies(int fd, int oui, char *line);
