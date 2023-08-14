@@ -6,13 +6,13 @@
 /*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 21:04:31 by itahani           #+#    #+#             */
-/*   Updated: 2023/08/13 19:35:57 by nklingsh         ###   ########.fr       */
+/*   Updated: 2023/08/14 11:40:30 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	is_str_or_int(char *arg)
+int	 is_str_or_int(char *arg)
 {
 	int	i;
 
@@ -31,6 +31,12 @@ int	is_str_or_int(char *arg)
 
 void the_real_exit(char **all_args, t_init *init)
 {
+	int x;
+
+	x = 0;
+	if (size_double_tab(all_args) > 1)
+		x = ft_atoi(all_args[1]);
+	
 	if (size_double_tab(all_args) == 1)
 	{
 		free_s_init(init);
@@ -61,6 +67,6 @@ void the_real_exit(char **all_args, t_init *init)
 		free_s_init(init);
 		free_env_list(init->lst_env);
 		printf("exit\n");
-		exit(ft_atoi(all_args[1])); 
+		exit(x); 
 	}
 }

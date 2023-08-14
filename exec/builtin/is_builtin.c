@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_builtin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:25:56 by nklingsh          #+#    #+#             */
-/*   Updated: 2023/08/12 14:47:25 by itahani          ###   ########.fr       */
+/*   Updated: 2023/08/14 11:22:44 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int fork_builtin(char *str)
 		return (1);
 	if (ft_strsame(str, "unset"))
 		return (1);
-	if (ft_strsame(str, "env"))
-		return (1);
+	// if (ft_strsame(str, "env"))
+	// 	return (1);
 	if (ft_strsame(str, "exit"))
 		return (1);
 	return (0);

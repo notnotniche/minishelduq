@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itahani <itahani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nklingsh <nklingsh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 18:42:16 by itahani           #+#    #+#             */
-/*   Updated: 2023/08/11 21:36:14 by itahani          ###   ########.fr       */
+/*   Updated: 2023/08/14 11:33:46 by nklingsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../minishell.h"
 
 int	ft_atoi(const char *str)
 {
@@ -27,6 +29,7 @@ int	ft_atoi(const char *str)
 		i++;
 	while (str[i] >= 48 && str[i] <= 57)
 	{
+		printf("ft _ atoi : %c \n", str[i]);
 		res *= 10;
 		res += (str[i] - 48);
 		i++;
